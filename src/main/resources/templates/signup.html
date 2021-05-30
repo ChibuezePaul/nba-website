@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <!-- https://cdnjs.com/libraries/twitter-bootstrap/5.0.0-beta1 -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/css/bootstrap.min.css" />
+
+    <!-- Icons: https://getbootstrap.com/docs/5.0/extend/icons/ -->
+    <!-- https://cdnjs.com/libraries/font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>NBA</title>
+</head>
+
+<body>
+    <!-- Landing Page one -->
+    <section class="Landing-page">
+        <header>
+            <nav>
+                <!---------------Top Nav----------------->
+                <div class="image-logo">
+                    <div><img src="assets/img/ikeja branch NBA logo2 1.png" class="logo1" width="50px" height="40px"></div>
+                    <div><img src="assets/img/ikeja branch NBA logo 1.png" class="logo2" width="140px" height="40px"></div>
+                </div>
+                <div class="burger" onclick="toggleNav(1)">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                </div>
+                <nav class="mobile-nav">
+                    <ul>
+                        <li><a href="/" class="m-link">HOMES</a></li>
+                        <li><a href="/news" class="m-link">NEWS & EVENTS</a></li>
+                        <li><a href="/about" class="m-link">ABOUT US</a></li>
+                        <li><a href="/findmember" class="m-link">MEMBERS PORTAL</a></li>
+                        <li> <button href="#" class=" btn m-link">Find a Lawyer</button></li>
+                    </ul>
+                </nav>
+                <div class="nav-list">
+                    <ul class="topnav">
+                        <li> <a href="/">HOMES</a></li>
+                        <li class="/active"> <a href="news">NEWS & EVENTS</a></li>
+                        <li> <a href="/about">ABOUT US</a></li>
+                        <li> <a href="/findmember">MEMBERS PORTAL</a></li>
+                        <button type="" class="btn law" onclick="/findmember">Find a Lawyer</button>
+                    </ul>
+                </div>
+            </nav>
+
+            </div>
+        </header>
+        <div style="padding: 35px;">
+            <h3 class="breadcrumb">News</h3>
+        </div>
+        <h4 th:class="${!#strings.isEmpty(message)}  ? 'alert alert-success alert-dismissible text-success fade in' : 'hidden'" th:text="${message}">Success Message</h4>
+        <a href="#" th:class="${!#strings.isEmpty(message)}  ? 'close' : 'hidden' " data-dismiss="alert" aria-label="close">&times;</a>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3"> </div>
+                <div class="col-md-6"> 
+                    <br><h2 class="text-center">Sign Up</h2><br><br>
+                    <form th:action="@{/signup}" th:method="post" th:object="${user}">
+                        <section th:class="${#fields.hasErrors('*')}  ? 'alert alert-danger alert-dismissible text-danger fade in' : 'hidden'">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <li th:each="e : ${#fields.detailedErrors()}" th:attr="field=${e.fieldName}"
+                                th:text="${e.message}"></li>
+                        </section>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p style="text-align: right; " >Full Name</p>
+                            </div>
+                            <div class="col-md-5">
+                                <input th:field="*{firstName}" type="text" class="form-control" placeholder="First Name "style="background-color: #DADADA">
+                            </div>
+                            <div class="col-md-4">
+                                <input th:field="*{lastName}" type="text" class="form-control" placeholder="Last Name" style="background-color: #DADADA">
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p style="text-align: right; ">Email Address</p>
+                            </div>
+                            <div class="col-md-9">
+                                <input th:field="*{email}" type="email" class="form-control"style="background-color: #DADADA">
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p style="text-align: right; ">Phone Number</p>
+                            </div>
+                            <div class="col-md-9">
+                                <input th:field="*{phoneNumber}" type="text" class="form-control" style="background-color: #DADADA">
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p style="text-align: right; ">Address</p>
+                            </div>
+                            <div class="col-md-9">
+                                <input th:field="*{address}" type="text" class="form-control" style="background-color: #DADADA">
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p style="text-align: right; ">Supreme Court Number</p>
+                            </div>
+                            <div class="col-md-5">
+                                <input th:field="*{courtNumber}" type="text" class="form-control" style="background-color: #DADADA">
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p style="text-align: right; ">Chamber Address</p>
+                            </div>
+                            <div class="col-md-9">
+                                <input th:field="*{chamberAddress}" type="text" class="form-control" style="background-color: #DADADA">
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p style="text-align: right;">Password</p>
+                            </div>
+                            <div class="col-md-5">
+                                <input th:field="*{password}" type="text" class="form-control" style="background-color: #DADADA">
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-md-5">
+                            </div>
+                            <div class="col-md-4">
+                                <button type="submit" class="btn law form-control">Sign up</button>
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-3">
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- Footer -->
+        <footer class="page-footer font-small pt-4 d-flex justify-content-around mt-4">
+
+            <div class="contacts w-100">
+                <h6>Contact</h6>
+
+                <p>
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>Ikeja, Lagos, Nigeria
+                </p>
+                <p>
+                    <ion-icon name="call"></ion-icon> 080376811156
+                </p>
+                <p class="w-100">
+                    <i class="fa fa-at" aria-hidden="true"></i>info@depoconnet.com
+                </p>
+
+            </div>
+            <div class="link mt-4">
+
+                <div class="social-links ">
+                    <ion-icon name="logo-linkedin"></ion-icon>
+                    <ion-icon name="logo-twitter"></ion-icon>
+                    <ion-icon name="logo-instagram"></ion-icon>
+                    <ion-icon name="logo-facebook"></ion-icon>
+                </div>
+                <div class="copyright">
+                    <i class="far fa-copyright" aria-hidden="true"></i>Copyright 2021 NBA IKEJA. All
+                    rights reserved.
+
+                </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </section>
+    <script src="assets/js/app.js"></script>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+</body>
+
+</html>
