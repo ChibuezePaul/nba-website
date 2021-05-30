@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <!-- Required meta tags -->
@@ -63,84 +63,92 @@
         <div style="padding: 35px;">
             <h3 class="breadcrumb">News</h3>
         </div>
-
+        <h4 th:class="${!#strings.isEmpty(message)}  ? 'alert alert-success alert-dismissible text-success fade in' : 'hidden'" th:text="${message}">Success Message</h4>
+        <a href="#" th:class="${!#strings.isEmpty(message)}  ? 'close' : 'hidden' " data-dismiss="alert" aria-label="close">&times;</a>
         <div class="container">
             <div class="row">
                 <div class="col-md-3"> </div>
                 <div class="col-md-6"> 
                     <br><h2 class="text-center">Sign Up</h2><br><br>
-                    <div class="row"> 
-                        <div class="col-md-3"> 
-                            <p style="text-align: right; ">Full Name</p>
+                    <form th:action="@{/signup}" th:method="post" th:object="${user}">
+                        <section th:class="${#fields.hasErrors('*')}  ? 'alert alert-danger alert-dismissible text-danger fade in' : 'hidden'">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <li th:each="e : ${#fields.detailedErrors()}" th:attr="field=${e.fieldName}"
+                                th:text="${e.message}"></li>
+                        </section>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p style="text-align: right; " >Full Name</p>
+                            </div>
+                            <div class="col-md-5">
+                                <input th:field="*{firstName}" type="text" class="form-control" placeholder="First Name "style="background-color: #DADADA">
+                            </div>
+                            <div class="col-md-4">
+                                <input th:field="*{lastName}" type="text" class="form-control" placeholder="Last Name" style="background-color: #DADADA">
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p style="text-align: right; ">Email Address</p>
+                            </div>
+                            <div class="col-md-9">
+                                <input th:field="*{email}" type="email" class="form-control"style="background-color: #DADADA">
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p style="text-align: right; ">Phone Number</p>
+                            </div>
+                            <div class="col-md-9">
+                                <input th:field="*{phoneNumber}" type="text" class="form-control" style="background-color: #DADADA">
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p style="text-align: right; ">Address</p>
+                            </div>
+                            <div class="col-md-9">
+                                <input th:field="*{address}" type="text" class="form-control" style="background-color: #DADADA">
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p style="text-align: right; ">Supreme Court Number</p>
+                            </div>
+                            <div class="col-md-5">
+                                <input th:field="*{courtNumber}" type="text" class="form-control" style="background-color: #DADADA">
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p style="text-align: right; ">Chamber Address</p>
+                            </div>
+                            <div class="col-md-9">
+                                <input th:field="*{chamberAddress}" type="text" class="form-control" style="background-color: #DADADA">
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p style="text-align: right;">Password</p>
+                            </div>
+                            <div class="col-md-5">
+                                <input th:field="*{password}" type="text" class="form-control" style="background-color: #DADADA">
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-md-5">
+                            </div>
+                            <div class="col-md-4">
+                                <button type="submit" class="btn law form-control">Sign up</button>
+                            </div>
+                            <div class="col-md-3">
+                            </div>
                         </div>
-                        <div class="col-md-5"> 
-                            <input type="text" class="form-control" placeholder="First Name "style="background-color: #DADADA">
-                        </div>
-                        <div class="col-md-4"> 
-                            <input type="text" class="form-control" placeholder="Last Name" style="background-color: #DADADA">
-                        </div>
-                    </div><br>
-                    <div class="row"> 
-                        <div class="col-md-3"> 
-                            <p style="text-align: right; ">Email Address</p>
-                        </div>
-                        <div class="col-md-9"> 
-                            <input type="text" class="form-control"style="background-color: #DADADA">
-                        </div>
-                    </div><br>
-                    <div class="row"> 
-                        <div class="col-md-3"> 
-                            <p style="text-align: right; ">Phone Number</p>
-                        </div>
-                        <div class="col-md-9"> 
-                            <input type="text" class="form-control" style="background-color: #DADADA">
-                        </div>
-                    </div><br>
-                    <div class="row"> 
-                        <div class="col-md-3"> 
-                            <p style="text-align: right; ">Address</p>
-                        </div>
-                        <div class="col-md-9"> 
-                            <input type="text" class="form-control" style="background-color: #DADADA">
-                        </div>
-                    </div><br>
-                    <div class="row"> 
-                        <div class="col-md-3"> 
-                            <p style="text-align: right; ">Supreme Court Number</p>
-                        </div>
-                        <div class="col-md-5"> 
-                            <input type="text" class="form-control" style="background-color: #DADADA">
-                        </div>
-                        <div class="col-md-3"> 
-                        </div>
-                    </div><br>
-                    <div class="row"> 
-                        <div class="col-md-3"> 
-                            <p style="text-align: right; ">Chamber Address</p>
-                        </div>
-                        <div class="col-md-9"> 
-                            <input type="text" class="form-control" style="background-color: #DADADA">
-                        </div>
-                    </div><br>
-                    <div class="row"> 
-                        <div class="col-md-3"> 
-                            <p style="text-align: right;">Password</p>
-                        </div>
-                        <div class="col-md-5"> 
-                            <input type="text" class="form-control" style="background-color: #DADADA">
-                        </div>
-                        <div class="col-md-3"> 
-                        </div>
-                    </div><br>
-                    <div class="row"> 
-                        <div class="col-md-5"> 
-                        </div>
-                        <div class="col-md-4">
-                            <button type="" class="btn law form-control" onclick="/findmember">Sign up</button>
-                        </div>
-                        <div class="col-md-3"> 
-                        </div>
-                    </div>
+                    </form>
                 </div>
                 <div class="col-md-3">
                 </div>
@@ -174,7 +182,7 @@
                     <ion-icon name="logo-facebook"></ion-icon>
                 </div>
                 <div class="copyright">
-                    <i class="far fa-copyright" aria-hidden="true"></i>Copyright 2021 NBAIJEKA. All
+                    <i class="far fa-copyright" aria-hidden="true"></i>Copyright 2021 NBA IKEJA. All
                     rights reserved.
 
                 </div>

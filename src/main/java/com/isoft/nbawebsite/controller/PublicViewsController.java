@@ -1,11 +1,12 @@
 package com.isoft.nbawebsite.controller;
 
+import com.isoft.nbawebsite.user.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class MainController {
+public class PublicViewsController {
 
     @GetMapping("/")
     public String main(Model model) {
@@ -54,6 +55,7 @@ public class MainController {
 
     @GetMapping("/signup")
     public String signup(Model model) {
+        model.addAttribute("user", new User());
         return "signup"; //view
     }
 
