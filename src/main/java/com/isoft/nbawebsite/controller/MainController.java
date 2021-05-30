@@ -57,9 +57,35 @@ public class MainController {
         return "signup"; //view
     }
 
+    @GetMapping("/dashboard")
+    public String admindashboard(Model model) {
+        return "admin/dashboard"; //view
+    }
+
+
+    @GetMapping("/library")
+    public String library(Model model) {
+        return "admin/library"; //view
+    }
+
+    @GetMapping("/meetingroom")
+    public String meetingroom(Model model) {
+        return "admin/meetingroom"; //view
+    }
+
+    @GetMapping("/payment")
+    public String payment(Model model) {
+        return "admin/payment"; //view
+    }
+
+    @GetMapping("/settings")
+    public String settings(Model model) {
+        return "admin/settings"; //view
+    }
+
     @GetMapping("/admindash")
     public String admindash(Model model) {
-        return "admindash"; //view
+        return "admin/admindash"; //view
     }
 
     @GetMapping("/card")
