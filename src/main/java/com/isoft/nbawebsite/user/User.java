@@ -8,7 +8,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import javax.validation.constraints.Email;
 
 @EqualsAndHashCode(callSuper = true)
-@Data @Document
+@Data
+@Document
 public class User extends AbstractEntity {
     private String firstName;
 
