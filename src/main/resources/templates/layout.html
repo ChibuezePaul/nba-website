@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
-<head>
+<head th:fragment="head(currentPage)">
     <!-- Required meta tags -->
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-
+    <title th:text="|Nigeria Bar Association : ${currentPage}|">Nigeria Bar Association</title>
     <!-- Bootstrap CSS -->
     <!-- https://cdnjs.com/libraries/twitter-bootstrap/5.0.0-beta1 -->
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Icons: https://getbootstrap.com/docs/5.0/extend/icons/ -->
     <!-- https://cdnjs.com/libraries/font-awesome -->
@@ -20,13 +21,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
-    <title>NBA</title>
 </head>
+
 
 <body>
 <!-- Landing Page one -->
 <section class="Landing-page">
-    <header>
+    <header th:fragment="header">
         <nav>
             <!---------------Top Nav----------------->
             <div class="image-logo">
@@ -46,89 +47,81 @@
                     <li><a href="/dashboard" class="m-link">MEMBERS PORTAL</a></li>
                     <li><a class="btn law"
                            style="background: linear-gradient(90deg, #2D6936 -6.45%, #00A419 95.97%); padding: 10px; border-radius: 3px"
-                           href="/catalogue">Find a Lawyer</a></li>
-                </ul>
+                           href="/catalogue">Find a Lawyer</a>
+                    </li>
                 </ul>
             </nav>
             <div class="nav-list">
                 <ul class="topnav">
                     <li><a href="/">HOMES</a></li>
-                    <li class="/active"><a href="news">NEWS & EVENTS</a></li>
+                    <li class="/active"><a href="/events">NEWS & EVENTS</a></li>
                     <li><a href="/about">ABOUT US</a></li>
                     <li><a href="/dashboard">MEMBERS PORTAL</a></li>
                     <li><a class="btn law"
                            style="background: linear-gradient(90deg, #2D6936 -6.45%, #00A419 95.97%); padding: 10px; border-radius: 3px"
-                           href="/catalogue">Find a Lawyer</a></li>
+                           href="/catalogue">Find a Lawyer</a>
+                    </li>
                 </ul>
             </div>
         </nav>
-
-        </div>
     </header>
-    <div style="padding: 35px;">
-        <h3 class="breadcrumb">News</h3>
+
+
+
+
+    <div th:fragment="adminheader(currentPage)" style="margin-top: 60px" class="content" >
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                <div class="news-content" style="text-align: center;">
+                    <img src="assets/img/profile.jpg" style="display: inline-block; border-radius: 250px; width: 80px;">
+                    <h5 class="text-center">Joe Doe</h5>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6" style="position: relative;">
+                <h2 style="margin-left: 40px;padding: 20px" th:text="${currentPage}|">Settings</h2>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+                <div class="row">
+                    <div class="col-9">
+                        <input type="text" class="form-control" placeholder="Search"
+                               style="background-color: #DADADA; margin-left: 10px;">
+                    </div>
+                    <div class="col-3">
+                        <input type="button" value="Find" class="btn" style="background-color: #66B700"/>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6">
-                <br><br><br><br>
-                <div class="row">
-                    <div class="col-md-3">
-                    </div>
-                    <div class="col-md-9">
-                        <p><span class="fa fa-credit-card"> </span> Card details</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                    </div>
-                    <div class="col-md-9">
-                        <input type="text" class="form-control" style="background-color: #DADADA"
-                               placeholder="Card number">
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-md-3">
-                    </div>
-                    <div class="col-md-9">
-                        <input type="text" class="form-control" style="background-color: #DADADA"
-                               placeholder="Account type">
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-md-3">
-                    </div>
-                    <div class="col-md-5">
-                        <input type="text" class="form-control" placeholder="Expiry(MM/YY)"
-                               style="background-color: #DADADA">
-                    </div>
-                    <div class="col-md-4">
-                        <input type="text" class="form-control" placeholder="CVV" style="background-color: #DADADA">
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-md-3">
-                    </div>
-                    <div class="col-md-9">
-                        <input type="text" class="form-control" placeholder="PIN" style="background-color: #DADADA">
-                    </div>
-                </div>
-                <br><br><br><br>
 
-            </div>
-            <div class="col-md-3">
-            </div>
+    <div class="col-12 col-sm-12 col-md-3 col-lg-3" th:fragment="adminsidebar">
+        <div class="mem-content3 content" style="padding: 10px">
+            <a href="/dashboard" style="font-size: 18px; padding-left: 20px; color: #000000; text-decoration: none"><br>
+                <ion-icon style="padding-left: 20px; color: #000000;" filled="black" name="grid-outline"></ion-icon>
+                Dashboard
+            </a><br><hr><br>
+            <a href="/meetingroom" style="font-size: 18px; padding-left: 20px; color: #000000; text-decoration: none">
+                <i class="fas fa-crosshairs"></i> Meetings
+            </a><br><hr><br>
+            <a href="/library" style="font-size: 18px; padding-left: 20px; color: #000000; text-decoration: none">
+                <i class="fas fa-book"></i> Library
+            </a><br><hr><br>
+            <a href="/shop" style="font-size: 18px; padding-left: 20px; color: #000000; text-decoration: none">
+                <i class="fas fa-shopping-bag"></i> Shop
+            </a><br><hr><br>
+            <a href="/payment" style="font-size: 18px; padding-left: 20px; color: #000000; text-decoration: none">
+                <i class="fas fa-credit-card"></i> Payments
+            </a><br><hr><br>
+
+            <a href="/settings" style="font-size: 18px; padding-left: 20px; color: #000000; text-decoration: none">
+                <i class="fas fa-cog"></i> Settings
+            </a><br>
         </div>
-
     </div>
 
     <!-- Footer -->
-    <footer class="page-footer font-small pt-4 d-flex justify-content-around mt-4">
+    <footer th:fragment="footer" class="page-footer font-small pt-4 d-flex justify-content-around mt-4">
 
         <div class="contacts w-100">
             <h6>Contact</h6>
@@ -143,10 +136,8 @@
             <p class="w-100">
                 <i class="fa fa-at" aria-hidden="true"></i>info@depoconnet.com
             </p>
-
         </div>
         <div class="link mt-4">
-
             <div class="social-links ">
                 <ion-icon name="logo-linkedin"></ion-icon>
                 <ion-icon name="logo-twitter"></ion-icon>
@@ -154,20 +145,20 @@
                 <ion-icon name="logo-facebook"></ion-icon>
             </div>
             <div class="copyright">
-                <i class="far fa-copyright" aria-hidden="true"></i>Copyright 2021 NBA IKEJA. All
-                rights reserved.
+                <i class="far fa-copyright" aria-hidden="true"></i> Copyright 2021 NBA IKEJA. All rights reserved.
 
             </div>
+        </div>
     </footer>
     <!-- End of Footer -->
 
 </section>
-<script src="assets/js/app.js"></script>
 
+<script src="assets/js/app.js "></script>
 <!-- Option 1: Bootstrap Bundle with Popper -->
 <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js"></script>
-<script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js "></script>
+<script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js "></script>
 </body>
 
 </html>

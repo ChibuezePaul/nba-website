@@ -13,6 +13,11 @@ public class PublicViewsController {
         return "index"; //view
     }
 
+    @GetMapping("/layout")
+    public String layout(Model model) {
+        return "layout"; //view
+    }
+
     @GetMapping("/about")
     public String about(Model model) {
         return "about"; //view
