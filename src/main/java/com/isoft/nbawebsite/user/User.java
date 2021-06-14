@@ -12,7 +12,8 @@ import javax.validation.constraints.Email;
 import java.time.LocalDateTime;
 
 @EqualsAndHashCode(callSuper = true)
-@Data @Document
+@Data
+@Document
 public class User extends AbstractEntity {
     private String firstName;
 
