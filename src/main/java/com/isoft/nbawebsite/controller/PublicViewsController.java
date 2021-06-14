@@ -1,12 +1,25 @@
 package com.isoft.nbawebsite.controller;
 
+import com.isoft.nbawebsite.constants.ContentType;
+import com.isoft.nbawebsite.content.ContentService;
 import com.isoft.nbawebsite.user.User;
+import com.isoft.nbawebsite.user.UserService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class PublicViewsController {
+
+    private final UserService userService;
+    private final ContentService contentService;
+
+    public PublicViewsController(UserService userService, ContentService contentService) {
+        this.userService = userService;
+        this.contentService = contentService;
+    }
 
     @GetMapping("/")
     public String main(Model model) {
@@ -20,11 +33,13 @@ public class PublicViewsController {
 
     @GetMapping("/events")
     public String events(Model model) {
+        model.addAttribute("events", contentService.findAllContentTypes(ContentType.EVENTS));
         return "events"; //view
     }
 
     @GetMapping("/news")
     public String news(Model model) {
+        model.addAttribute("news", contentService.findAllContentTypes(ContentType.NEWS));
         return "news"; //view
     }
 
@@ -40,11 +55,13 @@ public class PublicViewsController {
 
     @GetMapping("/catalogue")
     public String catalogue(Model model) {
-        return "catalogue"; //view
+        model.addAttribute("users", userService.findAllUser());
+        return "catalogue";
     }
 
-    @GetMapping("/individualprofile")
-    public String indprofile(Model model) {
+    @GetMapping("/individualprofile/{id}")
+    public String indprofile(@PathVariable String id, Model model) {
+        model.addAttribute("user", userService.findById(id));
         return "indprofile"; //view
     }
 
@@ -87,7 +104,8 @@ public class PublicViewsController {
 
     @GetMapping("/admindash")
     public String admindash(Model model) {
-        return "admin/admindash"; //view
+        model.addAttribute("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        return "admin/dashboard"; //view
     }
 
     @GetMapping("/card")

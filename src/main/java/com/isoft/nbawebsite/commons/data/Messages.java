@@ -28,7 +28,4 @@ public class Messages {
     public String get(String code, String... args) {
         return accessor.getMessage(code, args);
     }
-
-
-
 }

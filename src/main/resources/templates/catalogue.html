@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <!-- Required meta tags -->
@@ -65,6 +65,7 @@
         </div>
 
         <div class="container">
+            <h4 th:text="|Number of Users: ${users.size()}|"></h4>
             <div class="row">
                 <div class="col-md-3"> 
                     <input type="text" class="form-control" placeholder="Search using full name " style="background-color: #DADADA">
@@ -90,8 +91,8 @@
                                 <hr>
                                 <ion-icon style="color: black;" name="call"></ion-icon> 
                                 <ion-icon style="color: black;" name="mail"></ion-icon>
-                                <ion-icon style="color: black;" name="logo-linkedin"></ion-icon>
                                 <ion-icon style="color: black;" name="logo-facebook"></ion-icon>
+                                <ion-icon style="color: black;" name="logo-linkedin"></ion-icon>
                                 <ion-icon style="color: black;" name="logo-envelope"></ion-icon>
                             </div>
                         </div>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <!-- Required meta tags -->
@@ -62,6 +62,7 @@
         </header>
         <div class="  mini-heading">
             <h3 class="breadcrumb">Events</h3>
+            <h4 th:text="|Number of Events: ${events.size()}|"></h4>
         </div>
         <div class="event-heading">
             <img src="assets/img/bg Top.jpg">

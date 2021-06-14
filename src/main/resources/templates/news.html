@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <!-- Required meta tags -->
@@ -60,8 +60,10 @@
 
             </div>
         </header>
+
         <div class="mini-heading">
             <h3 class="breadcrumb">News</h3>
+            <h4 th:text="|Number of News: ${news.size()}|"></h4>
         </div>
 
         <div class="container">
