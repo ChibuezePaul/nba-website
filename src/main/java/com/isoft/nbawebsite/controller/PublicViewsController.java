@@ -65,38 +65,71 @@ public class PublicViewsController {
     }
 
     @GetMapping("/dashboard")
-    public String admindashboard(Model model) {
-        return "admin/dashboard"; //view
+    public String dashboard(Model model) {
+        return "authorized/dashboard"; //view
     }
-
 
     @GetMapping("/library")
     public String library(Model model) {
-        return "admin/library"; //view
+        return "authorized/library"; //view
     }
 
     @GetMapping("/meetingroom")
     public String meetingroom(Model model) {
-        return "admin/meetingroom"; //view
+        return "authorized/meetingroom"; //view
     }
 
     @GetMapping("/payment")
     public String payment(Model model) {
-        return "admin/payment"; //view
+        return "authorized/payment"; //view
     }
 
     @GetMapping("/settings")
     public String settings(Model model) {
-        return "admin/settings"; //view
+        return "authorized/settings"; //view
     }
 
     @GetMapping("/admindash")
     public String admindash(Model model) {
-        return "admin/admindash"; //view
+        return "authorized/admindash"; //view
+    }
+
+
+    @GetMapping("/admindashboard")
+    public String admindashboard(Model model) {
+        return "admin/dashboard"; // view
     }
 
     @GetMapping("/card")
     public String card(Model model) {
         return "card"; //view
+    }
+
+
+
+
+    @GetMapping("/pendingprofile")
+    public String pendingprofile(Model model) {
+        return "admin/pendingprofile"; //view
+    }
+
+    @GetMapping("/normaldashboard")
+    public String normaldashboard(Model model) {
+        return "admin/normaldashboard"; //view
+    }
+
+    @GetMapping("/pendingrequest")
+    public String pendingrequest(Model model) {
+        return "admin/pendingrequest"; //view
+    }
+
+    @GetMapping("/normalpost")
+    public String normalpost(Model model) {
+        return "admin/normalpost"; //view
+    }
+
+    @GetMapping("/memberlist")
+    public String memberlist(Model model) {
+        return "admin/memberlist"; //view
     }
 }
