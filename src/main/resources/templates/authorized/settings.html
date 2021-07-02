@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:insert="layout :: head('Settings')"></head>
+
+<body>
+<!-- Landing Page one -->
+<section class="Landing-page">
+    <div th:insert="layout :: adminheader('Settings')">
+
+    </div>
+    <div class="row news-heading">
+        <div class="content">
+            <div class="row" style="padding: 10px">
+                <div th:replace="layout :: adminsidebar">
+
+                </div>
+                <div class="col-12 col-sm-12 col-md-2 col-lg-2">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer th:insert="layout :: footer"></footer>
+    <!-- End of Footer -->
+</section>
+<script src="assets/js/app.js "></script>
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js "></script>
+<script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js "></script>
+</body>
+</html>

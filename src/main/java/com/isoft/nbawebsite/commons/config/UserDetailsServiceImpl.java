@@ -20,6 +20,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		User user = userRepository.findByCourtNumber ( s )
 				.orElseThrow(() -> new UsernameNotFoundException(String.format("User Not Found With Court Number %s", s)));
 
-		return new org.springframework.security.core.userdetails.User ( user.getCourtNumber () , user.getPassword () , Collections.emptyList () );
+		return new org.springframework.security.core.userdetails.User ( user.getCourtNumber() , user.getPassword() , Collections.emptyList () );
 	}
 }

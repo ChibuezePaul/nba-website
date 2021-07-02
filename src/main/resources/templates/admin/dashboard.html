@@ -1,182 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <!-- Bootstrap CSS -->
-    <!-- https://cdnjs.com/libraries/twitter-bootstrap/5.0.0-beta1 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/css/bootstrap.min.css" />
-
-    <!-- Icons: https://getbootstrap.com/docs/5.0/extend/icons/ -->
-    <!-- https://cdnjs.com/libraries/font-awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <title>NBA</title>
-</head>
+<head th:insert="layout :: head('Dashboard')"></head>
 
 <body>
-    <!-- Landing Page one -->
-    <section class="Landing-page">
-        <div style="margin-top: 60px" class="content">
-            <div class="row">
-                <div class="col-12 col-sm-12 col-md-3 col-lg-3">
-                    <div class="news-content" style="text-align: center;">
-                        <img src="assets/img/profile.jpg"  style="display: inline-block; border-radius: 250px; width: 80px;">
-                        <h5 class="text-center">Joe Doe</h5>
-                    </div>
+<!-- Landing Page one -->
+<section class="Landing-page">
+    <div th:insert="layout :: adminheader('Dashboard')">
+
+    </div>
+    <div class="row news-heading">
+        <div class="content">
+            <div class="row" style="padding: 10px">
+                <div th:replace="layout :: adminsidebar">
+
                 </div>
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6" style="position: relative;">
-                    <p style="position: absolute; bottom: 0; left: 45px; margin: 5px;">Recently Added books</p>
-                   
-                </div>
-                <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+                <div class="col-12 col-sm-12 col-md-9 col-lg-9">
                     <div class="row">
-                        <div class="col-9"> 
-                            <input type="text" class="form-control" placeholder="Search" style="background-color: #DADADA; margin-left: 10px;">
+
+                        <div class="col">
+                            <div class="news-details">
+                                Approved Requests
+                            </div>
+                            <div class="news-content" style="box-shadow: 0px 0px 3px 3px #eeeef0; text-align: center; background-color: #F8F7FD; border-radius: 10px; padding: 10px;">
+                                <div class="fa fa-check-circle" style="color: #66B700; font-size: 60px; margin: 10px">
+                                </div>
+                                <h3>11084</h3>
+                            </div>
                         </div>
-                        <div class="col-3">
-                            <input type="button" value="Find" class="btn" style="background-color: #66B700"/>
+
+                        <div class="col">
+                            <div class="news-details">
+                                Pending Requests
+                            </div>
+                            <div class="news-content" style="box-shadow: 0px 0px 3px 3px #eeeef0; text-align: center; background-color: #F8F7FD; border-radius: 10px; padding: 10px;">
+                                <div class="fa fa-hourglass-start" style="background-color: #DB7600; color: white; border-radius: 30px; padding: 10px; padding-inline: 15px; font-size: 40px; margin: 10px">
+                                </div>
+                                <h3>11084</h3>
+                            </div>
                         </div>
+                        <div class="col">
+                            <div class="news-details">
+                                Rejected Requests
+                            </div>
+                            <div class="news-content" style="box-shadow: 0px 0px 3px 3px #eeeef0; text-align: center; background-color: #F8F7FD; border-radius: 10px; padding: 10px;">
+                                <div class="fa fa-times-circle" style="color: #DB1A00; font-size: 60px; margin: 10px">
+                                </div>
+                                <h3>11084</h3>
+                            </div>
+
+                        </div>
+                        <div class="col"></div>
+                        <div class="col"></div>
+                    </div>
+                    <br><br><br>Recent activities
+                    <br><br>
+                    <div class="row">
+                        <div class="col row" style="background-color: #F8F7FD; padding: 8px; border-radius: 10px; margin: 18px;">
+                            <div class="col"><span style="margin: 10px">John Doe </span></div>
+                            <div class="col"><span style="margin: 10px">SC Number </span></div>
+                        </div>
+                        <div class="col-2 row" style="padding: 15px; border-radius: 10px; margin: 8px;">
+                            <input type="button" value="Suspend" class="btn" style="background-color: #FF0000">
+                        </div>
+                        <div class="col-2 row" style="padding: 15px; border-radius: 10px; margin: 8px;">
+                            <input type="button" value="Find" class="btn" style="background-color: #66B700">
+                        </div>
+                        <div class="col-2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col row" style="background-color: #F8F7FD; padding: 8px; border-radius: 10px; margin: 18px;">
+                            <div class="col"><span style="margin: 10px">John Doe </span></div>
+                            <div class="col"><span style="margin: 10px">SC Number </span></div>
+                        </div>
+                        <div class="col-2 row" style="padding: 15px; border-radius: 10px; margin: 8px;">
+                            <input type="button" value="Suspend" class="btn" style="background-color: #FF0000">
+                        </div>
+                        <div class="col-2 row" style="padding: 15px; border-radius: 10px; margin: 8px;">
+                            <input type="button" value="Find" class="btn" style="background-color: #66B700">
+                        </div>
+                        <div class="col-2"></div>
                     </div>
                 </div>
+
             </div>
         </div>
-        <div class="row news-heading">
-            <div class="content">
-                <div class="row" style="padding: 10px">
-                    <div class="col-12 col-sm-12 col-md-3 col-lg-3">
-                        <div class="mem-content3 content" style="padding: 10px">                            
-                            <p style="font-size: 18px;"> <br>
-                                <ion-icon filled="black" name="grid-outline"> </ion-icon>Dashboard
-                            </p><br>
-                            <p style="font-size: 18px;"> 
-                                <i class="fas fa-crosshairs"></i> Meetings
-                            </p><br>
-                            <p style="font-size: 18px;"> 
-                                <i class="fas fa-book"></i> Library
-                            </p><br>
-                            <p style="font-size: 18px;"> 
-                                <i class="fas fa-shopping-bag"></i> Shop
-                            </p><br>
-                            <p style="font-size: 18px;"> 
-                                <i class="fas fa-credit-card"></i> Payments
-                            </p><br>
+    </div>
 
-                            <p style="font-size: 18px;"> 
-                                <i class="fas fa-cog"></i> Settings
-                            </p><br>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-9 col-lg-9">
-                        <div class="row">
-                            <div class="col">
-                                <div class="news-content" style="text-align: center;">
-                                    <img src="assets/img/admindash.jpg"  style="display: inline-block; border-radius: 10px;">
-            
-                                    <div class="news-details">
-                                        <input type="button" value="Read now" class="btn" style="background-color: #f8f9fa; color: black;"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="news-content" style="text-align: center;">
-                                    <img src="assets/img/admindash.jpg"  style="display: inline-block; border-radius: 10px;">
-            
-                                    <div class="news-details">
-                                        <input type="button" value="Read now" class="btn" style="background-color: #f8f9fa; color: black;"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="news-content" style="text-align: center;">
-                                    <img src="assets/img/admindash.jpg"  style="display: inline-block; border-radius: 10px;">
-            
-                                    <div class="news-details">
-                                        <input type="button" value="Read now" class="btn" style="background-color: #f8f9fa; color: black;"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="news-content" style="text-align: center;">
-                                    <img src="assets/img/admindash.jpg"  style="display: inline-block; border-radius: 10px;">
-            
-                                    <div class="news-details">
-                                        <input type="button" value="Read now" class="btn" style="background-color: #f8f9fa; color: black;"/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="row" style="background-color: #F8F7FD; padding: 5px; border-radius: 10px; margin: 3px;">
-                                    <div class="col"><span style="margin: 10px">Login</span></div>
-                                    <div class="col"><span style="margin: 10px">10:30am</span></div>
-                                </div>
-                                <div class="row" style="background-color: #F8F7FD; padding: 5px; border-radius: 10px; margin: 3px;">
-                                    <div class="col"><span style="margin: 10px">Payment Transaction</span></div>
-                                    <div class="col"><span style="margin: 10px">10:30am</span></div>
-                                </div>
-                                
-                            </div>
-                            <div class="col-2"></div>
-                            <div class="col-4 row">
-                                <div class="col" style="background-color: #F8F7FD; padding: 5px; border-radius: 10px; margin: 3px;">
-                                </div>
-                                <div class="col" style="background-color: #F8F7FD; padding: 5px; border-radius: 10px; margin: 3px;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-        
+    <!-- Footer -->
+    <footer th:insert="layout :: footer"></footer>
+    <!-- End of Footer -->
+</section>
 
-        <!-- Footer -->
-        <footer class="page-footer font-small pt-4 d-flex justify-content-around mt-4">
-            <div class="contacts w-100">
-                <h6>Contact</h6>
+<script src="assets/js/app.js "></script>
 
-                <p>
-                    <i class="fa fa-map-marker" aria-hidden="true"></i>Ikeja, Lagos, Nigeria
-                </p>
-                <p>
-                    <ion-icon name="call"></ion-icon> 080376811156
-                </p>
-                <p class="w-100">
-                    <i class="fa fa-at" aria-hidden="true"></i>info@depoconnet.com
-                </p>
-            </div>
-            <div class="link mt-4">
-
-                <div class="social-links ">
-                    <ion-icon name="logo-linkedin"></ion-icon>
-                    <ion-icon name="logo-twitter"></ion-icon>
-                    <ion-icon name="logo-instagram"></ion-icon>
-                    <ion-icon name="logo-facebook"></ion-icon>
-                </div>
-                <div class="copyright">
-                    <i class="far fa-copyright" aria-hidden="true"></i>Copyright 2021 NBAIJEKA. All rights reserved.
-
-                </div>
-        </footer>
-        <!-- End of Footer -->
-    </section>
-
-    <script src="assets/js/app.js "></script>
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js "></script>
-    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js "></script>
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js "></script>
+<script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js "></script>
 </body>
 
 </html>

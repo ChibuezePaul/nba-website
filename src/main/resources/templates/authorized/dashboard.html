@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:insert="layout :: head('Dashboard')"></head>
+
+<body>
+<!-- Landing Page one -->
+<section class="Landing-page">
+    <div th:insert="layout :: adminheader('Dashboard')">
+
+    </div>
+    <div class="row news-heading">
+        <div class="content">
+            <div class="row" style="padding: 10px">
+                <div th:replace="layout :: adminsidebar">
+
+                </div>
+                <div class="col-12 col-sm-12 col-md-9 col-lg-9">
+                    <div class="row">
+                        <div class="col">
+                            <div class="news-content" style="text-align: center;">
+                                <img src="assets/img/admindash.jpg" style="display: inline-block; border-radius: 10px;">
+
+                                <div class="news-details">
+                                    <input type="button" value="Read now" class="btn"
+                                           style="background-color: #f8f9fa; color: black;"/>
+                                    <a class="btn" href="assets/img/prophecy.pdf" target="_blank">
+                                        Read Now
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="news-content" style="text-align: center;">
+                                <img src="assets/img/admindash.jpg" style="display: inline-block; border-radius: 10px;">
+
+                                <div class="news-details">
+                                    <input type="button" value="Read now" class="btn"
+                                           style="background-color: #f8f9fa; color: black;"/>
+                                    <a class="btn" href="assets/img/prophecy.pdf" target="_blank">
+                                        Read Now
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="news-content" style="text-align: center;">
+                                <img src="assets/img/admindash.jpg" style="display: inline-block; border-radius: 10px;">
+
+                                <div class="news-details">
+                                    <input type="button" value="Read now" class="btn"
+                                           style="background-color: #f8f9fa; color: black;"/>
+                                </div>
+                                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+                            </div>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Modal Header</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Some text in the modal.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col">
+                            <div class="news-content" style="text-align: center;">
+                                <img src="assets/img/admindash.jpg" style="display: inline-block; border-radius: 10px;">
+
+                                <div class="news-details">
+                                    <input type="button" value="Read now" class="btn"
+                                           style="background-color: #f8f9fa; color: black;"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="row"
+                                 style="background-color: #F8F7FD; padding: 5px; border-radius: 10px; margin: 3px;">
+                                <div class="col"><span style="margin: 10px">Login</span></div>
+                                <div class="col"><span style="margin: 10px">10:30am</span></div>
+                            </div>
+                            <div class="row"
+                                 style="background-color: #F8F7FD; padding: 5px; border-radius: 10px; margin: 3px;">
+                                <div class="col"><span style="margin: 10px">Payment Transaction</span></div>
+                                <div class="col"><span style="margin: 10px">10:30am</span></div>
+                            </div>
+
+                        </div>
+                        <div class="col-2"></div>
+                        <div class="col-4 row">
+                            <div class="col"
+                                 style="background-color: #F8F7FD; padding: 5px; border-radius: 10px; margin: 3px;">
+                            </div>
+                            <div class="col"
+                                 style="background-color: #F8F7FD; padding: 5px; border-radius: 10px; margin: 3px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer th:insert="layout :: footer"></footer>
+    <!-- End of Footer -->
+</section>
+
+<script src="assets/js/app.js "></script>
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js "></script>
+<script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js "></script>
+</body>
+
+</html>

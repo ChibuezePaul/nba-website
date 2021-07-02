@@ -1,0 +1,313 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en" xmlns:th="http://www.thymeleaf.org" > <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en" xmlns:th="http://www.thymeleaf.org" > <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en" xmlns:th="http://www.thymeleaf.org" > <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<![endif]-->
+<head th:insert="layout :: head('Home')"></head>
+<body>
+    <div id="head" th:insert="layout :: header"></div>
+    <section th:insert="layout :: subHeader"></section>
+    <h4 class="container text-success text-left" th:text="${message}">Success Message</h4>
+    <section id="main" >
+        <div class="container">
+            <div class="row">
+                <div>
+                    <!--New Ticket/Issue Division-->
+                    <div th:if="${isIndex}" class="col-lg-9 col-md-9 col-sm-9 alert alert-info">
+                        <h3 class="text-center">Compose New Support Ticket</h3>
+                        <hr class="hr-div"/>
+                        <form th:action="@{/save-ticket}" th:method="post" th:object="${ticket}" enctype="multipart/form-data">
+                            <section th:class="${#fields.hasErrors('*')}  ? 'alert alert-danger text-danger' : 'hidden'">
+                                <li th:each="e : ${#fields.detailedErrors()}" th:attr="field=${e.fieldName}"
+                                    th:text="${e.message}"></li>
+                            </section>
+                            <section>
+                                <li th:class="${isFileLarge}  ? 'alert alert-danger text-danger' : 'hidden'" th:text="${fileMessage}"></li>
+                                <!--<li th:attr="class='alert alert-danger text-danger' ? ${isFileLarge}  : 'hidden'" th:text="${fileMessage}"></li>-->
+                            </section>
+                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                <label><span class="text-danger">*</span>Ticket Type</label>
+                                <select id="ticketType" class="form-control" required="required" th:field="*{ticketType}">
+                                    <option value="">select type...</option>
+                                    <option th:each="ticketType : ${ticketTypes}" th:text="${ticketType}" th:value="${ticketType.toUpperCase()}">Complaint</option>
+                                    <!--<option value="Other">Other</option>-->
+                                </select>
+                            </div>
+
+                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                <label>Severity Level</label>
+                                <select class="form-control" th:field="*{priority}">
+                                    <option th:each="ticketPriority : ${ticketPriorities}" th:text="${ticketPriority}" th:value="${ticketPriority.toUpperCase()}">Low</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                <label><span class="text-danger">*</span>Ticket Class</label>
+                                <select class="form-control" required="required" th:field="*{ticketCategory}">
+                                    <option value="">select class...</option>
+                                    <option th:each="category : ${categories}" th:text="${category.ticketClass}" th:value="${category.id}">IT Support</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                <label><span class="text-danger">*</span>Ticket Title</label>
+                                <select id="ticketTitle" class="form-control" required="required" th:field="*{ticketTitle}">
+                                    <option value="">select title...</option>
+                                    <!--<option th:each="ticketType : ${ticketTypes}" th:text="${ticketType}" th:value="${ticketType.toUpperCase()}">Complaint</option>-->
+                                    <!--<option value="Other">Other</option>-->
+                                </select>
+                            </div>
+
+                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                <label><span class="text-danger">*</span>Select Your Branch</label>
+                                <select class="form-control" required="required" th:field="*{customerLocation}">
+                                    <option value="">select branch...</option>
+                                    <option th:each="location : ${locations}" th:text="|000${location.id} - ${location.customerBranch}|" th:value="${location.id}">Head Office</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                <label>Enter Your Phone Number</label>
+                                <input type="number" autocomplete="off" class="form-control" th:field="*{phoneNumber}">
+                            </div>
+
+                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                <label>Enter Copy Email Address</label>
+                                <input type="email" autocomplete="off" class="form-control" th:field="*{copyEmail}">
+                            </div>
+                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                <label>Upload Screenshot</label>
+                                <input type="file" name="attachment" autocomplete="off" class="form-control">
+                            </div>
+                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                <label><span class="text-danger">*</span>Enter Issue Subject</label>
+                                <input type="text" required autocomplete="off" class="form-control" th:field="*{subject}">
+                            </div>
+                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                <label><span class="text-danger">*</span>Enter Issue Details</label>
+                                <textarea class="form-control" rows="10" required autocomplete="off" th:field="*{issue}"></textarea>
+                            </div>
+
+                            <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                <button type="submit" class="btn btn-primary pull-right">Send Ticket</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!--New Ticket Category Division-->
+                    <div th:if="${isNewTicketCategory}" class="col-lg-9 col-md-9 col-sm-9 alert alert-info text-center">
+
+                        <h3 class=" text-center">Create New Ticket Class</h3>
+                        <hr class="hr-div"/>
+                        <form th:action="@{/save-ticket-category}" th:method="post" th:object="${ticketCategory}">
+                            <span th:class="${#fields.hasErrors('*')}  ? 'text-danger' : 'hidden'">
+                                <li th:each="e : ${#fields.detailedErrors()}" th:attr="field=${e.fieldName}"
+                                    th:text="${e.message}"></li>
+                            </span>
+                            <span th:class="${#fields.hasErrors('*')}  ? 'text-danger' : 'hidden'">
+                                <li th:each="e : ${#fields.detailedErrors()}" th:attr="field=${e.fieldName}"
+                                    th:text="${e.message}"></li>
+                            </span>
+                            <div class="row">
+                                <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                    <label><span class="text-danger">*</span>Ticket Class</label>
+                                    <input type="text" autocomplete="off" class="form-control" required="required" th:field="*{ticketClass}">
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                    <label><span class="text-danger">*</span>Select Team To Assign Ticket Class</label>
+                                    <select class="form-control" required="required" th:field="*{assignee}">
+                                        <option value="">select team...</option>
+                                        <option th:each="team : ${teams}" th:text="${team.name}" th:value="${team.id}">IT Support</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-lg-4 col-md-4 col-sm-4"></div>
+                                <div class="form-group col-lg-4 col-md-4 col-sm-4">
+
+                                </div>
+                                <div class="form-group col-lg-4 col-md-4 col-sm-4"></div>
+                            </div>
+
+                            <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                <button type="submit" class="btn btn-primary">Create Ticket Class</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!--New Support Team Division-->
+                    <div th:if="${isNewSupportTeam}" class="col-lg-9 col-md-9 col-sm-9 alert alert-info text-center">
+
+                        <h3 class=" text-center">Create New Support Team</h3>
+                        <hr class="hr-div"/>
+                        <form th:action="@{/save-team}" th:method="post" th:object="${team}">
+                            <span th:class="${#fields.hasErrors('*')}  ? 'text-danger' : 'hidden'">
+                                <li th:each="e : ${#fields.detailedErrors()}" th:attr="field=${e.fieldName}"
+                                    th:text="${e.message}"></li>
+                            </span>
+                            <div class="row">
+                                <div class="form-group col-lg-3 col-md-3 col-sm-3"></div>
+                                <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                    <label><span class="text-danger">*</span>Name of Team</label>
+                                    <input type="text" autocomplete="off" class="form-control" required="required" th:field="*{name}">
+                                </div>
+                                <div class="form-group col-lg-3 col-md-3 col-sm-3"></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-lg-3 col-md-3 col-sm-3"></div>
+                                <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                    <label><span class="text-danger">*</span>Supervisor</label>
+                                    <select type="text" autocomplete="off" class="form-control" required="required" th:field="*{supervisor}">
+                                        <option th:each="supervisor : ${supervisors}" th:text="${supervisor.email}" th:value="${supervisor.id}">Supervisor</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-lg-3 col-md-3 col-sm-3"></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-lg-3 col-md-3 col-sm-3"></div>
+                                <div class="form-group col-lg-6 col-md-4 col-sm-4">
+                                    <label><span class="text-danger">*</span>Team Members </label>
+                                    <select multiple="multiple" size="15" autocomplete="off" class="form-control" required="required" th:field="*{members}">
+                                        <option th:each="member : ${members}" th:text="${member.email}" th:value="${member.id}">Nigeria</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-lg-3 col-md-3 col-sm-3"></div>
+                            </div>
+
+                            <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                <button type="submit" class="btn btn-primary">Create Team</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!--New Office Location Division-->
+                    <div th:if="${isNewLocation}" class="col-lg-9 col-md-9 col-sm-9 alert alert-info text-center">
+                        <h3 class=" text-center">Create New Office Location</h3>
+                        <hr class="hr-div"/>
+                        <form th:action="@{/save-location}" th:method="post" th:object="${location}">
+                            <span th:class="${#fields.hasErrors('*')}  ? 'text-danger' : 'hidden'">
+                                <li th:each="e : ${#fields.detailedErrors()}" th:attr="field=${e.fieldName}"
+                                    th:text="${e.message}"></li>
+                            </span>
+                            <div class="row">
+                                <div class="form-group col-lg-4 col-md-4 col-sm-4"></div>
+                                <div class="form-group col-lg-4 col-md-4 col-sm-4">
+                                    <label><span class="text-danger">*</span>Branch Name</label>
+                                    <input type="text" autocomplete="off" class="form-control" required="required" th:field="*{customerBranch}">
+                                </div>
+                                <div class="form-group col-lg-4 col-md-4 col-sm-4"></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-lg-4 col-md-4 col-sm-4"></div>
+                                <div class="form-group col-lg-4 col-md-4 col-sm-4">
+                                    <label><span class="text-danger">*</span>City</label>
+                                    <input type="text" autocomplete="off" class="form-control" required="required" th:field="*{customerCity}">
+                                </div>
+                                <div class="form-group col-lg-4 col-md-4 col-sm-4"></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-lg-4 col-md-4 col-sm-4"></div>
+                                <div class="form-group col-lg-4 col-md-4 col-sm-4">
+                                    <label><span class="text-danger">*</span>Country</label>
+                                    <input type="text" autocomplete="off" class="form-control" th:field="*{customerCountry}">
+                                </div>
+                                <div class="form-group col-lg-4 col-md-4 col-sm-4"></div>
+                            </div>
+
+                            <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                <button type="submit" class="btn btn-primary">Create Office</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!--New Admin Division-->
+                    <div th:if="${isNewAdminUser}" class="col-lg-9 col-md-9 col-sm-9 alert alert-info text-center">
+
+                        <h3 class=" text-center">Create New Support Admin</h3>
+                        <hr class="hr-div"/>
+                        <form th:action="@{/save-admin}" th:method="post" th:object="${admin}">
+                            <span th:class="${#fields.hasErrors('*')}  ? 'text-danger' : 'hidden'">
+                                <li th:each="e : ${#fields.detailedErrors()}" th:attr="field=${e.fieldName}"
+                                    th:text="${e.message}"></li>
+                            </span>
+                            <div class="row"></div>
+
+                            <div class="row">
+                                <div class="form-group col-lg-4 col-md-4 col-sm-4"></div>
+                                <div class="form-group col-lg-4 col-md-4 col-sm-4">
+                                    <label>Email Address</label>
+                                    <input type="text" autocomplete="off" class="form-control" required="required" th:field="*{email}">
+                                </div>
+                                <div class="form-group col-lg-4 col-md-4 col-sm-4"></div>
+                            </div>
+
+                            <div class="row"></div>
+                            <!--<div class="form-group col-lg-4 col-md-4 col-sm-4">-->
+                            <!--<label>Password</label>-->
+                            <!--<input type="password" autocomplete="off" class="form-control" required="required" th:field="*{ticketClass}">-->
+                            <!--<button type="submit" class="btn btn-primary">Generate Password</button>-->
+                            <!--</div>-->
+                            <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                <button type="submit" class="btn btn-primary">Create Admin</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!--Password Change Division-->
+                    <!--<div th:if="${isChangePassword}" class="text-center">-->
+                        <!--<h3 class=" text-center">Change Password</h3>-->
+                        <!--<div class="hr-div"> <hr /></div>-->
+                        <!--<form th:action="@{/save-password}" th:method="post" th:object="${password}">-->
+                            <!--<div class="row">-->
+                                <!--<div class="form-group col-lg-4 col-md-4 col-sm-4"></div>-->
+                                <!--<div class="form-group col-lg-4 col-md-4 col-sm-4">-->
+                                    <!--<label>Email Address</label>-->
+                                    <!--<input type="text" autocomplete="off" class="form-control" required="required" th:field="*{email}">-->
+                                <!--</div>-->
+                                <!--<div class="form-group col-lg-4 col-md-4 col-sm-4"></div>-->
+                            <!--</div>-->
+
+                            <!--<div class="row">-->
+                                <!--<div class="form-group col-lg-4 col-md-4 col-sm-4"></div>-->
+                                <!--<div class="form-group col-lg-4 col-md-4 col-sm-4">-->
+                                    <!--<label>Old Password</label>-->
+                                    <!--<input type="password" autocomplete="off" class="form-control" required="required" th:field="*{oldPassword}">-->
+                                <!--</div>-->
+                                <!--<div class="form-group col-lg-4 col-md-4 col-sm-4"></div>-->
+                            <!--</div>-->
+
+                            <!--<div class="row">-->
+                                <!--<div class="form-group col-lg-4 col-md-4 col-sm-4"></div>-->
+                                <!--<div class="form-group col-lg-4 col-md-4 col-sm-4">-->
+                                    <!--<label>New Password</label>-->
+                                    <!--<input type="password" autocomplete="off" class="form-control" required="required" th:field="*{password}">-->
+                                <!--</div>-->
+                                <!--<div class="form-group col-lg-4 col-md-4 col-sm-4"></div>-->
+                            <!--</div>-->
+
+                            <!--<div class="form-group col-lg-12 col-md-12 col-sm-12">-->
+                                <!--<button type="submit" class="btn btn-primary">Change Password</button>-->
+                            <!--</div>-->
+                        <!--</form>-->
+                    <!--</div>-->
+                </div>
+
+                <div th:insert="layout :: sidebar"></div>
+            </div>
+        </div>
+    </section>
+    
+    <div id="footer" th:insert="layout :: footer"></div>
+    <!--  Jquery Core Script -->
+    <script th:src="@{/assets/js/jquery-1.10.2.js}"></script>
+    <!--  Core Bootstrap Script -->
+    <script th:src="@{/assets/js/bootstrap.js}"></script>
+
+    <script th:src="@{/assets/js/custom.js}"></script>
+</body>
+</html>

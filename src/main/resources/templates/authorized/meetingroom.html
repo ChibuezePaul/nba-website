@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:insert="layout :: head('Meeting Room')"></head>
+
+<body>
+<!-- Landing Page one -->
+<section class="Landing-page">
+    <div th:insert="layout :: adminheader('Meeting Room')">
+
+    </div>
+    <div class="row news-heading">
+        <div class="content">
+            <div class="row" style="padding: 10px">
+                <div th:replace="layout :: adminsidebar">
+
+                </div>
+                <div class="col-12 col-sm-12 col-md- col-lg-7">
+                    <div class="row" style="padding: 10px;">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col row"
+                                     style="background-color: #F8F7FD; padding: 15px; border-radius: 10px; margin: 8px;">
+                                    <div class="col"><span style="margin: 10px"><i class="fa fa-video-camera"
+                                                                                   style="color: white; padding: 3px; background-color: rgba(54, 104, 240, 0.794); border-radius: 4px;"></i> Zoom </span>
+                                    </div>
+                                    <div class="col"><span style="margin: 10px">Meeting with the president </span></div>
+                                    <div class="col"><span style="margin: 10px">10:30am</span></div>
+                                </div>
+                                <div class="col-3 row" style="padding: 15px; border-radius: 10px; margin: 8px;">
+                                    <input type="button" value="Enter" class="btn" style="background-color: #66B700"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col row"
+                                     style="background-color: #F8F7FD; padding: 15px; border-radius: 10px; margin: 8px;">
+                                    <div class="col"><span style="margin: 10px"><i class="fa fa-video-camera"
+                                                                                   style="color: white; padding: 3px; background-color: rgba(54, 104, 240, 0.794); border-radius: 4px;"></i> Zoom </span>
+                                    </div>
+                                    <div class="col"><span style="margin: 10px">Payment Transaction </span></div>
+                                    <div class="col"><span style="margin: 10px">10:30am</span></div>
+                                </div>
+                                <div class="col-3 row" style="padding: 15px; border-radius: 10px; margin: 8px;">
+                                    <input type="button" value="Enter" class="btn" style="background-color: #66B700"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col row"
+                                     style="background-color: #F8F7FD; padding: 15px; border-radius: 10px; margin: 8px;">
+                                    <div class="col"><span style="margin: 10px"><i class="fa fa-video-camera"
+                                                                                   style="color: white; padding: 3px; background-color: rgba(54, 104, 240, 0.794); border-radius: 4px;"></i> Zoom </span>
+                                    </div>
+                                    <div class="col"><span style="margin: 10px">Payment Transaction </span></div>
+                                    <div class="col"><span style="margin: 10px">10:30am</span></div>
+                                </div>
+                                <div class="col-3 row" style="padding: 15px; border-radius: 10px; margin: 8px;">
+                                    <input type="button" value="Enter" class="btn" style="background-color: #66B700"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col row"
+                                     style="background-color: #F8F7FD; padding: 15px; border-radius: 10px; margin: 8px;">
+                                    <div class="col"><span style="margin: 10px"><i class="fa fa-video-camera"
+                                                                                   style="color: white; padding: 3px; background-color: rgba(54, 104, 240, 0.794); border-radius: 4px;"></i> Zoom </span>
+                                    </div>
+                                    <div class="col"><span style="margin: 10px">Payment Transaction </span></div>
+                                    <div class="col"><span style="margin: 10px">10:30am</span></div>
+                                </div>
+                                <div class="col-3 row" style="padding: 15px; border-radius: 10px; margin: 8px;">
+                                    <input type="button" value="Enter" class="btn" style="background-color: #66B700"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-2 col-lg-2"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer th:insert="layout :: footer"></footer>
+    <!-- End of Footer -->
+</section>
+
+<script src="assets/js/app.js "></script>
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js "></script>
+<script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js "></script>
+</body>
+
+</html>
