@@ -42,15 +42,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/president").permitAll()
                 .antMatchers("/findmember").permitAll()
                 .antMatchers("/catalogue").permitAll()
-                .antMatchers("/individualprofile").permitAll()
+                .antMatchers("/individualprofile/**").permitAll()
                 .antMatchers("/card").permitAll()
+                .antMatchers("/search").permitAll()
                 .anyRequest()
                 .authenticated().and()
                 .formLogin().permitAll().loginPage("/login")
-                .failureUrl("/login?error=true")
+                .failureHandler((request, response, exception) -> response.sendRedirect("/login?error=true&message="+exception.getMessage()))
 				.defaultSuccessUrl("/admindash")
                 .and()
                 .logout().permitAll().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .deleteCookies("JSESSIONID")
                 .logoutSuccessUrl("/login?logout=true").invalidateHttpSession(true);
     }
 

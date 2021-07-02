@@ -27,6 +27,7 @@
                             <form method="post" action="/login">
                                 <div style="padding: 40px; ">
                                 </div>
+                                <p th:if="${param.error}" th:text="${param.message}" class="alert alert-danger alert-dismissible text-center">Actual Message</p>
                                 <input type="email" class="form-control " name="username" placeholder="Email">
                                 <div style="padding: 10px; ">
                                 </div>
@@ -39,7 +40,6 @@
                                 </div>
                             </form>
                         </div>
-
                     </div>
 
                 </div>

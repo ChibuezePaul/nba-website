@@ -4,11 +4,13 @@ import com.isoft.nbawebsite.constants.ContentType;
 import com.isoft.nbawebsite.content.ContentService;
 import com.isoft.nbawebsite.user.User;
 import com.isoft.nbawebsite.user.UserService;
+import com.isoft.nbawebsite.user.command.NameSearchCmd;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class PublicViewsController {
@@ -23,6 +25,8 @@ public class PublicViewsController {
 
     @GetMapping("/")
     public String main(Model model) {
+        model.addAttribute("featuredEvents", contentService.findAllContentTypes(ContentType.EVENTS));//.subList(0, 3));
+        model.addAttribute("latestNews", contentService.findAllContentTypes(ContentType.NEWS));//.subList(0, 2));
         return "index"; //view
     }
 
@@ -116,5 +120,14 @@ public class PublicViewsController {
     @GetMapping("/card")
     public String card(Model model) {
         return "card"; //view
+    }
+
+    @PostMapping("/search")
+    public String findLawyersByFullName(String fullName, Model model) {
+        NameSearchCmd cmd = new NameSearchCmd();
+        cmd.setFirstName(fullName.split("")[0]);
+        cmd.setLastName(fullName.split("")[1]);
+        model.addAttribute("users", userService.findByFirstNameOrLastName(cmd));
+        return "catalogue";
     }
 }
