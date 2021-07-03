@@ -42,10 +42,10 @@
             </div>
             <nav class="mobile-nav">
                 <ul>
-                    <li><a href="/" class="m-link">HOMES</a></li>
-                    <li><a href="/events" class="m-link">NEWS & EVENTS</a></li>
-                    <li><a href="/about" class="m-link">ABOUT US</a></li>
-                    <li><a href="/dashboard" class="m-link">MEMBERS PORTAL</a></li>
+                    <li><a href="/" class="m-link" style="text-decoration: none">HOMES</a></li>
+                    <li><a href="/events" class="m-link" style="text-decoration: none">NEWS & EVENTS</a></li>
+                    <li><a href="/about" class="m-link" style="text-decoration: none">ABOUT US</a></li>
+                    <li><a href="/dashboard" class="m-link" style="text-decoration: none">MEMBERS PORTAL</a></li>
                     <li><a class="btn law"
                            style="background: linear-gradient(90deg, #2D6936 -6.45%, #00A419 95.97%); padding: 10px; border-radius: 3px"
                            href="/catalogue">Find a Lawyer</a>
@@ -54,10 +54,10 @@
             </nav>
             <div class="nav-list">
                 <ul class="topnav">
-                    <li><a href="/">HOMES</a></li>
-                    <li class="/active"><a href="/events">NEWS & EVENTS</a></li>
-                    <li><a href="/about">ABOUT US</a></li>
-                    <li><a href="/dashboard">MEMBERS PORTAL</a></li>
+                    <li><a href="/" style="text-decoration: none">HOMES</a></li>
+                    <li class="/active"><a href="/events" style="text-decoration: none">NEWS & EVENTS</a></li>
+                    <li><a href="/about" style="text-decoration: none">ABOUT US</a></li>
+                    <li><a href="/dashboard" style="text-decoration: none">MEMBERS PORTAL</a></li>
                     <li><a class="btn law"
                            style="background: linear-gradient(90deg, #2D6936 -6.45%, #00A419 95.97%); padding: 10px; border-radius: 3px"
                            href="/catalogue">Find a Lawyer</a>
@@ -114,7 +114,12 @@
             <a href="/payment" style="font-size: 18px; padding-left: 20px; color: #000000; text-decoration: none">
                 <i class="fas fa-credit-card"></i> Payments
             </a><br><hr><br>
-
+            <a href="/payment" style="font-size: 18px; padding-left: 20px; color: #000000; text-decoration: none">
+                <i class="fas fa-credit-card"></i> Posts
+            </a><br><hr><br>
+            <a href="/payment" style="font-size: 18px; padding-left: 20px; color: #000000; text-decoration: none">
+                <i class="fas fa-credit-card"></i> Control Panel
+            </a><br><hr><br>
             <a href="/settings" style="font-size: 18px; padding-left: 20px; color: #000000; text-decoration: none">
                 <i class="fas fa-cog"></i> Settings
             </a><br>
@@ -122,6 +127,7 @@
     </div>
 
     <!-- Footer -->
+    <footer th:fragment="footer" class="page-footer font-small pt-4 d-flex justify-content-around mt-4">
     <footer th:fragment="footer" class="page-footer font-small pt-4 d-flex justify-content-around mt-4">
 
         <div class="contacts w-100">
