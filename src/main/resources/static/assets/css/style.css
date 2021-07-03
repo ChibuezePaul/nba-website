@@ -221,7 +221,7 @@ body {
     color: #4A4A4A;
 }
 
-button {
+.button {
     background: linear-gradient(90deg, #2D6936 -6.45%, #00A419 95.97%);
     cursor: pointer;
 }
@@ -285,7 +285,7 @@ button {
     color: #fff;
 }
 
-button {
+.button {
     background: linear-gradient(90deg, #2D6936 -6.45%, #00A419 95.97%);
     cursor: pointer;
 }
@@ -359,7 +359,7 @@ button a {
     color: #000000;
 }
 
-button {
+.button {
     background: linear-gradient(90deg, #2D6936 -6.45%, #00A419 95.97%);
     cursor: pointer;
 }
@@ -1113,7 +1113,7 @@ ion-icon {
     nav {
         padding: 12px 10px;
     }
-    button {
+    .button {
         background: linear-gradient(90deg, #2D6936 -6.45%, #00A419 95.97%);
         cursor: pointer;
         width: 100px;

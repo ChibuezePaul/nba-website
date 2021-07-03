@@ -28,6 +28,11 @@ public class PublicViewsController {
         return "events"; //view
     }
 
+    @GetMapping("/newspage")
+    public String newspage(Model model) {
+        return "newspage"; //view
+    }
+
     @GetMapping("/news")
     public String news(Model model) {
         return "news"; //view
@@ -113,9 +118,9 @@ public class PublicViewsController {
         return "admin/pendingprofile"; //view
     }
 
-    @GetMapping("/normaldashboard")
-    public String normaldashboard(Model model) {
-        return "admin/normaldashboard"; //view
+    @GetMapping("/controlpanel")
+    public String controlpanel(Model model) {
+        return "admin/controlpanel"; //view
     }
 
     @GetMapping("/pendingrequest")
@@ -123,9 +128,9 @@ public class PublicViewsController {
         return "admin/pendingrequest"; //view
     }
 
-    @GetMapping("/normalpost")
-    public String normalpost(Model model) {
-        return "admin/normalpost"; //view
+    @GetMapping("/post")
+    public String post(Model model) {
+        return "admin/post"; //view
     }
 
     @GetMapping("/memberlist")
