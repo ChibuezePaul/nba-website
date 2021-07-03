@@ -112,7 +112,7 @@ public class PublicViewsController {
 
     @GetMapping("/admindash")
     public String admindash(Model model) {
-        return "authorized/admindash"; //view
+        return "authorized/dashboard"; //view
     }
 
 
