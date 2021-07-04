@@ -15,7 +15,7 @@ public class NewUserCmd {
     @NotBlank
     private String phoneNumber;
     private String address;
-    private String courtNumber;
+    private String SCNumber;
     private String chamberAddress;
     private String password;
 }

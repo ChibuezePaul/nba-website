@@ -1,9 +1,7 @@
 package com.isoft.nbawebsite.user.command;
 
 import lombok.Data;
-
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 @Data
 public class ModifyUserCmd {
@@ -14,6 +12,6 @@ public class ModifyUserCmd {
     private String email;
     private String phoneNumber;
     private String address;
-    private String courtNumber;
+    private String SCNumber;
     private String chamberAddress;
 }

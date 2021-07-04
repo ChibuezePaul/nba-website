@@ -1,11 +1,15 @@
 package com.isoft.nbawebsite.user;
 
 import com.isoft.nbawebsite.commons.data.AbstractEntity;
+import com.isoft.nbawebsite.constants.AccountStatus;
+import com.isoft.nbawebsite.constants.Role;
+import com.isoft.nbawebsite.constants.SuspensionPeriod;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import javax.validation.constraints.Email;
+import java.time.LocalDateTime;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -25,9 +29,19 @@ public class User extends AbstractEntity {
     private String address;
 
     @Indexed(unique = true)
-    private String courtNumber;
+    private String SCNumber;
 
     private String chamberAddress;
 
     private String password;
+
+    private Role role;
+
+    private boolean isSuspended;
+
+    private SuspensionPeriod suspensionPeriod;
+
+    private LocalDateTime suspensionDate;
+
+    private AccountStatus accountStatus = AccountStatus.PENDING;
 }

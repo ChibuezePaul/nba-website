@@ -20,7 +20,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 </head>
 
 
@@ -31,8 +32,8 @@
         <nav>
             <!---------------Top Nav----------------->
             <div class="image-logo">
-                <div><img src="assets/img/ikeja branch NBA logo2 1.png" class="logo1" width="50px" height="40px"></div>
-                <div><img src="assets/img/ikeja branch NBA logo 1.png" class="logo2" width="140px" height="40px"></div>
+                <div><img th:src="@{/assets/img/ikeja branch NBA logo2 1.png}" class="logo1" width="50px" height="40px"></div>
+                <div><img th:src="@{/assets/img/ikeja branch NBA logo 1.png}" class="logo2" width="140px" height="40px"></div>
             </div>
             <div class="burger" onclick="toggleNav(1)">
                 <div class="line1"></div>
@@ -73,7 +74,7 @@
         <div class="row">
             <div class="col-12 col-sm-12 col-md-3 col-lg-3">
                 <div class="news-content" style="text-align: center;">
-                    <img src="assets/img/profile.jpg" style="display: inline-block; border-radius: 250px; width: 80px;">
+                    <img th:src="@{/assets/img/profile.jpg}" style="display: inline-block; border-radius: 250px; width: 80px;">
                     <h5 class="text-center">Joe Doe</h5>
                 </div>
             </div>
@@ -107,7 +108,7 @@
             <a href="/library" style="font-size: 18px; padding-left: 20px; color: #000000; text-decoration: none">
                 <i class="fas fa-book"></i> Library
             </a><br><hr><br>
-            <a href="/shop" style="font-size: 18px; padding-left: 20px; color: #000000; text-decoration: none">
+            <a href="#" style="font-size: 18px; padding-left: 20px; color: #000000; text-decoration: none">
                 <i class="fas fa-shopping-bag"></i> Shop
             </a><br><hr><br>
             <a href="/payment" style="font-size: 18px; padding-left: 20px; color: #000000; text-decoration: none">
@@ -117,7 +118,7 @@
                 <i class="fas fa-credit-card"></i> Posts
             </a><br><hr><br>
             <a href="/payment" style="font-size: 18px; padding-left: 20px; color: #000000; text-decoration: none">
-                <i class="fas fa-credit-card"></i> Control Panel
+                <i class="fas fa-cog"></i> Control Panel
             </a><br><hr><br>
             <a href="/settings" style="font-size: 18px; padding-left: 20px; color: #000000; text-decoration: none">
                 <i class="fas fa-cog"></i> Settings

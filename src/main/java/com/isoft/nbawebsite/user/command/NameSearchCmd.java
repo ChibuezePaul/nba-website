@@ -3,9 +3,7 @@ package com.isoft.nbawebsite.user.command;
 import lombok.Data;
 
 @Data
-public class SearchCmd {
+public class NameSearchCmd {
     String firstName;
     String lastName;
-    String email;
-    String phoneNumber;
 }

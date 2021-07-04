@@ -1,14 +1,17 @@
 package com.isoft.nbawebsite.user;
 
+import com.isoft.nbawebsite.constants.AccountStatus;
+import com.isoft.nbawebsite.constants.Role;
+import com.isoft.nbawebsite.constants.SuspensionPeriod;
 import com.isoft.nbawebsite.exception.CustomException;
 import com.isoft.nbawebsite.user.command.ModifyUserCmd;
 import com.isoft.nbawebsite.user.command.NewUserCmd;
-import com.isoft.nbawebsite.user.command.SearchCmd;
+import com.isoft.nbawebsite.user.command.NameSearchCmd;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -28,12 +31,28 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setAddress(newUserCmd.getAddress());
         user.setChamberAddress(newUserCmd.getChamberAddress());
-        user.setCourtNumber(newUserCmd.getCourtNumber());
+        user.setSCNumber(newUserCmd.getSCNumber());
         user.setEmail(newUserCmd.getEmail());
         user.setPhoneNumber(newUserCmd.getPhoneNumber());
         user.setFirstName(newUserCmd.getFirstName());
         user.setLastName(newUserCmd.getLastName());
         user.setPassword(passwordEncoder.encode(newUserCmd.getPassword()));
+        user.setRole(Role.USER);
+        return userRepository.save(user);
+    }
+
+    @Override
+    public User signupAdmin(NewUserCmd newUserCmd) {
+        User user = new User();
+        user.setAddress(newUserCmd.getAddress());
+        user.setChamberAddress(newUserCmd.getChamberAddress());
+        user.setSCNumber(newUserCmd.getSCNumber());
+        user.setEmail(newUserCmd.getEmail());
+        user.setPhoneNumber(newUserCmd.getPhoneNumber());
+        user.setFirstName(newUserCmd.getFirstName());
+        user.setLastName(newUserCmd.getLastName());
+        user.setPassword(passwordEncoder.encode(newUserCmd.getPassword()));
+        user.setRole(Role.ADMIN);
         return userRepository.save(user);
     }
 
@@ -46,9 +65,8 @@ public class UserServiceImpl implements UserService {
         user.setLastName(updateCmd.getLastName());
         user.setAddress(updateCmd.getAddress());
         user.setChamberAddress(updateCmd.getChamberAddress());
-        user.setCourtNumber(updateCmd.getCourtNumber());
-        User save = userRepository.save(user);
-        return save;
+        user.setSCNumber(updateCmd.getSCNumber());
+        return userRepository.save(user);
     }
 
     @Override
@@ -57,18 +75,23 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findByFirstNameOrLastName(SearchCmd nameSearchCmd) {
+    public List<User> findByFirstNameOrLastName(NameSearchCmd nameSearchCmd) {
         return userRepository.findByFirstNameOrLastName(nameSearchCmd.getFirstName(), nameSearchCmd.getLastName());
     }
 
     @Override
-    public User findByEmail(SearchCmd emailSearchCmd) {
-        return userRepository.findByEmail(emailSearchCmd.getEmail()).orElseThrow(() -> USER_NOT_FOUND);
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email).orElseThrow(() -> USER_NOT_FOUND);
     }
 
     @Override
-    public User findByPhoneNumber(SearchCmd phoneSearchCmd) {
-        return userRepository.findByPhoneNumber(phoneSearchCmd.getPhoneNumber()).orElseThrow(() -> USER_NOT_FOUND);
+    public User findBySCNumber(String SCNumber) {
+        return userRepository.findBySCNumber(SCNumber).orElseThrow(() -> USER_NOT_FOUND);
+    }
+
+    @Override
+    public User findByPhoneNumber(String phoneNumber) {
+        return userRepository.findByPhoneNumber(phoneNumber).orElseThrow(() -> USER_NOT_FOUND);
     }
 
     @Override
@@ -79,5 +102,37 @@ public class UserServiceImpl implements UserService {
     @Override
     public Page<User> findAllUser(Pageable pageable) {
         return userRepository.findAll(pageable);
+    }
+
+    @Override
+    public void approveNewUserRequest(String id) {
+        User user = findById(id);
+        user.setAccountStatus(AccountStatus.APPROVED);
+        userRepository.save(user);
+    }
+
+    @Override
+    public void disapproveNewUserRequest(String id) {
+        User user = findById(id);
+        user.setAccountStatus(AccountStatus.REJECTED);
+        userRepository.save(user);
+    }
+
+    @Override
+    public void suspendUser(String id, String suspensionPeriod) {
+        User user = findById(id);
+        user.setSuspended(true);
+        user.setSuspensionPeriod(SuspensionPeriod.getSuspensionPeriodByLabel(suspensionPeriod));
+        user.setSuspensionDate(LocalDateTime.now());
+        userRepository.save(user);
+    }
+
+    @Override
+    public void reinstateUser(String id) {
+        User user = findById(id);
+        user.setSuspended(false);
+        user.setSuspensionPeriod(null);
+        user.setSuspensionDate(null);
+        userRepository.save(user);
     }
 }
