@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:insert="layout :: head('Dashboard')"></head>
+
+<body>
+<!-- Landing Page one -->
+<section class="Landing-page">
+    <div th:insert="layout :: adminheader('Dashboard')">
+
+    </div>
+    <div class="row news-heading">
+        <div class="content">
+            <div class="row" style="padding: 10px">
+                <div th:replace="layout :: adminsidebar">
+
+                </div>
+                <div class="col-12 col-sm-12 col-md-9 col-lg-9">
+                    <div class="row">
+
+                        <a style="text-decoration: none" href="/post" class="col">
+                            <div class="news-details">
+                                Create New Post
+                            </div>
+                            <div class="news-content" style="box-shadow: 0px 0px 3px 3px #eeeef0; text-align: center; background-color: #F8F7FD; border-radius: 10px; padding: 10px; padding-bottom: 25px; padding-top: 25px">
+                                <div class="fa fa-plus" style="color: #676767; font-size: 60px; margin: 10px">
+                                </div>
+                                <h3></h3>
+                            </div>
+                        </a>
+
+                        <div class="col">
+                            <div class="news-details">
+                                Create New Events
+                            </div>
+                            <div class="news-content" style="box-shadow: 0px 0px 3px 3px #eeeef0; text-align: center; background-color: #E1E1E1; border-radius: 10px; padding: 10px; padding-bottom: 25px; padding-top: 25px">
+                                <div class="fa fa-plus" style="color: #676767; font-size: 60px; margin: 10px">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="news-details">
+                                This Week
+                            </div>
+                            <div class="news-content" style="box-shadow: 0px 0px 3px 3px #eeeef0; text-align: center; background-color: #F8F7FD; border-radius: 10px; padding: 10px;">
+                                <div class="fa fa-chat" style="color: #DD9903; font-size: 60px; margin: 10px">
+                                </div>
+                                <p>1234556</p>
+                            </div>
+
+                        </div>
+                        <div class="col">
+                            <div class="news-details">
+                                Lifetime
+                            </div>
+                            <div class="news-content" style="box-shadow: 0px 0px 3px 3px #eeeef0; text-align: center; background-color: #66B700; border-radius: 10px; padding: 10px;">
+                                <div class="fa fa-bar" style="color: #DD9903; font-size: 60px; margin: 10px">
+                                </div>
+                                <p>1234556</p>
+                            </div>
+
+                        </div>
+                        <div class="col"></div>
+                    </div>
+                    <br><br><br>Recent Posts
+                    <br><br>
+                    <div class="row">
+                        <div class="col row" style="background-color: #F8F7FD; padding: 8px; border-radius: 10px; margin: 18px;">
+                            <div class="col news-content" style="text-align: center;">
+                                <img src="assets/img/profile.jpg"  style="display: inline-block; border-radius: 250px; width: 80px;">
+                            </div>
+                            <div class="col">
+                                <b style="margin: 10px;">Title </b>
+                                <p style="margin: 10px;"><span style="color: #DB7600;">Published</span> Aug. 11 </p>
+                            </div>
+                            <div class="col-2"></div>
+                            <div class="col-1">
+                                <p style="margin: 10px" class="fa fa-edit"></p>
+                            </div>
+                            <div class="col-1">
+                                <p style="margin: 10px" class="fa fa-play"></p>
+                            </div>
+                            <div class="col-1">
+                                <p style="margin: 10px" class="fa fa-trash"></p>
+                            </div>
+                            <div class="col-1">
+                                <p style="margin: 10px" class="fa fa-eye"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col row" style="background-color: #F8F7FD; padding: 8px; border-radius: 10px; margin: 18px;">
+                            <div class="col news-content" style="text-align: center;">
+                                <img src="assets/img/profile.jpg"  style="display: inline-block; border-radius: 250px; width: 80px;">
+                            </div>
+                            <div class="col">
+                                <b style="margin: 10px;">Title </b>
+                                <p style="margin: 10px;"><span style="color: #DB7600;">Published</span> Aug. 11 </p>
+                            </div>
+                            <div class="col-2"></div>
+                            <div class="col-1">
+                                <p style="margin: 10px" class="fa fa-edit"></p>
+                            </div>
+                            <div class="col-1">
+                                <p style="margin: 10px" class="fa fa-play"></p>
+                            </div>
+                            <div class="col-1">
+                                <p style="margin: 10px" class="fa fa-trash"></p>
+                            </div>
+                            <div class="col-1">
+                                <p style="margin: 10px" class="fa fa-eye"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col row" style="background-color: #F8F7FD; padding: 8px; border-radius: 10px; margin: 18px;">
+                            <div class="col news-content" style="text-align: center;">
+                                <img src="assets/img/profile.jpg"  style="display: inline-block; border-radius: 250px; width: 80px;">
+                            </div>
+                            <div class="col">
+                                <b style="margin: 10px;">Title </b>
+                                <p style="margin: 10px;"><span style="color: #DB7600;">Published</span> Aug. 11 </p>
+                            </div>
+                            <div class="col-2"></div>
+                            <div class="col-1">
+                                <p style="margin: 10px" class="fa fa-edit"></p>
+                            </div>
+                            <div class="col-1">
+                                <p style="margin: 10px" class="fa fa-play"></p>
+                            </div>
+                            <div class="col-1">
+                                <p style="margin: 10px" class="fa fa-trash"></p>
+                            </div>
+                            <div class="col-1">
+                                <p style="margin: 10px" class="fa fa-eye"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer th:insert="layout :: footer"></footer>
+    <!-- End of Footer -->
+</section>
+
+<script src="assets/js/app.js "></script>
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js "></script>
+<script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js "></script>
+</body>
+
+</html>

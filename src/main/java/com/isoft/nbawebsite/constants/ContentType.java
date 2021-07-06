@@ -1,6 +1,6 @@
 package com.isoft.nbawebsite.constants;
 
-public enum ContentTypes {
+public enum ContentType {
     NEWS,
     EVENTS
 }

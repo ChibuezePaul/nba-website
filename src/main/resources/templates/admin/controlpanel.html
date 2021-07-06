@@ -6,7 +6,7 @@
 <body>
 <!-- Landing Page one -->
 <section class="Landing-page">
-    <div th:insert="layout :: adminheader('Dashboard')">
+    <div th:insert="layout :: adminheader('Control Panel')">
 
     </div>
     <div class="row news-heading">
@@ -18,124 +18,73 @@
                 <div class="col-12 col-sm-12 col-md-9 col-lg-9">
                     <div class="row">
 
-                        <a style="text-decoration: none" href="/post" class="col">
-                            <div class="news-details">
-                                Create New Post
-                            </div>
-                            <div class="news-content" style="box-shadow: 0px 0px 3px 3px #eeeef0; text-align: center; background-color: #F8F7FD; border-radius: 10px; padding: 10px; padding-bottom: 25px; padding-top: 25px">
-                                <div class="fa fa-plus" style="color: #676767; font-size: 60px; margin: 10px">
-                                </div>
-                                <h3></h3>
-                            </div>
-                        </a>
-
                         <div class="col">
+                            <a href="/memberlist" style="text-decoration: none">
                             <div class="news-details">
-                                Create New Events
-                            </div>
-                            <div class="news-content" style="box-shadow: 0px 0px 3px 3px #eeeef0; text-align: center; background-color: #E1E1E1; border-radius: 10px; padding: 10px; padding-bottom: 25px; padding-top: 25px">
-                                <div class="fa fa-plus" style="color: #676767; font-size: 60px; margin: 10px">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="news-details">
-                                This Week
+                                Approved Requests
                             </div>
                             <div class="news-content" style="box-shadow: 0px 0px 3px 3px #eeeef0; text-align: center; background-color: #F8F7FD; border-radius: 10px; padding: 10px;">
-                                <div class="fa fa-chat" style="color: #DD9903; font-size: 60px; margin: 10px">
+                                <div class="fa fa-check-circle" style="color: #66B700; font-size: 60px; margin: 10px">
                                 </div>
-                                <p>1234556</p>
+                                <h3>11084</h3>
                             </div>
+                            </a>
+                        </div>
 
+                        <div class="col">
+                            <a href="/pendingrequest" style="text-decoration: none">
+                                <div class="news-details">
+                                Pending Requests
+                            </div>
+                            <div class="news-content" style="box-shadow: 0px 0px 3px 3px #eeeef0; text-align: center; background-color: #F8F7FD; border-radius: 10px; padding: 10px;">
+                                <div class="fa fa-hourglass-start" style="background-color: #DB7600; color: white; border-radius: 30px; padding: 10px; padding-inline: 15px; font-size: 40px; margin: 10px">
+                                </div>
+                                <h3>11084</h3>
+                            </div>
+                            </a>
                         </div>
                         <div class="col">
+                            <a href="#" style="text-decoration: none">
                             <div class="news-details">
-                                Lifetime
+                                Rejected Requests
                             </div>
-                            <div class="news-content" style="box-shadow: 0px 0px 3px 3px #eeeef0; text-align: center; background-color: #66B700; border-radius: 10px; padding: 10px;">
-                                <div class="fa fa-bar" style="color: #DD9903; font-size: 60px; margin: 10px">
+                            <div class="news-content" style="box-shadow: 0px 0px 3px 3px #eeeef0; text-align: center; background-color: #F8F7FD; border-radius: 10px; padding: 10px;">
+                                <div class="fa fa-times-circle" style="color: #DB1A00; font-size: 60px; margin: 10px">
                                 </div>
-                                <p>1234556</p>
+                                <h3>11084</h3>
                             </div>
-
+                            </a>
                         </div>
                         <div class="col"></div>
+                        <div class="col"></div>
                     </div>
-                    <br><br><br>Recent Posts
+                    <br><br><br>Recent activities
                     <br><br>
                     <div class="row">
                         <div class="col row" style="background-color: #F8F7FD; padding: 8px; border-radius: 10px; margin: 18px;">
-                            <div class="col news-content" style="text-align: center;">
-                                <img src="assets/img/profile.jpg"  style="display: inline-block; border-radius: 250px; width: 80px;">
-                            </div>
-                            <div class="col">
-                                <b style="margin: 10px;">Title </b>
-                                <p style="margin: 10px;"><span style="color: #DB7600;">Published</span> Aug. 11 </p>
-                            </div>
-                            <div class="col-2"></div>
-                            <div class="col-1">
-                                <p style="margin: 10px" class="fa fa-edit"></p>
-                            </div>
-                            <div class="col-1">
-                                <p style="margin: 10px" class="fa fa-play"></p>
-                            </div>
-                            <div class="col-1">
-                                <p style="margin: 10px" class="fa fa-trash"></p>
-                            </div>
-                            <div class="col-1">
-                                <p style="margin: 10px" class="fa fa-eye"></p>
-                            </div>
+                            <div class="col"><span style="margin: 10px">John Doe </span></div>
+                            <div class="col"><span style="margin: 10px">SC Number </span></div>
                         </div>
+                        <div class="col-2 row" style="padding: 15px; border-radius: 10px; margin: 8px;">
+                            <input type="button" value="Suspend" class="btn" style="background-color: #FF0000">
+                        </div>
+                        <div class="col-2 row" style="padding: 15px; border-radius: 10px; margin: 8px;">
+                            <input type="button" value="Reinstate" class="btn" style="background-color: #66B700">
+                        </div>
+                        <div class="col-2"></div>
                     </div>
                     <div class="row">
                         <div class="col row" style="background-color: #F8F7FD; padding: 8px; border-radius: 10px; margin: 18px;">
-                            <div class="col news-content" style="text-align: center;">
-                                <img src="assets/img/profile.jpg"  style="display: inline-block; border-radius: 250px; width: 80px;">
-                            </div>
-                            <div class="col">
-                                <b style="margin: 10px;">Title </b>
-                                <p style="margin: 10px;"><span style="color: #DB7600;">Published</span> Aug. 11 </p>
-                            </div>
-                            <div class="col-2"></div>
-                            <div class="col-1">
-                                <p style="margin: 10px" class="fa fa-edit"></p>
-                            </div>
-                            <div class="col-1">
-                                <p style="margin: 10px" class="fa fa-play"></p>
-                            </div>
-                            <div class="col-1">
-                                <p style="margin: 10px" class="fa fa-trash"></p>
-                            </div>
-                            <div class="col-1">
-                                <p style="margin: 10px" class="fa fa-eye"></p>
-                            </div>
+                            <div class="col"><span style="margin: 10px">John Doe </span></div>
+                            <div class="col"><span style="margin: 10px">SC Number </span></div>
                         </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col row" style="background-color: #F8F7FD; padding: 8px; border-radius: 10px; margin: 18px;">
-                            <div class="col news-content" style="text-align: center;">
-                                <img src="assets/img/profile.jpg"  style="display: inline-block; border-radius: 250px; width: 80px;">
-                            </div>
-                            <div class="col">
-                                <b style="margin: 10px;">Title </b>
-                                <p style="margin: 10px;"><span style="color: #DB7600;">Published</span> Aug. 11 </p>
-                            </div>
-                            <div class="col-2"></div>
-                            <div class="col-1">
-                                <p style="margin: 10px" class="fa fa-edit"></p>
-                            </div>
-                            <div class="col-1">
-                                <p style="margin: 10px" class="fa fa-play"></p>
-                            </div>
-                            <div class="col-1">
-                                <p style="margin: 10px" class="fa fa-trash"></p>
-                            </div>
-                            <div class="col-1">
-                                <p style="margin: 10px" class="fa fa-eye"></p>
-                            </div>
+                        <div class="col-2 row" style="padding: 15px; border-radius: 10px; margin: 8px;">
+                            <input type="button" value="Suspend" class="btn" style="background-color: #FF0000">
                         </div>
+                        <div class="col-2 row" style="padding: 15px; border-radius: 10px; margin: 8px;">
+                            <input type="button" value="Reinstate" class="btn" style="background-color: #66B700">
+                        </div>
+                        <div class="col-2"></div>
                     </div>
                 </div>
 

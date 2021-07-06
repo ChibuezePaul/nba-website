@@ -1,7 +1,7 @@
 package com.isoft.nbawebsite.content;
 
 import com.isoft.nbawebsite.commons.data.AbstractEntity;
-import com.isoft.nbawebsite.constants.ContentTypes;
+import com.isoft.nbawebsite.constants.ContentType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -14,5 +14,5 @@ public class Content extends AbstractEntity {
     private String description;
     private String imageUrl;
     @Enumerated(EnumType.STRING)
-    private ContentTypes contentType;
+    private ContentType contentType;
 }

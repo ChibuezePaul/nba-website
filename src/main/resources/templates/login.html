@@ -24,21 +24,22 @@
                                  style="width: 100%; border-bottom-left-radius: 40px; border-top-right-radius: 40px; ">
                         </div>
                         <div class="col-6 " style=" background-color: #F8F7FD; padding: 20px; ">
-                            <div style="padding: 40px; ">
-                            </div>
-                            <input type="text " class="form-control " name="username" placeholder="Court Number ">
-                            <div style="padding: 10px; ">
-                            </div>
-                            <input type="password " class="form-control " name="password" placeholder="Password ">
-                            <div style="padding: 10px; ">
-                            </div>
-                            <div style="padding-right: 30%; ">
-                                <button type="button " class="btn form-control ">Login <i class="fa fa-sign-in "></i>
-                                </button>
-                            </div>
-
+                            <form method="post" action="/login">
+                                <div style="padding: 40px; ">
+                                </div>
+                                <p th:if="${param.error}" th:text="${param.message}" class="alert alert-danger alert-dismissible text-center">Actual Message</p>
+                                <input type="email" class="form-control " name="username" placeholder="Email">
+                                <div style="padding: 10px; ">
+                                </div>
+                                <input type="password" class="form-control " name="password" placeholder="Password">
+                                <div style="padding: 10px; ">
+                                </div>
+                                <div style="padding-right: 30%; ">
+                                    <button type="button " class="button btn form-control ">Login <i class="fa fa-sign-in "></i>
+                                    </button>
+                                </div>
+                            </form>
                         </div>
-
                     </div>
 
                 </div>
