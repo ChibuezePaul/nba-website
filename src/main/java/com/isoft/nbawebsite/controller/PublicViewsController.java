@@ -46,6 +46,11 @@ public class PublicViewsController {
         return "events"; //view
     }
 
+    @GetMapping("/newspage")
+    public String newspage(Model model) {
+        return "newspage"; //view
+    }
+
     @GetMapping("/news")
     public String news(Model model) {
         model.addAttribute("news", contentService.findAllContentTypes(ContentType.NEWS));
@@ -116,10 +121,10 @@ public class PublicViewsController {
     }
 
 
-    @GetMapping("/admindashboard")
-    public String admindashboard(Model model) {
+    @GetMapping("/controlpanel")
+    public String controlpanel(Model model) {
         model.addAttribute("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        return "admin/dashboard"; //view
+        return "admin/controlpanel"; //view
     }
 
     @GetMapping("/card")
@@ -141,9 +146,9 @@ public class PublicViewsController {
         return "admin/pendingprofile"; //view
     }
 
-    @GetMapping("/normaldashboard")
-    public String normaldashboard(Model model) {
-        return "admin/normaldashboard"; //view
+    @GetMapping("/postsdashboard")
+    public String postsdashboard(Model model) {
+        return "admin/postsdashboard"; //view
     }
 
     @GetMapping("/pendingrequest")
@@ -151,9 +156,9 @@ public class PublicViewsController {
         return "admin/pendingrequest"; //view
     }
 
-    @GetMapping("/normalpost")
-    public String normalpost(Model model) {
-        return "admin/normalpost"; //view
+    @GetMapping("/post")
+    public String post(Model model) {
+        return "admin/post"; //view
     }
 
     @GetMapping("/memberlist")

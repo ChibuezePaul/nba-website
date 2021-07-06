@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated().and()
                 .formLogin().permitAll().loginPage("/login")
                 .failureHandler((request, response, exception) -> response.sendRedirect("/login?error=true&message="+exception.getMessage()))
-				.defaultSuccessUrl("/admindash")
+				.defaultSuccessUrl("/dashboard")
                 .and()
                 .logout().permitAll().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .deleteCookies("JSESSIONID")
