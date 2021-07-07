@@ -105,6 +105,11 @@ public class PublicViewsController {
         return "authorized/meetingroom"; //view
     }
 
+    @GetMapping("/createmeeting")
+    public String createmeeting(Model model) {
+        return "authorized/createmeeting"; //view
+    }
+
     @GetMapping("/payment")
     public String payment(Model model) {
         return "authorized/payment"; //view
@@ -156,9 +161,14 @@ public class PublicViewsController {
         return "admin/pendingrequest"; //view
     }
 
-    @GetMapping("/post")
-    public String post(Model model) {
-        return "admin/post"; //view
+    @GetMapping("/createpost")
+    public String createpost(Model model) {
+        return "admin/createpost"; //view
+    }
+
+    @GetMapping("/createevent")
+    public String createevent(Model model) {
+        return "admin/createevents"; //view
     }
 
     @GetMapping("/memberlist")
