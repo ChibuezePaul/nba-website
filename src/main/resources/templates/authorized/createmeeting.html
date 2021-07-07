@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:insert="layout :: head('Create Meeting')"></head>
+
+<body>
+<!-- Landing Page one -->
+<section class="Landing-page">
+    <div th:insert="layout :: adminheader('Create Meeting')">
+
+    </div>
+    <div class="row news-heading">
+        <div class="content">
+            <div class="row" style="padding: 10px">
+                <div th:replace="layout :: adminsidebar">
+
+                </div>
+                <div class="col-12 col-sm-12 col-md- col-lg-7">
+                    <div class="row">
+                        <div class="12">
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control" style="background-color: #DADADA" placeholder="Meeting Title">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control" style="background-color: #DADADA"
+                                           placeholder="Meeting Date and Time">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control" style="background-color: #DADADA"
+                                           placeholder="Meeting Link">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button type="button" style="background-color: #66B700; width: 40%;" class="form-control btn">Create Meeting</button><br><br>
+                                </div>
+                            </div>
+                            <br>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-2 col-lg-2"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer th:insert="layout :: footer"></footer>
+    <!-- End of Footer -->
+</section>
+
+<script src="assets/js/app.js "></script>
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js "></script>
+<script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js "></script>
+</body>
+
+</html>
