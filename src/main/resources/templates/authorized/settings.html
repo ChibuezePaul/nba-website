@@ -15,73 +15,77 @@
                 <div th:replace="layout :: adminsidebar">
 
                 </div>
-                <div class="col-12 col-sm-12 col-md-2 col-lg-2">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                     <div class="row">
                         <div class="12">
 
                             <div class="row">
-                                <label class="form-control">Full Name</label>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" style="background-color: #DADADA" placeholder="Meeting Title">
+                                <div class="col-md-3">
+                                    <label class="">Full Name</label>
                                 </div>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" style="background-color: #DADADA" placeholder="Meeting Title">
+                                <div class="col-md-5">
+                                    <input type="text" style="background-color: #DADADA" class="form-control"placeholder="First Name">
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" style="background-color: #DADADA" class="form-control" placeholder="Last Name">
                                 </div>
                             </div>
                             <br>
                             <div class="row">
-                                <label class="form-control">Email Address</label>
-                                <div class="col-md-12">
+                                <div class="col-md-3">
+                                    <label class="">Email Address</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="email" class="form-control" style="background-color: #DADADA">
+                                </div>
+                            </div><br>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label>Address</label>
+                                </div>
+                                <div class="col-md-9">
                                     <input type="text" class="form-control" style="background-color: #DADADA">
                                 </div>
                             </div>
+                            <br><br><br>
                             <div class="row">
-                                <label class="form-control">Address</label>
-                                <div class="col-md-12">
-                                    <input type="text" class="form-control" style="background-color: #DADADA">
-                                </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <label class="form-control">Old Password</label>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" style="background-color: #DADADA" placeholder="Meeting Title">
+                                <div class="col-md-3">
+                                    <label>Old Password</label>
                                 </div>
                                 <div class="col-md-6">
+                                    <input type="password" class="form-control" style="background-color: #DADADA">
                                 </div>
-                            </div>
+                                <div class="col-md-3">
+                                </div>
+                            </div><br>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label>New Password</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="password" class="form-control" style="background-color: #DADADA">
+                                </div>
+                                <div class="col-md-3">
+                                </div>
+                            </div><br>
 
                             <div class="row">
-                                <label class="form-control">Old Password</label>
-                                <div class="col-md-6">
-                                    <input type="password" class="form-control" style="background-color: #DADADA" placeholder="************">
+                                <div class="col-md-3">
+                                    <label>Confirm Password</label>
                                 </div>
                                 <div class="col-md-6">
+                                    <input type="password" class="form-control" style="background-color: #DADADA">
                                 </div>
-                            </div>
-
-                            <div class="row">
-                                <label class="form-control">New Password</label>
-                                <div class="col-md-6">
-                                    <input type="password" class="form-control" style="background-color: #DADADA" placeholder="*******">
-                                </div>
-                                <div class="col-md-6">
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <label class="form-control">Confirm Password</label>
-                                <div class="col-md-6">
-                                    <input type="password" class="form-control" style="background-color: #DADADA" placeholder="*******">
-                                </div>
-                                <div class="col-md-6">
+                                <div class="col-md-3">
                                 </div>
                             </div>
 
                             <br>
                             <div class="row">
-                                <div class="col-md-12">
-                                    <button type="button" style="background-color: #66B700; width: 40%;" class="form-control btn">Create Meeting</button><br><br>
+                                <div class="col-md-3">
+                                </div>
+                                <div class="col-md-9">
+                                    <button type="button" style="background-color: #66B700; width: 40%;" class="form-control btn">Save</button><br><br>
                                 </div>
                             </div>
                             <br>
@@ -90,7 +94,12 @@
 
                     </div>
                 </div>
-            </div>
+                <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                    <label>Edit Bio</label>
+                    <div style="background-color: #DADADA; width: 350px; height: 350px">
+
+                    </div>
+                </div>
         </div>
     </div>
 
