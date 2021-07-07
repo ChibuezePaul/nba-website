@@ -20,7 +20,19 @@
                         <div class="col">
                             <a href="/createpost" style="text-decoration: none">
                                 <div class="news-details">
-                                    Create New Post
+                                    Create Post
+                                </div>
+                                <div class="news-content" style="box-shadow: 0px 0px 3px 3px #eeeef0; text-align: center; background-color: #F8F7FD; border-radius: 10px; padding: 10px; padding-bottom: 25px; padding-top: 25px">
+                                    <div class="fa fa-plus" style="color: #676767; font-size: 60px; margin: 10px">
+                                    </div>
+                                    <h3></h3>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col">
+                            <a href="/createevent" style="text-decoration: none">
+                                <div class="news-details">
+                                    Create Events
                                 </div>
                                 <div class="news-content" style="box-shadow: 0px 0px 3px 3px #eeeef0; text-align: center; background-color: #F8F7FD; border-radius: 10px; padding: 10px; padding-bottom: 25px; padding-top: 25px">
                                     <div class="fa fa-plus" style="color: #676767; font-size: 60px; margin: 10px">
@@ -30,39 +42,8 @@
                             </a>
                         </div>
 
-                        <div class="col">
-                            <a href="/createevent" style="text-decoration: none">
-                                <div class="news-details">
-                                    Create New Events
-                                </div>
-                                <div class="news-content" style="box-shadow: 0px 0px 3px 3px #eeeef0; text-align: center; background-color: #E1E1E1; border-radius: 10px; padding: 10px; padding-bottom: 25px; padding-top: 25px">
-                                    <div class="fa fa-plus" style="color: #676767; font-size: 60px; margin: 10px">
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col">
-                            <div class="news-details">
-                                This Week
-                            </div>
-                            <div class="news-content" style="box-shadow: 0px 0px 3px 3px #eeeef0; text-align: center; background-color: #F8F7FD; border-radius: 10px; padding: 10px;">
-                                <div class="fa fa-chat" style="color: #DD9903; font-size: 60px; margin: 10px">
-                                </div>
-                                <p>1234556</p>
-                            </div>
-
-                        </div>
-                        <div class="col">
-                            <div class="news-details">
-                                Lifetime
-                            </div>
-                            <div class="news-content" style="box-shadow: 0px 0px 3px 3px #eeeef0; text-align: center; background-color: #66B700; border-radius: 10px; padding: 10px;">
-                                <div class="fa fa-bar" style="color: #DD9903; font-size: 60px; margin: 10px">
-                                </div>
-                                <p>1234556</p>
-                            </div>
-
-                        </div>
+                        <div class="col"></div>
+                        <div class="col"></div>
                         <div class="col"></div>
                     </div>
                     <br><br><br>Recent Posts
@@ -78,16 +59,11 @@
                             </div>
                             <div class="col-2"></div>
                             <div class="col-1">
-                                <p style="margin: 10px" class="fa fa-edit"></p>
+                                <a href="/editpost" style="text-decoration: none; margin: 10px; color: #000;" class="fa fa-edit">
+                                </a>
                             </div>
                             <div class="col-1">
-                                <p style="margin: 10px" class="fa fa-play"></p>
-                            </div>
-                            <div class="col-1">
-                                <p style="margin: 10px" class="fa fa-trash"></p>
-                            </div>
-                            <div class="col-1">
-                                <p style="margin: 10px" class="fa fa-eye"></p>
+                                <button type="button" style="border-color: white; background-color: #F8F7FD" class="fa fa-trash" data-toggle="modal" data-target="#delete"></button>
                             </div>
                         </div>
                     </div>
@@ -102,16 +78,11 @@
                             </div>
                             <div class="col-2"></div>
                             <div class="col-1">
-                                <p style="margin: 10px" class="fa fa-edit"></p>
+                                <a href="/editpost" style="text-decoration: none; margin: 10px; color: #000;" class="fa fa-edit">
+                                </a>
                             </div>
                             <div class="col-1">
-                                <p style="margin: 10px" class="fa fa-play"></p>
-                            </div>
-                            <div class="col-1">
-                                <p style="margin: 10px" class="fa fa-trash"></p>
-                            </div>
-                            <div class="col-1">
-                                <p style="margin: 10px" class="fa fa-eye"></p>
+                                <button type="button" style="border-color: white; background-color: #F8F7FD" class="fa fa-trash" data-toggle="modal" data-target="#delete"></button>
                             </div>
                         </div>
                     </div>
@@ -127,21 +98,32 @@
                             </div>
                             <div class="col-2"></div>
                             <div class="col-1">
-                                <p style="margin: 10px" class="fa fa-edit"></p>
+                                <a href="/editpost" style="text-decoration: none; margin: 10px; color: #000;" class="fa fa-edit">
+                                </a>
                             </div>
                             <div class="col-1">
-                                <p style="margin: 10px" class="fa fa-play"></p>
-                            </div>
-                            <div class="col-1">
-                                <p style="margin: 10px" class="fa fa-trash"></p>
-                            </div>
-                            <div class="col-1">
-                                <p style="margin: 10px" class="fa fa-eye"></p>
+                                <button type="button" style="border-color: white; background-color: #F8F7FD" class="fa fa-trash" data-toggle="modal" data-target="#delete"></button>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- The Modal -->
+                <div class="modal" id="delete">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
 
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <div class="text-center"><br>
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label">Are you sure?</label>
+                                    </div><br><br>
+                                    <button type="button" style="background-color: #66B700; width: 50%;" class="btn" data-bs-dismiss="modal" aria-label="Close">Proceed</button>
+                                </div><br><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
