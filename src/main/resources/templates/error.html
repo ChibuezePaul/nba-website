@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:insert="layout :: head('Oops! Error!')"></head>
+
+<body>
+<!-- Landing Page one -->
+<section class="Landing-page">
+    <header th:insert="layout :: header"></header>
+    <div style="padding: 100px;" class="text-center">
+        <h1>&#9785; Something went wrong!</h1>
+        <a href="/">Go Home</a>
+    </div>
+
+    <!-- Footer -->
+    <footer th:insert="layout :: footer"></footer>
+    <!-- End of Footer -->
+
+</section>
+
+<script th:src="@{/assets/js/app.js}"></script>
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js "></script>
+<script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js "></script>
+</body>
+
+</html>
