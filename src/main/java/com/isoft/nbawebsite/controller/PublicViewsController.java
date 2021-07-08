@@ -46,6 +46,10 @@ public class PublicViewsController {
         return "events"; //view
     }
 
+    @GetMapping("/viewevents")
+    public String viewevents(Model model) {
+        return "viewevents"; //view
+    }
     @GetMapping("/newspage")
     public String newspage(Model model) {
         return "newspage"; //view
