@@ -166,9 +166,19 @@ public class PublicViewsController {
         return "admin/createpost"; //view
     }
 
+    @GetMapping("/editpost")
+    public String editpost(Model model) {
+        return "admin/editpost"; //view
+    }
+
     @GetMapping("/createevent")
     public String createevent(Model model) {
         return "admin/createevents"; //view
+    }
+
+    @GetMapping("/editevent")
+    public String editevent(Model model) {
+        return "admin/editevent"; //view
     }
 
     @GetMapping("/memberlist")

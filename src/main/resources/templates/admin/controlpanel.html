@@ -66,10 +66,10 @@
                             <div class="col"><span style="margin: 10px">SC Number </span></div>
                         </div>
                         <div class="col-2 row" style="padding: 15px; border-radius: 10px; margin: 8px;">
-                            <input type="button" value="Suspend" class="btn" style="background-color: #FF0000">
+                            <button type="button" style="background-color: #FF0000" class="btn" data-toggle="modal" data-target="#suspend">Suspend</button>
                         </div>
                         <div class="col-2 row" style="padding: 15px; border-radius: 10px; margin: 8px;">
-                            <button type="button" style="background-color: #66B700" class="btn" data-toggle="modal" data-target="#myModal">
+                            <button type="button" style="background-color: #66B700" class="btn" data-toggle="modal" data-target="#reinstate">
                                 Reinstate
                             </button>
                         </div>
@@ -81,10 +81,10 @@
                             <div class="col"><span style="margin: 10px">SC Number </span></div>
                         </div>
                         <div class="col-2 row" style="padding: 15px; border-radius: 10px; margin: 8px;">
-                            <input type="button" value="Suspend" class="btn" style="background-color: #FF0000">
+                            <button type="button" style="background-color: #FF0000" class="btn" data-toggle="modal" data-target="#suspend">Suspend</button>
                         </div>
                         <div class="col-2 row" style="padding: 15px; border-radius: 10px; margin: 8px;">
-                            <button type="button" style="background-color: #66B700" class="btn" data-toggle="modal" data-target="#myModal">
+                            <button type="button" style="background-color: #66B700" class="btn" data-toggle="modal" data-target="#reinstate">
                                 Reinstate
                             </button>
                         </div>
@@ -92,7 +92,24 @@
                     </div>
                 </div>
                 <!-- The Modal -->
-                <div class="modal" id="myModal">
+                <div class="modal" id="reinstate">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <div class="text-center"><br>
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label">Are you sure?</label>
+                                    </div><br><br>
+                                    <button type="button" style="background-color: #66B700; width: 50%;" class="btn" data-bs-dismiss="modal" aria-label="Close">Proceed</button>
+                                </div><br><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- The Modal -->
+                <div class="modal" id="suspend">
                     <div class="modal-dialog">
                         <div class="modal-content">
 
