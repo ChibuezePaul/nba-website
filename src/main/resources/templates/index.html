@@ -1,126 +1,135 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
-<head  th:insert="layout :: head('Home')"></head>
+<head th:insert="layout :: head('Home')"></head>
 
 <body>
 <!-- Landing Page one -->
 <section class="Landing-page">
     <header th:insert="layout :: header"></header>
-      <div class="carousel-inner" style="padding-top: 60px">
-            <div class="carousel-item active">
+    <div class="carousel-inner" style="padding-top: 60px">
+        <div class="carousel-item active">
 
-                <div class="container">
+            <div class="container">
 
-                    <div class=" landing-background ">
-                        <div class="landing-content ">
-                            <h1>NBA Annual
-                                <br>Conference</h1>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                                has been the industry's standard dummy text ever since the 1500s, when an unknown
-                                printer took a galley of type and scrambled it to
-                                make.
-                            </p>
-                            <a class="btn" style="background: linear-gradient(90deg, #2D6936 -6.45%, #00A419 95.97%);cursor: pointer;" th:href="@{/news}">Read More <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                        <div class="landing-image ">
-                            <img src="assets/img/bg1.png " class="girl-bg ">
-                        </div>
+                <div class=" landing-background ">
+                    <div class="landing-content ">
+                        <h1>NBA Annual
+                            <br>Conference</h1>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                            has been the industry's standard dummy text ever since the 1500s, when an unknown
+                            printer took a galley of type and scrambled it to
+                            make.
+                        </p>
+                        <a class="btn"
+                           style="background: linear-gradient(90deg, #2D6936 -6.45%, #00A419 95.97%);cursor: pointer;"
+                           th:href="@{/news}">Read More <i class="fas fa-arrow-right"></i></a>
                     </div>
-
-                </div>
-            </div>
-
-            <a class="carousel-control-prev " href="#myCarousel " role="button " data-bs-slide="prev ">
-                <span class="carousel-control " aria-hidden="true "></span>
-                <span class="visually-hidden ">Previous</span>
-            </a>
-            <a class="carousel-control-next " href="#myCarousel " role="button " data-bs-slide="next ">
-                <span class="carousel-control " aria-hidden="true "></span>
-                <span class="visually-hidden ">Next</span>
-            </a>
-        </div>
-        <!-- End of Home Page -->
-
-    <h3 th:text="|featured events: ${featuredEvents.size()}|"></h3>
-        <!-- About Us -->
-        <section class="landingpageTwo" style="background-color: #66b700; border-top-left-radius: 40px;">
-            <div class="landing-background-Two">
-                <div class="landing-image2">
-                    <img src="assets/img/Mask Group.png">
-                </div>
-                <div class="landing-content-Two">
-                    <h1>About Us</h1>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-                        of type and scrambled it to make.
-                    </p>
-                    <a class="btn" style="background: linear-gradient(90deg, #2D6936 -6.45%, #00A419 95.97%);cursor: pointer;" href="/about">Read More <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </section>
-        <!-- End of About Us -->
-
-        <!-- President Page -->
-
-        <div class="landing-background-Three">
-
-            <div class="landing-content-Three">
-                <h6>President</h6>
-                <h1>Olumide A. Akpata</h1>
-                <p>Olumide A. Akpata was born on 7 October 1972, and I had my early education in Warri, Delta State. I
-                    thereafter attended King's College, Lagos from where I proceeded to study Law at the University of
-                    Benin (UNIBEN). I graduated from
-                    UNIBEN in 1992, and I was called to the Nigerian Bar on 15 December, 1993.</p>
-                <a class="btn" style="background: linear-gradient(90deg, #2D6936 -6.45%, #00A419 95.97%);cursor: pointer;" th:href="@{/president}">Read More <i class="fas fa-arrow-right"></i></a>
-
-            </div>
-            <div class="landing-image3">
-                <img src="assets/img/Olumide president 1.png">
-            </div>
-        </div>
-        <!-- End of President Page -->
-
-        <!-- Latest News -->
-
-        <div class="landing-background-Four">
-            <h1>Latest News</h1>
-            <div class="landing-background-PageFour">
-                <div class="landing-content-Four-One">
-                    <div class="PageFour-Content">
-                        <h6>NEWS</h6>
-                        <h5>The standard Lorem Ipsum passage, used since the 1500s</h5>
-                        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat.
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                            ....</p>
-                        <a class="btn" style="background: linear-gradient(90deg, #2D6936 -6.45%, #00A419 95.97%);cursor: pointer;" th:href="@{/news}">Read More <i class="fas fa-arrow-right"></i></a>
+                    <div class="landing-image ">
+                        <img src="assets/img/bg1.png " class="girl-bg ">
                     </div>
                 </div>
-                <div class="landing-content-Four-Two">
-                    <div class="PageFour-Content">
-                        <h6>NEWS</h6>
-                        <h5>The standard Lorem Ipsum passage, used since the 1500s</h5>
-                        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat.
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                            ....</p>
-                        <a class="btn" style="background: linear-gradient(90deg, #2D6936 -6.45%, #00A419 95.97%);cursor: pointer;" th:href="@{/news}">Read More <i class="fas fa-arrow-right"></i></a>
-                    </div>
+
+            </div>
+        </div>
+
+        <a class="carousel-control-prev " href="#myCarousel " role="button " data-bs-slide="prev ">
+            <span class="carousel-control " aria-hidden="true "></span>
+            <span class="visually-hidden ">Previous</span>
+        </a>
+        <a class="carousel-control-next " href="#myCarousel " role="button " data-bs-slide="next ">
+            <span class="carousel-control " aria-hidden="true "></span>
+            <span class="visually-hidden ">Next</span>
+        </a>
+    </div>
+    <!-- End of Home Page -->
+
+    <!--<h3 th:text="|featured events: ${featuredEvents.size()}|"></h3>-->
+    <!-- About Us -->
+    <section class="landingpageTwo" style="background-color: #66b700; border-top-left-radius: 40px;">
+        <div class="landing-background-Two">
+            <div class="landing-image2">
+                <img src="assets/img/Mask Group.png">
+            </div>
+            <div class="landing-content-Two">
+                <h1>About Us</h1>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                    the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                    of type and scrambled it to make.
+                </p>
+                <a class="btn"
+                   style="background: linear-gradient(90deg, #2D6936 -6.45%, #00A419 95.97%);cursor: pointer;"
+                   href="/about">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+    <!-- End of About Us -->
+
+    <!-- President Page -->
+
+    <div class="landing-background-Three">
+
+        <div class="landing-content-Three">
+            <h6>President</h6>
+            <h1>Olumide A. Akpata</h1>
+            <p>Olumide A. Akpata was born on 7 October 1972, and I had my early education in Warri, Delta State. I
+                thereafter attended King's College, Lagos from where I proceeded to study Law at the University of
+                Benin (UNIBEN). I graduated from
+                UNIBEN in 1992, and I was called to the Nigerian Bar on 15 December, 1993.</p>
+            <a class="btn" style="background: linear-gradient(90deg, #2D6936 -6.45%, #00A419 95.97%);cursor: pointer;"
+               th:href="@{/president}">Read More <i class="fas fa-arrow-right"></i></a>
+
+        </div>
+        <div class="landing-image3">
+            <img src="assets/img/Olumide president 1.png">
+        </div>
+    </div>
+    <!-- End of President Page -->
+
+    <!-- Latest News -->
+
+    <div class="landing-background-Four">
+        <h1>Latest News</h1>
+        <div class="landing-background-PageFour">
+            <div class="landing-content-Four-One">
+                <div class="PageFour-Content">
+                    <h6>NEWS</h6>
+                    <h5>The standard Lorem Ipsum passage, used since the 1500s</h5>
+                    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                        ....</p>
+                    <a class="btn"
+                       style="background: linear-gradient(90deg, #2D6936 -6.45%, #00A419 95.97%);cursor: pointer;"
+                       th:href="@{/news}">Read More <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
-            <h3 th:text="|latest news: ${latestNews.size()}|"></h3>
+            <div class="landing-content-Four-Two">
+                <div class="PageFour-Content">
+                    <h6>NEWS</h6>
+                    <h5>The standard Lorem Ipsum passage, used since the 1500s</h5>
+                    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                        ....</p>
+                    <a class="btn"
+                       style="background: linear-gradient(90deg, #2D6936 -6.45%, #00A419 95.97%);cursor: pointer;"
+                       th:href="@{/news}">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
         </div>
-        <!-- End of Latest News -->
+        <!--<h3 th:text="|latest news: ${latestNews.size()}|"></h3>-->
+    </div>
+    <!-- End of Latest News -->
 
 
-        <!-- Footer -->
-        <footer th:insert="layout :: footer">
+    <!-- Footer -->
+    <footer th:insert="layout :: footer">
 
-        </footer>
-        <!-- End of Footer -->
+    </footer>
+    <!-- End of Footer -->
 
 </section>
 
