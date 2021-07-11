@@ -7,43 +7,87 @@
 <!-- Landing Page one -->
 <section class="Landing-page">
     <header th:insert="layout :: header"></header>
-    <div class="carousel-inner" style="padding-top: 60px">
-        <div class="carousel-item active">
 
-            <div class="container">
+    <!-- End of Home Page -->
+    <div style="padding-top: 60px" id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1" style="padding: 7px; background-color: #66B700; border-radius: 15px"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2" style="padding: 7px; background-color: #66B700; border-radius: 15px"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3" style="padding: 7px; background-color: #66B700; border-radius: 15px"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="container">
 
-                <div class=" landing-background ">
-                    <div class="landing-content ">
-                        <h1>NBA Annual
-                            <br>Conference</h1>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                            has been the industry's standard dummy text ever since the 1500s, when an unknown
-                            printer took a galley of type and scrambled it to
-                            make.
-                        </p>
-                        <a class="btn"
-                           style="background: linear-gradient(90deg, #2D6936 -6.45%, #00A419 95.97%);cursor: pointer;"
-                           th:href="@{/news}">Read More <i class="fas fa-arrow-right"></i></a>
+                    <div class=" landing-background ">
+                        <div class="landing-content ">
+                            <h1>NBA Annual
+                                <br>Conference</h1>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                                has been the industry's standard dummy text ever since the 1500s, when an unknown
+                                printer took a galley of type and scrambled it to
+                                make.
+                            </p>
+                            <a class="btn"
+                               style="background: linear-gradient(90deg, #2D6936 -6.45%, #00A419 95.97%);cursor: pointer;"
+                               th:href="@{/news}">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        <div class="landing-image ">
+                            <img src="assets/img/bg1.png " class="girl-bg ">
+                        </div>
                     </div>
-                    <div class="landing-image ">
-                        <img src="assets/img/bg1.png " class="girl-bg ">
-                    </div>
+
                 </div>
+            </div>
+            <div class="carousel-item">
+                <div class="container">
 
+                    <div class=" landing-background ">
+                        <div class="landing-content ">
+                            <h1>NBA Test Pae
+                                <br>Conference</h1>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                                has been the industry's standard dummy text ever since the 1500s, when an unknown
+                                printer took a galley of type and scrambled it to
+                                make.
+                            </p>
+                            <a class="btn"
+                               style="background: linear-gradient(90deg, #2D6936 -6.45%, #00A419 95.97%);cursor: pointer;"
+                               th:href="@{/news}">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        <div class="landing-image ">
+                            <img src="assets/img/bg1.png " class="girl-bg ">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="container">
+
+                    <div class=" landing-background ">
+                        <div class="landing-content ">
+                            <h1>TALK TRUE
+                                <br>Conference</h1>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                                has been the industry's standard dummy text ever since the 1500s, when an unknown
+                                printer took a galley of type and scrambled it to
+                                make.
+                            </p>
+                            <a class="btn"
+                               style="background: linear-gradient(90deg, #2D6936 -6.45%, #00A419 95.97%);cursor: pointer;"
+                               th:href="@{/news}">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        <div class="landing-image ">
+                            <img src="assets/img/bg1.png " class="girl-bg ">
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
 
-        <a class="carousel-control-prev " href="#myCarousel " role="button " data-bs-slide="prev ">
-            <span class="carousel-control " aria-hidden="true "></span>
-            <span class="visually-hidden ">Previous</span>
-        </a>
-        <a class="carousel-control-next " href="#myCarousel " role="button " data-bs-slide="next ">
-            <span class="carousel-control " aria-hidden="true "></span>
-            <span class="visually-hidden ">Next</span>
-        </a>
     </div>
-    <!-- End of Home Page -->
-
     <!--<h3 th:text="|featured events: ${featuredEvents.size()}|"></h3>-->
     <!-- About Us -->
     <section class="landingpageTwo" style="background-color: #66b700; border-top-left-radius: 40px;">
