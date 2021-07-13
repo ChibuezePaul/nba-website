@@ -96,6 +96,16 @@ public class ViewsController {
         return "login"; //view
     }
 
+    @GetMapping("/forgotpassword")
+    public String forgotpassword(Model model) {
+        return "forgotpassword"; //view
+    }
+
+    @GetMapping("/resetpassword")
+    public String resetpassword(Model model) {
+        return "resetpassword"; //view
+    }
+
     @GetMapping("/signup")
     public String signup(Model model) {
         model.addAttribute("user", new User());

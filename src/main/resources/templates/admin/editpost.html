@@ -12,10 +12,11 @@
     <div class="row news-heading">
         <div class="content">
             <div class="row" style="padding: 10px">
-                <div th:replace="layout :: adminsidebar">
+                <form class="row" method="post" action="/login">
+                    <div th:replace="layout :: adminsidebar">
 
-                </div>
-                <div class="col-12 col-sm-12 col-md-7 col-lg-7">
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-7 col-lg-7">
 
                     <div class="event-heading">
                         <img src="assets/img/bg Top.jpg">
@@ -30,13 +31,12 @@
                         </div>
                     </div>
 
-
-                </div>
-                <div class="col-12 col-sm-12 col-md-2 col-lg-2">
-                    <button type="button" style="background-color: #66B700; width: 40%;" class="btn">Update</button><br><br>
-                    <button type="button" style="background-color: #FF0000; width: 40%;" class="btn">Delete</button>
-                </div>
-
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-2 col-lg-2">
+                        <button type="button" style="background-color: #66B700; width: 40%;" class="btn">Update</button><br><br>
+                        <button type="button" style="background-color: #FF0000; width: 40%;" class="btn">Delete</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
