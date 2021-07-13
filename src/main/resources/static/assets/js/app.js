@@ -36,3 +36,47 @@ const closeDropdownMenuSelectingItem = (() => mobile.forEach((item) => item.addE
     closeDrop();
     toggleNav();
 })))()
+
+//On click event on suspend button
+var suspendButtons = document.getElementsByClassName("btn-suspend");
+for (var i = 0; i < suspendButtons.length; i++) {
+    suspendButtons[i].addEventListener("click", function (ev) {
+        var $btn = $(this);
+        var rowId = $btn.attr('data-id');
+        console.log('suspend', rowId);
+        document.getElementById("suspend-form").setAttribute('action', '/user/suspend/' + rowId)
+    })
+}
+
+//On click event on reinstate button
+var reinstateButtons = document.getElementsByClassName("btn-reinstate");
+for (var i = 0; i < reinstateButtons.length; i++) {
+    reinstateButtons[i].addEventListener("click", function (ev) {
+        var $btn = $(this);
+        var rowId = $btn.attr('data-id');
+        console.log('reinstate',rowId);
+        document.getElementById("reinstate-btn").setAttribute('href', '/user/reinstate/' + rowId)
+    })
+}
+
+//On click event on accept button
+var acceptButtons = document.getElementsByClassName("btn-accept");
+for (var i = 0; i < acceptButtons.length; i++) {
+    acceptButtons[i].addEventListener("click", function (ev) {
+        var $btn = $(this);
+        var rowId = $btn.attr('data-id');
+        console.log('accept', rowId);
+        document.getElementById("accept-btn").setAttribute('action', '/user/approve/' + rowId)
+    })
+}
+
+//On click event on reject button
+var rejectButtons = document.getElementsByClassName("btn-reject");
+for (var i = 0; i < rejectButtons.length; i++) {
+    rejectButtons[i].addEventListener("click", function (ev) {
+        var $btn = $(this);
+        var rowId = $btn.attr('data-id');
+        console.log('reject',rowId);
+        document.getElementById("reject-btn").setAttribute('href', '/user/reject/' + rowId)
+    })
+}

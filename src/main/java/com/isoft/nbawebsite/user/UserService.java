@@ -1,5 +1,6 @@
 package com.isoft.nbawebsite.user;
 
+import com.isoft.nbawebsite.constants.AccountStatus;
 import com.isoft.nbawebsite.constants.SuspensionPeriod;
 import com.isoft.nbawebsite.user.command.ModifyUserCmd;
 import com.isoft.nbawebsite.user.command.NewUserCmd;
@@ -20,7 +21,9 @@ public interface UserService {
     List<User> findAllUser();
     Page<User> findAllUser(Pageable pageable);
     void approveNewUserRequest(String id);
-    void disapproveNewUserRequest(String id);
+    void rejectNewUserRequest(String id);
     void suspendUser(String id, String suspensionPeriod);
     void reinstateUser(String id);
+    List<User> findUsersByAccountStatus(AccountStatus accountStatus);
+    List<User> findRecentUsers();
 }

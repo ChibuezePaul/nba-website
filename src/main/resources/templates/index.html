@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
 
 <head th:insert="layout :: head('Home')"></head>
 
@@ -12,8 +12,25 @@
 
             <div class="container">
 
-                <div class=" landing-background ">
-                    <div class="landing-content ">
+                <div class=" landing-background" th:each="featuredEvent : ${featuredEvents}">
+                    <div class="landing-content">
+                        <h1 th:text="${featuredEvent.title}">NBA Annual
+                            <br>Conference</h1>
+                        <p th:text="${featuredEvent.description}">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                            has been the industry's standard dummy text ever since the 1500s, when an unknown
+                            printer took a galley of type and scrambled it to
+                            make.
+                        </p>
+                        <a class="btn"
+                           style="background: linear-gradient(90deg, #2D6936 -6.45%, #00A419 95.97%);cursor: pointer;"
+                           th:href="|/viewevents/${featuredEvent.id}|">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="landing-image ">
+                        <img th:src="${featuredEvent.imageUrl}" src="assets/img/bg1.png " class="girl-bg ">
+                    </div>
+                </div>
+                <div class=" landing-background">
+                    <div class="landing-content">
                         <h1>NBA Annual
                             <br>Conference</h1>
                         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
@@ -23,7 +40,7 @@
                         </p>
                         <a class="btn"
                            style="background: linear-gradient(90deg, #2D6936 -6.45%, #00A419 95.97%);cursor: pointer;"
-                           th:href="@{/news}">Read More <i class="fas fa-arrow-right"></i></a>
+                           href="#">Read More <i class="fas fa-arrow-right"></i></a>
                     </div>
                     <div class="landing-image ">
                         <img src="assets/img/bg1.png " class="girl-bg ">
@@ -90,6 +107,22 @@
 
     <div class="landing-background-Four">
         <h1>Latest News</h1>
+        <div class="landing-background-PageFour" th:each="news : ${latestNews}">
+            <div class="landing-content-Four-One">
+                <div class="PageFour-Content">
+                    <h6>NEWS</h6>
+                    <h5 th:text="${news.title}">The standard Lorem Ipsum passage, used since the 1500s</h5>
+                    <p th:text="${news.description}">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                        ....</p>
+                    <a class="btn"
+                       style="background: linear-gradient(90deg, #2D6936 -6.45%, #00A419 95.97%);cursor: pointer;"
+                       th:href="|/newspage/${news.id}|">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
         <div class="landing-background-PageFour">
             <div class="landing-content-Four-One">
                 <div class="PageFour-Content">
@@ -102,7 +135,7 @@
                         ....</p>
                     <a class="btn"
                        style="background: linear-gradient(90deg, #2D6936 -6.45%, #00A419 95.97%);cursor: pointer;"
-                       th:href="@{/news}">Read More <i class="fas fa-arrow-right"></i></a>
+                       href="#">Read More <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
             <div class="landing-content-Four-Two">
@@ -116,7 +149,7 @@
                         ....</p>
                     <a class="btn"
                        style="background: linear-gradient(90deg, #2D6936 -6.45%, #00A419 95.97%);cursor: pointer;"
-                       th:href="@{/news}">Read More <i class="fas fa-arrow-right"></i></a>
+                       href="#">Read More <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>

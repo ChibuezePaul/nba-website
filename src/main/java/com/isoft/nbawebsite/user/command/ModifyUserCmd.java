@@ -14,4 +14,5 @@ public class ModifyUserCmd {
     private String address;
     private String SCNumber;
     private String chamberAddress;
+    private String honorific;
 }

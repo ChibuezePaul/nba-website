@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:insert="layout :: head('Oops! Error!')"></head>
 
@@ -8,7 +8,7 @@
 <section class="Landing-page">
     <header th:insert="layout :: header"></header>
     <div style="padding: 15%;" class="text-center">
-        <h1>&#9785; Oops, guess you are lost!</h1>
+        <h1>&#9785;<small th:text="${error}" class="text-center"> Oops, guess you are lost!</small></h1>
         <a href="/">Go Home</a>
     </div>
 

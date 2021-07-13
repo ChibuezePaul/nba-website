@@ -18,4 +18,5 @@ public class NewUserCmd {
     private String SCNumber;
     private String chamberAddress;
     private String password;
+    private String honorific;
 }

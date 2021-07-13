@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ContentRepository extends MongoRepository<Content, String> {
     List<Content> findAllByContentType(ContentType contentType);
+    List<Content> findTop3ByContentTypeOrderByDateCreatedDesc(ContentType contentType);
 }

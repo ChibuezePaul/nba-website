@@ -1,32 +1,27 @@
 package com.isoft.nbawebsite.meeting;
 
-import com.isoft.nbawebsite.exception.CustomException;
+import com.isoft.nbawebsite.meeting.command.NewMeeting;
 import org.springframework.stereotype.Service;
-
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
 public class MeetingService {
-    private final MeetingRepository meetingRepositpry;
-    private static final CustomException MEETING_NOT_FOUND = new CustomException("Meeting Not Found");
+    private final MeetingRepository meetingRepository;
 
-    public MeetingService(MeetingRepository meetingRepositpry) {
-        this.meetingRepositpry = meetingRepositpry;
+    public MeetingService(MeetingRepository meetingRepository) {
+        this.meetingRepository = meetingRepository;
     }
 
-    public Meeting createMeeting(Meeting meeting) {
-        return meetingRepositpry.save(meeting);
+    public Meeting createMeeting(NewMeeting newMeeting) {
+        Meeting meeting = new Meeting();
+        meeting.setMeetingLink(newMeeting.getMeetingLink());
+        meeting.setTitle(newMeeting.getTitle());
+        meeting.setScheduledDate(LocalDateTime.parse(newMeeting.getScheduledDate()));
+        return meetingRepository.save(meeting);
     }
 
-    public Meeting findById(String id) {
-        return meetingRepositpry.findById(id).orElseThrow(() -> MEETING_NOT_FOUND);
-    }
-
-    public List<Meeting> findByInviteeId(String id) {
-        return meetingRepositpry.findAllByInviteesIdIn(id);
-    }
-
-    List<Meeting> findAll() {
-        return meetingRepositpry.findAll();
+    public List<Meeting> findPendingMeetings() {
+        return meetingRepository.findAllByScheduledDateIsAfter(LocalDateTime.now().minusDays(1));
     }
 }

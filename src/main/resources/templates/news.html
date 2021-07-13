@@ -13,25 +13,25 @@
         <h3 class="breadcrumb" style="background-color: #66b700;">News</h3>
     </div>
 
-    <div class="container">
+    <div class="container" th:each="news : ${allNews}">
 
         <div class="row news-heading">
             <div class="col-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="news-content2">
                     <div class="news-content3">
-                        <img src="assets/img/news.jpg">
+                        <img th:src="${news.imageUrl}" src="assets/img/news.jpg">
 
                         <div class="news-details">
-                            <h6>Aug 5, 2021</h6>
-                            <h5>John Doe</h5>
-                            <p>
+                            <h6 th:text="${news.dateCreated.month + news.dateCreated.dayOfMonth + news.dateCreated.year}">Aug 5, 2021</h6>
+                            <h5 th:text="${news.title}">John Doe</h5>
+                            <p th:text="${news.description}">
                                 perspiciatis unde omnis iste natus error veritatis et quasi
                                 architecto beatae vitae dicta sunt explicabo perspiciatis unde
                                 omnis iste natus error sit voluptatem accusantium doloremque
                                 laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
                                 veritatis
                             </p>
-                            <a href="/newspage">Read More →</a>
+                            <a th:href="|/newspage/${news.id}|" href="/newspage">Read More →</a>
                         </div>
                     </div>
                 </div>

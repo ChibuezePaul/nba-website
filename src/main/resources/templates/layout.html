@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:fragment="head(currentPage)">
     <!-- Required meta tags -->
@@ -87,7 +87,9 @@
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-6" style="position: relative;">
-                <h2 style="margin-left: 40px;padding: 20px" th:text="${currentPage}|">Settings</h2>
+                <h2 style="margin-left: 40px;padding: 20px" th:text="${currentPage}">Settings</h2>
+                <br>
+                <p class="text-success" th:text="${message}">Success Message</p>
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-3">
                 <div class="row">
@@ -101,7 +103,6 @@
     <div class="col-12 col-sm-12 col-md-3 col-lg-3" th:fragment="adminsidebar">
         <div class="mem-content3 content" style="padding: 10px">
             <a href="/dashboard" style="font-size: 18px; padding-left: 20px; color: #000000; text-decoration: none"><br>
-                <!--<ion-icon style="padding-left: 20px; color: #000000;" filled="black" name="grid-outline"></ion-icon>-->
                 <i class="fas fa-th-large" style="font-size: 18px; padding-left: 20px; color: #000000; text-decoration: none"></i> Dashboard
             </a><br><hr><br>
             <a href="/meetingroom" style="font-size: 18px; padding-left: 20px; color: #000000; text-decoration: none">
@@ -110,21 +111,33 @@
             <a href="/library" style="font-size: 18px; padding-left: 20px; color: #000000; text-decoration: none">
                 <i class="fas fa-book"></i> Library
             </a><br><hr><br>
-            <a href="#" style="font-size: 18px; padding-left: 20px; color: #000000; text-decoration: none">
-                <i class="fas fa-shopping-bag"></i> Shop
-            </a><br><hr><br>
+            <!--<a href="#" style="font-size: 18px; padding-left: 20px; color: #000000; text-decoration: none">-->
+                <!--<i class="fas fa-shopping-bag"></i> Shop-->
+            <!--</a><br><hr><br>-->
             <a href="/payment" style="font-size: 18px; padding-left: 20px; color: #000000; text-decoration: none">
                 <i class="fas fa-credit-card"></i> Payments
-            </a><br><hr><br>
-            <a href="/postsdashboard" style="font-size: 18px; padding-left: 20px; color: #000000; text-decoration: none">
-                <i class="fas fa-calendar-alt"></i> Posts
-            </a><br><hr><br>
-            <a href="/controlpanel" style="font-size: 18px; padding-left: 20px; color: #000000; text-decoration: none">
-                <i class="fas fa-user-shield"></i> Control Panel
-            </a><br><hr><br>
+            </a>
+            <span sec:authorize="hasAnyAuthority('SU_ADMIN,ADMIN')">
+                <br><hr><br>
+                <a href="/postsdashboard" style="font-size: 18px; padding-left: 20px; color: #000000; text-decoration: none">
+                    <i class="fas fa-calendar-alt"></i> Posts
+                </a>
+            </span>
+
+            <span sec:authorize="hasAnyAuthority('SU_ADMIN,ADMIN')">
+                <br><hr><br>
+                <a href="/controlpanel" style="font-size: 18px; padding-left: 20px; color: #000000; text-decoration: none">
+                    <i class="fas fa-user-shield"></i> Control Panel
+                </a>
+            </span>
+            <br><hr><br>
             <a href="/settings" style="font-size: 18px; padding-left: 20px; color: #000000; text-decoration: none">
                 <i class="fas fa-cog"></i> Settings
-            </a><br><br>
+            </a>
+            <br><hr><br>
+            <a href="/logout" style="font-size: 18px; padding-left: 20px; color: #000000; text-decoration: none">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
         </div>
     </div>
 

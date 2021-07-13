@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:insert="layout :: head('Member List')">
 </head>
@@ -18,66 +18,22 @@
                 </div>
                 <div class="col-12 col-sm-12 col-md-9 col-lg-9">
 
-                    <div class="row">
+                    <div class="row" th:each="approvedUser : ${approvedUsers}">
                         <div class="col row" style="background-color: #F8F7FD; padding: 8px; border-radius: 10px; margin: 18px;">
-                            <div class="col"><span style="margin: 10px">John Doe </span></div>
-                            <div class="col"><span style="margin: 10px">SC Number </span></div>
+                            <div class="col"><span style="margin: 10px" th:text="${approvedUser.firstName + ' ' + approvedUser.lastName}">John Doe </span></div>
+                            <div class="col"><span style="margin: 10px" th:text="${approvedUser.SCNumber}">SC Number </span></div>
                         </div>
                         <div class="col-2 row" style="padding: 15px; border-radius: 10px; margin: 8px;">
-                            <button type="button" style="background-color: #FF0000" class="btn" data-toggle="modal" data-target="#suspend">Suspend</button>
+                            <button id="btn-suspend" type="button" style="background-color: #FF0000" class="btn btn-suspend" data-toggle="modal" data-target="#suspend" th:data-id="${approvedUser.id}">Suspend</button>
                         </div>
                         <div class="col-2 row" style="padding: 15px; border-radius: 10px; margin: 8px;">
-                            <button type="button" style="background-color: #66B700" class="btn" data-toggle="modal" data-target="#reinstate">
+                            <button type="button" style="background-color: #66B700" class="btn btn-reinstate" data-toggle="modal" data-target="#reinstate" th:data-id="${approvedUser.id}">
                                 Reinstate
                             </button>
                         </div>
                         <div class="col-2"></div>
                     </div>
-                    <div class="row">
-                        <div class="col row" style="background-color: #F8F7FD; padding: 8px; border-radius: 10px; margin: 18px;">
-                            <div class="col"><span style="margin: 10px">John Doe </span></div>
-                            <div class="col"><span style="margin: 10px">SC Number </span></div>
-                        </div>
-                        <div class="col-2 row" style="padding: 15px; border-radius: 10px; margin: 8px;">
-                            <button type="button" style="background-color: #FF0000" class="btn" data-toggle="modal" data-target="#suspend">Suspend</button>
-                        </div>
-                        <div class="col-2 row" style="padding: 15px; border-radius: 10px; margin: 8px;">
-                            <button type="button" style="background-color: #66B700" class="btn" data-toggle="modal" data-target="#reinstate">
-                                Reinstate
-                            </button>
-                        </div>
-                        <div class="col-2"></div>
-                    </div>
-                    <div class="row">
-                        <div class="col row" style="background-color: #F8F7FD; padding: 8px; border-radius: 10px; margin: 18px;">
-                            <div class="col"><span style="margin: 10px">John Doe </span></div>
-                            <div class="col"><span style="margin: 10px">SC Number </span></div>
-                        </div>
-                        <div class="col-2 row" style="padding: 15px; border-radius: 10px; margin: 8px;">
-                            <button type="button" style="background-color: #FF0000" class="btn" data-toggle="modal" data-target="#suspend">Suspend</button>
-                        </div>
-                        <div class="col-2 row" style="padding: 15px; border-radius: 10px; margin: 8px;">
-                            <button type="button" style="background-color: #66B700" class="btn" data-toggle="modal" data-target="#reinstate">
-                                Reinstate
-                            </button>
-                        </div>
-                        <div class="col-2"></div>
-                    </div>
-                    <div class="row">
-                        <div class="col row" style="background-color: #F8F7FD; padding: 8px; border-radius: 10px; margin: 18px;">
-                            <div class="col"><span style="margin: 10px">John Doe </span></div>
-                            <div class="col"><span style="margin: 10px">SC Number </span></div>
-                        </div>
-                        <div class="col-2 row" style="padding: 15px; border-radius: 10px; margin: 8px;">
-                            <button type="button" style="background-color: #FF0000" class="btn" data-toggle="modal" data-target="#suspend">Suspend</button>
-                        </div>
-                        <div class="col-2 row" style="padding: 15px; border-radius: 10px; margin: 8px;">
-                            <button type="button" style="background-color: #66B700" class="btn" data-toggle="modal" data-target="#reinstate">
-                                Reinstate
-                            </button>
-                        </div>
-                        <div class="col-2"></div>
-                    </div>
+
                     <!-- The Modal -->
                     <div class="modal" id="reinstate">
                         <div class="modal-dialog">
@@ -89,7 +45,9 @@
                                         <div class="form-check form-check-inline">
                                             <label class="form-check-label">Are you sure?</label>
                                         </div><br><br>
-                                        <button type="button" style="background-color: #66B700; width: 50%;" class="btn" data-bs-dismiss="modal" aria-label="Close">Proceed</button>
+                                        <a id="reinstate-btn">
+                                            <button type="button" style="background-color: #66B700; width: 50%;" class="btn" data-bs-dismiss="modal" aria-label="Close">Proceed</button>
+                                        </a>
                                     </div><br><br>
                                 </div>
                             </div>
@@ -103,19 +61,21 @@
                                 <!-- Modal body -->
                                 <div class="modal-body">
                                     <div class="text-center">
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                            <label class="form-check-label" for="inlineRadio1">1 Week</label>
-                                        </div><hr>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                            <label class="form-check-label" for="inlineRadio2">6 Months</label>
-                                        </div><hr>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                                            <label class="form-check-label" for="inlineRadio3">Lifetime</label>
-                                        </div><hr>
-                                        <button type="button" style="background-color: #66B700; width: 50%;" class="btn" data-bs-dismiss="modal" aria-label="Close">Proceed</button>
+                                        <form id="suspend-form" th:action="@{/user/suspend/_id_}" method="post">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="suspensionPeriod" id="inlineRadio1" value="1 Week">
+                                                <label class="form-check-label" for="inlineRadio1">1 Week</label>
+                                            </div><hr>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="suspensionPeriod" id="inlineRadio2" value="6 Months">
+                                                <label class="form-check-label" for="inlineRadio2">6 Months</label>
+                                            </div><hr>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="suspensionPeriod" id="inlineRadio3" value="Lifetime">
+                                                <label class="form-check-label" for="inlineRadio3">Lifetime</label>
+                                            </div><hr>
+                                            <button type="submit" style="background-color: #66B700; width: 50%;" class="btn" data-bs-dismiss="modal" aria-label="Close">Proceed</button>
+                                        </form>
                                     </div>
 
                                 </div>
@@ -135,7 +95,6 @@
 </section>
 
 <script src="assets/js/app.js "></script>
-
 <!-- Option 1: Bootstrap Bundle with Popper -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js "></script>
 <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js "></script>

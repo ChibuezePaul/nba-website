@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:insert="layout :: head('Create Posts')"></head>
 
@@ -19,23 +19,31 @@
 
                     <div class="event-heading">
                         <div class="event-content">
-                            <label class="form-check-label" >Post Image</label><br><br>
-                            <input type="file" alt="" placeholder="Upload Post Image"><br><br>
-                            <label class="form-check-label" >Post Title</label>
-                            <input type="text" name="" id="title" class="form-control" placeholder=""><br><br>
-                            <label class="form-check-label" >Post Description</label>
-                            <textarea name="" id="" cols="30" rows="10" class="form-control">
-                            </textarea>
+                            <form th:action="@{/new-post/{id}(id=${isUpdate == true ? ''+post.id : ''})?type=news}" th:method="post" th:object="${post}"
+                                  enctype="multipart/form-data">
+                                <section
+                                        th:class="${#fields.hasErrors('*')}  ? 'alert alert-danger text-danger' : 'hidden'">
+                                    <li th:each="e : ${#fields.detailedErrors()}" th:attr="field=${e.fieldName}"
+                                        th:text="${e.message}"></li>
+                                </section>
+                                <label class="form-check-label">Post Image</label><br><br>
+                                <input required type="file" alt="" placeholder="Upload Post Image" name="attachment"><br><br>
+                                <label class="form-check-label">Post Title</label>
+                                <input required type="text" name="title" id="title" class="form-control" placeholder=""
+                                       th:field="*{title}"><br><br>
+                                <label class="form-check-label">Post Description</label>
+                                <textarea required name="description" id="" cols="30" rows="10" class="form-control"
+                                          th:field="*{description}">
+                                </textarea>
+                            </form>
                         </div>
                     </div>
 
-
                 </div>
                 <div class="col-12 col-sm-12 col-md-2 col-lg-2" style="padding-top: 80px">
-                    <button type="button" style="background-color: #66B700; width: 40%;" class="btn">Save</button><br><br>
-
+                    <button type="submit" style="background-color: #66B700; width: 40%;" class="btn">Save</button>
+                    <br><br>
                 </div>
-
             </div>
         </div>
     </div>

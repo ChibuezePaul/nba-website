@@ -35,6 +35,10 @@ public class User extends AbstractEntity {
 
     private String password;
 
+    private String honorific;
+
+    private String imageUrl;
+
     private Role role;
 
     private boolean isSuspended;
