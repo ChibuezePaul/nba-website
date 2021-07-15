@@ -157,6 +157,24 @@ public class UserServiceImpl implements UserService {
         return userRepository.findTop3ByOrderByDateCreatedDesc();
     }
 
+    @Override
+    public void forgotPassword(String uniqueId) {
+        userRepository.findByEmailOrSCNumberIgnoreCase(uniqueId, uniqueId).orElseThrow(() -> USER_NOT_FOUND);
+    }
+
+    @Override
+    public void resetPassword(String uniqueId, String password, String confirmPassword) {
+        if(password != null && !password.equals(confirmPassword)) {
+            throw new CustomException("Password Mismatch! Kindly Supply Same Password In Both Fields");
+        }
+        User user = userRepository.findByEmailOrSCNumberIgnoreCase(uniqueId, uniqueId).orElseThrow(() -> USER_NOT_FOUND);
+        if(passwordEncoder.matches(password, user.getPassword())) {
+            throw new CustomException("Password is same as current password");
+        }
+        user.setPassword(passwordEncoder.encode(password));
+        userRepository.save(user);
+    }
+
     private void checkIfAccountHasBeenReviewed(User user) {
         if(!user.getAccountStatus().equals(AccountStatus.PENDING)) {
             throw new CustomException("Account Has Already Been Reviewed");

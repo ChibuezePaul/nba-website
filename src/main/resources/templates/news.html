@@ -19,7 +19,7 @@
             <div class="col-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="news-content2">
                     <div class="news-content3">
-                        <img th:src="${news.imageUrl}" src="assets/img/news.jpg">
+                        <img th:src="@{'/image/'+${news.id}+'/'+${news.image}}" src="assets/img/news.jpg">
 
                         <div class="news-details">
                             <h6 th:text="${news.dateCreated.month + news.dateCreated.dayOfMonth + news.dateCreated.year}">Aug 5, 2021</h6>

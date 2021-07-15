@@ -1,14 +1,19 @@
 package com.isoft.nbawebsite.content;
 
+import com.isoft.nbawebsite.commons.util.ImageUploadUtil;
 import com.isoft.nbawebsite.constants.ContentType;
 import com.isoft.nbawebsite.content.command.NewContent;
 import com.isoft.nbawebsite.exception.CustomException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -22,42 +27,29 @@ public class ContentService {
         this.contentRepository = contentRepository;
     }
 
+    @Value("${image-directory}")
+    private String imageDirectory;
+
+    @Transactional
     public Content createContent(NewContent newContent, MultipartFile attachment) {
         Content content = new Content();
         content.setContentType(newContent.getContentType());
         content.setDescription(newContent.getDescription());
-        content.setImageUrl(newContent.getImageUrl());
         content.setTitle(newContent.getTitle());
-        content.setEventDate(newContent.getEventDate());
-        uploadContentImage(attachment, content);
-        return contentRepository.save(content);
+        if(ContentType.EVENTS.equals(newContent.getContentType())) {
+            content.setEventDate(LocalDateTime.parse(newContent.getEventDate()));
+        }
+        return saveContent(attachment, content);
     }
 
     public Content editContent(String id, NewContent newContent, MultipartFile attachment) {
         Content content = contentRepository.findById(id).orElseThrow(CONTENT_NOT_FOUND);
-        content.setContentType(newContent.getContentType());
         content.setDescription(newContent.getDescription());
-        content.setImageUrl(newContent.getImageUrl());
         content.setTitle(newContent.getTitle());
-        content.setEventDate(newContent.getEventDate());
-        uploadContentImage(attachment, content);
-        return contentRepository.save(content);
-    }
-
-    private void uploadContentImage(MultipartFile attachment, Content content) {
-        File currDir = new File ( "." );
-        String path = currDir.getAbsolutePath ();
-        try(InputStream in = attachment.getInputStream (); FileOutputStream f = new FileOutputStream (path.substring ( 0 , path.length () - 1 ) + attachment.getOriginalFilename () )) {
-            int ch = 0;
-            while ( ( ch = in.read () ) != - 1 ) {
-                f.write ( ch );
-            }
-            f.flush ();
-            content.setImageUrl ( attachment.getResource ().getFilename () );
+        if(ContentType.EVENTS.equals(newContent.getContentType())) {
+            content.setEventDate(LocalDateTime.parse(newContent.getEventDate()));
         }
-        catch ( Exception e ) {
-            log.error("Error uploading content image", e);
-        }
+        return saveContent(attachment, content);
     }
 
     public Content findById(String id) {
@@ -78,5 +70,20 @@ public class ContentService {
 
     public List<Content> findRecentPosts() {
         return contentRepository.findTop3ByContentTypeOrderByDateCreatedDesc(ContentType.NEWS);
+    }
+
+    public void deleteContent(String id) {
+        contentRepository.deleteById(id);
+    }
+
+    private Content saveContent(MultipartFile attachment, Content content) {
+        String fileName = StringUtils.cleanPath(attachment.getOriginalFilename());
+        content.setImage(fileName);
+        Content savedContent = contentRepository.save(content);
+        File currDir = new File ( "." );
+        String path = currDir.getAbsolutePath ().replace(".","");
+        String uploadDir = path + imageDirectory + savedContent.getId();
+        ImageUploadUtil.uploadImage(uploadDir, fileName, attachment);
+        return savedContent;
     }
 }

@@ -12,8 +12,7 @@
     <div class="row news-heading">
         <div class="content">
             <div class="row" style="padding: 10px">
-                <form th:action="@{/new-post/{id}(id=${isUpdate == true ? ''+post.id : ''})?type=news}" th:method="post"
-                      th:object="${post}" enctype="multipart/form-data">
+                <form th:action="|@{/new-post/{id}(id=${isUpdate == true ? post.id : ''})}?type=news|" th:method="post" th:object="${post}" enctype="multipart/form-data">
                     <div th:replace="layout :: adminsidebar">
 
                     </div>
@@ -58,8 +57,8 @@
 <script src="assets/js/app.js "></script>
 
 <!-- Option 1: Bootstrap Bundle with Popper -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js "></script>
-<script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js "></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
 </body>
 
 </html>

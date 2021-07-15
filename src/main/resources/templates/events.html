@@ -13,7 +13,7 @@
         <h3 class="breadcrumb" style="background-color: #66b700;">Events</h3>
     </div>
     <div class="event-heading" th:each="event : ${events}">
-        <img th:src="${event.imageUrl}" src="assets/img/bg Top.jpg">
+        <img th:src="@{'/image/'+${event.id}+'/'+${event.image}}" src="assets/img/bg Top.jpg">
         <div class="event-content">
             <h6 th:text="${event.dateCreated.month + event.dateCreated.dayOfMonth + event.dateCreated.year}">Aug 5, 2021</h6>
             <h5 th:text="${event.title}">Lawyers EXPO 2021 </h5>

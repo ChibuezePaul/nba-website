@@ -12,15 +12,13 @@ import org.springframework.web.servlet.ModelAndView;
 public class AdminErrorController {
 
 	@ExceptionHandler(CustomException.class)
-//    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ModelAndView exception(final CustomException throwable, WebRequest request) {
-        if (request != null && request.getUserPrincipal () != null) {
-            log.error("Displaying Error Page");
+        if (request != null) {
+            log.error("Error Page", throwable);
 			ModelAndView modelAndView = new ModelAndView("error");
-			modelAndView.getModel ().put ( "error", throwable != null ? throwable.getMessage() : "Unknown error" );
+			modelAndView.getModel ().put ( "error", throwable != null ? throwable.getMessage() : "Error Occured. Kindly Contact Admin" );
             return modelAndView;
-        }
-        else {
+        } else {
             SecurityContextHolder.getContext().setAuthentication(null);// logout
 			log.error("Displaying Login Page");
             return new ModelAndView("login");

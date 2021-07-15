@@ -29,19 +29,19 @@ public class ViewsController {
     }
 
     @GetMapping("/")
-    public String main(Model model) {
+    public String homepage(Model model) {
         model.addAttribute("featuredEvents", contentService.findFeaturedEvent());
         model.addAttribute("latestNews", contentService.findRecentPosts());
         return "index"; //view
     }
 
     @GetMapping("/layout")
-    public String layout(Model model) {
+    public String layout() {
         return "layout"; //view
     }
 
     @GetMapping("/about")
-    public String about(Model model) {
+    public String about() {
         return "about"; //view
     }
 
@@ -52,13 +52,13 @@ public class ViewsController {
     }
 
     @GetMapping("/viewevents/{id}")
-    public String viewevents(Model model, @PathVariable String id) {
+    public String viewEvents(Model model, @PathVariable String id) {
         model.addAttribute("event", contentService.findById(id));
         return "viewevents"; //view
     }
 
     @GetMapping("/newspage/{id}")
-    public String newspage(Model model, @PathVariable String id) {
+    public String newsPage(Model model, @PathVariable String id) {
         model.addAttribute("news", contentService.findById(id));
         return "newspage"; //view
     }
@@ -70,12 +70,12 @@ public class ViewsController {
     }
 
     @GetMapping("/president")
-    public String president(Model model) {
+    public String president() {
         return "president"; //view
     }
 
     @GetMapping("/findmember")
-    public String findmember(Model model) {
+    public String findMember() {
         return "findmember"; //view
     }
 
@@ -86,25 +86,25 @@ public class ViewsController {
     }
 
     @GetMapping("/individualprofile/{id}")
-    public String indprofile(@PathVariable String id, Model model) {
+    public String individualProfile(@PathVariable String id, Model model) {
         model.addAttribute("user", userService.findById(id));
         return "indprofile"; //view
     }
 
     @GetMapping("/login")
-    public String login(Model model) {
+    public String login() {
         return "login"; //view
     }
 
     @GetMapping("/forgotpassword")
-    public String forgotpassword(Model model) {
+    public String forgotPassword() {
         return "forgotpassword"; //view
     }
 
-    @GetMapping("/resetpassword")
-    public String resetpassword(Model model) {
-        return "resetpassword"; //view
-    }
+//    @GetMapping("/resetpassword")
+//    public String resetPassword(Model model) {
+//        return "resetpassword"; //view
+//    }
 
     @GetMapping("/signup")
     public String signup(Model model) {
@@ -123,13 +123,13 @@ public class ViewsController {
     }
 
     @GetMapping("/meetingroom")
-    public String meetingroom(Model model) {
+    public String meetingRoom(Model model) {
         model.addAttribute("pendingMeetings", meetingService.findPendingMeetings());
         return "authorized/meetingroom"; //view
     }
 
     @GetMapping("/createmeeting")
-    public String createmeeting(Model model) {
+    public String createMeeting(Model model) {
         model.addAttribute("meeting", new NewMeeting());
         return "authorized/createmeeting"; //view
     }
@@ -145,13 +145,13 @@ public class ViewsController {
     }
 
     @GetMapping("/admindash")
-    public String admindash(Model model) {
+    public String adminDashboard(Model model) {
         return "authorized/dashboard"; //view
     }
 
 
     @GetMapping("/controlpanel")
-    public String controlpanel(Model model) {
+    public String controlPanel(Model model) {
         model.addAttribute("pendingRequestCount", userService.findUsersByAccountStatus(AccountStatus.PENDING).size());
         model.addAttribute("approvedRequestCount", userService.findUsersByAccountStatus(AccountStatus.APPROVED).size());
         model.addAttribute("rejectedRequestCount", userService.findUsersByAccountStatus(AccountStatus.REJECTED).size());
@@ -174,31 +174,31 @@ public class ViewsController {
     }
 
     @GetMapping("/pendingprofile/{id}")
-    public String pendingprofile(Model model, @PathVariable String id) {
+    public String pendingProfile(Model model, @PathVariable String id) {
         model.addAttribute("user", userService.findById(id));
         return "admin/pendingprofile"; //view
     }
 
     @GetMapping("/postsdashboard")
-    public String postsdashboard(Model model) {
+    public String postsDashboard(Model model) {
         model.addAttribute("recentPosts", contentService.findRecentPosts());
         return "admin/postsdashboard"; //view
     }
 
     @GetMapping("/pendingrequest")
-    public String pendingrequest(Model model) {
+    public String pendingRequest(Model model) {
         model.addAttribute("pendingUsers", userService.findUsersByAccountStatus(AccountStatus.PENDING));
         return "admin/pendingrequest"; //view
     }
 
     @GetMapping("/rejectedrequest")
-    public String rejectedrequest(Model model) {
+    public String rejectedRequest(Model model) {
         model.addAttribute("pendingUsers", userService.findUsersByAccountStatus(AccountStatus.REJECTED));
         return "admin/pendingrequest"; //view
     }
 
     @GetMapping("/createpost")
-    public String createpost(Model model) {
+    public String createPost(Model model) {
         model.addAttribute("post", new NewContent());
         return "admin/createpost"; //view
     }
@@ -211,20 +211,20 @@ public class ViewsController {
     }
 
     @GetMapping("/createevent")
-    public String createevent(Model model) {
+    public String createEvent(Model model) {
         model.addAttribute("event", new NewContent());
         return "admin/createevents"; //view
     }
 
     @GetMapping("/editevent/{id}")
-    public String editevent(Model model, @PathVariable String id) {
+    public String editEvent(Model model, @PathVariable String id) {
         model.addAttribute("isUpdate", true);
         model.addAttribute("event", contentService.findById(id));
         return "admin/createevents"; //view
     }
 
     @GetMapping("/memberlist")
-    public String memberlist(Model model) {
+    public String membersList(Model model) {
         model.addAttribute("approvedUsers", userService.findUsersByAccountStatus(AccountStatus.APPROVED));
         return "admin/memberlist"; //view
     }

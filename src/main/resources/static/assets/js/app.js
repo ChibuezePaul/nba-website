@@ -37,7 +37,7 @@ const closeDropdownMenuSelectingItem = (() => mobile.forEach((item) => item.addE
     toggleNav();
 })))()
 
-//On click event on suspend button
+//On click event on suspend user button
 var suspendButtons = document.getElementsByClassName("btn-suspend");
 for (var i = 0; i < suspendButtons.length; i++) {
     suspendButtons[i].addEventListener("click", function (ev) {
@@ -48,7 +48,7 @@ for (var i = 0; i < suspendButtons.length; i++) {
     })
 }
 
-//On click event on reinstate button
+//On click event on reinstate user button
 var reinstateButtons = document.getElementsByClassName("btn-reinstate");
 for (var i = 0; i < reinstateButtons.length; i++) {
     reinstateButtons[i].addEventListener("click", function (ev) {
@@ -59,7 +59,7 @@ for (var i = 0; i < reinstateButtons.length; i++) {
     })
 }
 
-//On click event on accept button
+//On click event on approver user button
 var acceptButtons = document.getElementsByClassName("btn-accept");
 for (var i = 0; i < acceptButtons.length; i++) {
     acceptButtons[i].addEventListener("click", function (ev) {
@@ -70,7 +70,7 @@ for (var i = 0; i < acceptButtons.length; i++) {
     })
 }
 
-//On click event on reject button
+//On click event on reject user button
 var rejectButtons = document.getElementsByClassName("btn-reject");
 for (var i = 0; i < rejectButtons.length; i++) {
     rejectButtons[i].addEventListener("click", function (ev) {
@@ -78,5 +78,17 @@ for (var i = 0; i < rejectButtons.length; i++) {
         var rowId = $btn.attr('data-id');
         console.log('reject',rowId);
         document.getElementById("reject-btn").setAttribute('href', '/user/reject/' + rowId)
+    })
+}
+
+//On click event on delete post button
+var deleteButtons = document.getElementsByClassName("btn-delete");
+for (var i = 0; i < deleteButtons.length; i++) {
+    deleteButtons[i].addEventListener("click", function (ev) {
+        var $btn = $(this);
+        var rowId = $btn.attr('data-id');
+        console.log('delete',rowId);
+        document.getElementById("delete-form").setAttribute('action', '/delete-post');
+        document.getElementById("id-container").setAttribute('value', rowId)
     })
 }

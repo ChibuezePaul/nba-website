@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/search").permitAll()
                 .antMatchers("/viewevents").permitAll()
                 .antMatchers("/newspage").permitAll()
-                .antMatchers("/createmeeting", "/controlpanel", "/pendingprofile", "/postsdashboard", "/pendingrequest", "/createpost", "/editpost", "/createevent", "/editevent", "/memberlist", "/new-meeting", "/new-post", "/user/**").hasAnyAuthority("ADMIN", "SU_ADMIN" ).anyRequest().authenticated()
+                .antMatchers("/createmeeting", "/controlpanel", "/pendingprofile", "/postsdashboard", "/pendingrequest", "/createpost", "/editpost", "/createevent", "/editevent", "/memberlist", "/new-meeting", "/new-post/**", "/user/**", "/delete-post/**").hasAnyAuthority("ADMIN", "SU_ADMIN" ).anyRequest().authenticated()
 //                .antMatchers("/new-admin").hasRole ( "SU_ADMIN" ).anyRequest().authenticated()
                 .and()
                 .formLogin().permitAll().loginPage("/login")

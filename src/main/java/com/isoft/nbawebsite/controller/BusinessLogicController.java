@@ -10,6 +10,7 @@ import com.isoft.nbawebsite.user.User;
 import com.isoft.nbawebsite.user.UserService;
 import com.isoft.nbawebsite.user.command.NewUserCmd;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,11 +19,16 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 
 @Controller
 @Slf4j
 public class BusinessLogicController {
 
+    @Value("${image-directory}")
+    private String imageDirectory;
     private final UserService userService;
     private final MeetingService meetingService;
     private final ContentService contentService;
@@ -75,6 +81,29 @@ public class BusinessLogicController {
         return "redirect:/controlpanel";
     }
 
+    @PostMapping("/forgotpassword")
+    public String forgotPassword(String uniqueId, Model model) {
+        userService.forgotPassword(uniqueId);
+        model.addAttribute("uniqueId", uniqueId);
+        return "resetpassword";
+    }
+
+    @PostMapping("/resetpassword")
+    public String resetPassword(String uniqueId, String password, String confirmPassword, RedirectAttributes redirectAttributes) {
+        userService.resetPassword(uniqueId, password, confirmPassword);
+        redirectAttributes.addFlashAttribute("message", "Password Reset Successfully");
+        return "redirect:/login";
+    }
+
+    @GetMapping(value = "image/{id}/{imageName}")
+    @ResponseBody
+    public byte[] getImage(@PathVariable(value = "imageName") String imageName, @PathVariable String id) throws IOException {
+        File currDir = new File(".");
+        String path = currDir.getAbsolutePath().replace(".", "");
+        File serverFile = new File(path+imageDirectory + id + "/" + imageName);
+        return Files.readAllBytes(serverFile.toPath());
+    }
+
     @PostMapping("/new-post")
     public String createPost(@RequestParam String type, @RequestParam MultipartFile attachment, @ModelAttribute("post") @Valid NewContent content, BindingResult result, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
@@ -83,8 +112,9 @@ public class BusinessLogicController {
         }
         if ("news".equals(type)) {
             content.setContentType(ContentType.NEWS);
+        }else {
+            content.setContentType(ContentType.EVENTS);
         }
-        content.setContentType(ContentType.EVENTS);
         contentService.createContent(content, attachment);
         redirectAttributes.addFlashAttribute("message", type.toUpperCase()+" Created Successfully");
         return "redirect:/postsdashboard";
@@ -98,6 +128,13 @@ public class BusinessLogicController {
         }
         contentService.editContent(id, content, attachment);
         redirectAttributes.addFlashAttribute("message", type.toUpperCase()+" Updated Successfully");
+        return "redirect:/postsdashboard";
+    }
+
+    @PostMapping("/delete-post")
+    public String deletePost(String id, RedirectAttributes redirectAttributes) {
+        contentService.deleteContent(id);
+        redirectAttributes.addFlashAttribute("message", "Post Deleted Successfully");
         return "redirect:/postsdashboard";
     }
 

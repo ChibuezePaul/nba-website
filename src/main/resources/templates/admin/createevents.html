@@ -12,10 +12,7 @@
     <div class="row news-heading">
         <div class="content">
             <div class="row" style="padding: 10px">
-                <form th:action="@{/new-post/{id}(id=${isUpdate == true ? ''+event.id : ''})?type=event}"
-                      th:method="post"
-                      th:object="${event}"
-                      enctype="multipart/form-data">
+                <form th:action="|@{/new-post/{id}(id=${isUpdate == true ? event.id : ''})}?type=event|" th:method="post" th:object="${event}" enctype="multipart/form-data">
                     <div th:replace="layout :: adminsidebar">
 
                     </div>
@@ -42,7 +39,7 @@
                                 <label class="form-check-label">Event Description</label>
                                 <textarea required name="description" id="" cols="30" rows="10" class="form-control"
                                           th:field="*{description}">
-                            </textarea>
+                                </textarea>
                             </div>
                         </div>
                     </div>
