@@ -85,6 +85,7 @@ public class PublicViewsController {
 
     @GetMapping("/login")
     public String login(Model model) {
+        System.out.println("@@@@@@@@@@@@@@@@@@@");
         return "login"; //view
     }
 
