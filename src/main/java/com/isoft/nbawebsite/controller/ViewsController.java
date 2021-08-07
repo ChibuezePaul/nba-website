@@ -105,11 +105,6 @@ public class ViewsController {
         return "forgotpassword"; //view
     }
 
-//    @GetMapping("/resetpassword")
-//    public String resetPassword(Model model) {
-//        return "resetpassword"; //view
-//    }
-
     @GetMapping("/signup")
     public String signup(Model model) {
         model.addAttribute("user", new User());
