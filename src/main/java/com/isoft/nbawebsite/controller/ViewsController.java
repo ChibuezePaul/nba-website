@@ -6,27 +6,31 @@ import com.isoft.nbawebsite.content.ContentService;
 import com.isoft.nbawebsite.content.command.NewContent;
 import com.isoft.nbawebsite.meeting.MeetingService;
 import com.isoft.nbawebsite.meeting.command.NewMeeting;
+import com.isoft.nbawebsite.payment.PaymentService;
 import com.isoft.nbawebsite.user.User;
 import com.isoft.nbawebsite.user.UserService;
 import com.isoft.nbawebsite.user.command.NameSearchCmd;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import java.math.BigDecimal;
 
-@Controller
+@Controller @RequiredArgsConstructor
 public class ViewsController {
 
     private final UserService userService;
     private final ContentService contentService;
     private final MeetingService meetingService;
+    @Value("${monthly-due-amount}")
+    private long monthlyDueAmount;
+    private final PaymentService paymentService;
 
-    public ViewsController(UserService userService, ContentService contentService, MeetingService meetingService) {
-        this.userService = userService;
-        this.contentService = contentService;
-        this.meetingService = meetingService;
-    }
 
     @GetMapping("/")
     public String homepage(Model model) {
@@ -136,6 +140,11 @@ public class ViewsController {
 
     @GetMapping("/payment")
     public String payment(Model model) {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userService.findByEmail(email);
+        model.addAttribute("phoneNumber", user.getPhoneNumber());
+        model.addAttribute("email", email);
+        model.addAttribute("payments", paymentService.getUserPayments(email));
         return "authorized/payment"; //view
     }
 
@@ -227,5 +236,10 @@ public class ViewsController {
     public String membersList(Model model) {
         model.addAttribute("approvedUsers", userService.findUsersByAccountStatus(AccountStatus.APPROVED));
         return "admin/memberlist"; //view
+    }
+
+    @ModelAttribute("monthlyDueAmount")
+    public BigDecimal getMonthlyDueAmount() {
+        return BigDecimal.valueOf(monthlyDueAmount);
     }
 }

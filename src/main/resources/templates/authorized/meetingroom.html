@@ -15,34 +15,31 @@
                 <div th:replace="layout :: adminsidebar">
 
                 </div>
-                <div class="col-12 col-sm-12 col-md- col-lg-7">
+                <div class="col-12 col-sm-12 col-md-2 col-lg-7">
                     <div class="row" style="padding: 10px;">
                         <div class="col">
                             <a sec:authorize="hasAnyAuthority('SU_ADMIN, ADMIN')"  href="/createmeeting" class="button btn" style="text-decoration: none">
                                 Create Meeting
                             </a>
-                            <div class="row"  th:each="meeting : ${pendingMeetings}">
-                                <div class="col row"
-                                     style="background-color: #F8F7FD; padding: 15px; border-radius: 10px; margin: 8px;">
-                                    <div class="col"><span style="margin: 10px"><i class="fa fa-video-camera"
+                            <div class="row" th:each="meeting : ${pendingMeetings}">
+                                <div class="col-8 row" style="background-color: #F8F7FD; padding: 15px; border-radius: 10px; margin: 15px;">
+                                    <div class="col-3"><span style="margin: 10px"><i class="fa fa-video-camera"
                                                                                    style="color: white; padding: 3px; background-color: rgba(54, 104, 240, 0.794); border-radius: 4px;"></i> Zoom </span>
                                     </div>
-                                    <div class="col-6"><span style="margin: 10px" th:text="${meeting.title}">Meeting with the president</span></div>
-                                    <div class="col-2"><span style="margin: 10px" th:text="${meeting.scheduledDate.toLocalTime()}">10:30am</span></div>
+                                    <div class="col-7"><span style="margin: 10px" th:text="${meeting.title}">Meeting with the president</span></div>
+                                    <div class="col-2"><span style="margin: 10px" th:text="|${meeting.scheduledDate.toLocalTime()}${meeting.scheduledDate.hour >= 12 ? 'pm' : 'am'}|">10:30am</span></div>
                                 </div>
-                                <div class="col-3 row" style="padding: 15px; border-radius: 10px; margin: 8px;">
-                                    <a th:href="${meeting.meetingLink}" target="_blank">
-                                        <input type="button" value="Enter" class="btn" style="background-color: #66B700"/>
-                                    </a>
+                                <div class="col row" style="padding: 15px; border-radius: 10px; margin: 8px;">
+                                    <a class="btn" th:href="${meeting.meetingLink}" target="_blank" style="background-color: #66B700">Enter</a>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col row"
-                                     style="background-color: #F8F7FD; padding: 15px; border-radius: 10px; margin: 8px;">
-                                    <div class="col"><span style="margin: 10px"><i class="fa fa-video-camera"
+                                     style="background-color: #F8F7FD; padding: 15px; border-radius: 10px; margin: 15px;">
+                                    <div class="col-3"><span style="margin: 10px"><i class="fa fa-video-camera"
                                                                                    style="color: white; padding: 3px; background-color: rgba(54, 104, 240, 0.794); border-radius: 4px;"></i> Zoom </span>
                                     </div>
-                                    <div class="col-6"><span style="margin: 10px">Payment Transaction </span></div>
+                                    <div class="col-7"><span style="margin: 10px">Payment Transaction </span></div>
                                     <div class="col-2"><span style="margin: 10px">10:30am</span></div>
                                 </div>
                                 <div class="col-3 row" style="padding: 15px; border-radius: 10px; margin: 8px;">
@@ -51,11 +48,11 @@
                             </div>
                             <div class="row">
                                 <div class="col row"
-                                     style="background-color: #F8F7FD; padding: 15px; border-radius: 10px; margin: 8px;">
-                                    <div class="col"><span style="margin: 10px"><i class="fa fa-video-camera"
+                                     style="background-color: #F8F7FD; padding: 15px; border-radius: 10px; margin: 15px;">
+                                    <div class="col-3"><span style="margin: 10px"><i class="fa fa-video-camera"
                                                                                    style="color: white; padding: 3px; background-color: rgba(54, 104, 240, 0.794); border-radius: 4px;"></i> Zoom </span>
                                     </div>
-                                    <div class="col-6"><span style="margin: 10px">Payment Transaction </span></div>
+                                    <div class="col-7"><span style="margin: 10px">Payment Transaction </span></div>
                                     <div class="col-2"><span style="margin: 10px">10:30am</span></div>
                                 </div>
                                 <div class="col-3 row" style="padding: 15px; border-radius: 10px; margin: 8px;">
@@ -64,11 +61,11 @@
                             </div>
                             <div class="row">
                                 <div class="col row"
-                                     style="background-color: #F8F7FD; padding: 15px; border-radius: 10px; margin: 8px;">
-                                    <div class="col"><span style="margin: 10px"><i class="fa fa-video-camera"
+                                     style="background-color: #F8F7FD; padding: 15px; border-radius: 10px; margin: 15px;">
+                                    <div class="col-3"><span style="margin: 10px"><i class="fa fa-video-camera"
                                                                                    style="color: white; padding: 3px; background-color: rgba(54, 104, 240, 0.794); border-radius: 4px;"></i> Zoom </span>
                                     </div>
-                                    <div class="col-6"><span style="margin: 10px">Payment Transaction </span></div>
+                                    <div class="col-7"><span style="margin: 10px">Payment Transaction </span></div>
                                     <div class="col-2"><span style="margin: 10px">10:30am</span></div>
                                 </div>
                                 <div class="col-3 row" style="padding: 15px; border-radius: 10px; margin: 8px;">

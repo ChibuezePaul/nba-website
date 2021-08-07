@@ -2,13 +2,17 @@ package com.isoft.nbawebsite.controller;
 
 import com.isoft.nbawebsite.commons.data.Messages;
 import com.isoft.nbawebsite.constants.ContentType;
+import com.isoft.nbawebsite.constants.PaymentStatus;
 import com.isoft.nbawebsite.content.ContentService;
 import com.isoft.nbawebsite.content.command.NewContent;
 import com.isoft.nbawebsite.meeting.MeetingService;
 import com.isoft.nbawebsite.meeting.command.NewMeeting;
+import com.isoft.nbawebsite.payment.Payment;
+import com.isoft.nbawebsite.payment.PaymentService;
 import com.isoft.nbawebsite.user.User;
 import com.isoft.nbawebsite.user.UserService;
 import com.isoft.nbawebsite.user.command.NewUserCmd;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -17,14 +21,17 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
 import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.nio.file.Files;
 
 @Controller
 @Slf4j
+@RequiredArgsConstructor
 public class BusinessLogicController {
 
     @Value("${image-directory}")
@@ -33,13 +40,7 @@ public class BusinessLogicController {
     private final MeetingService meetingService;
     private final ContentService contentService;
     private final Messages messages;
-
-    public BusinessLogicController(UserService userService, MeetingService meetingService, ContentService contentService, Messages messages) {
-        this.userService = userService;
-        this.meetingService = meetingService;
-        this.contentService = contentService;
-        this.messages = messages;
-    }
+    private final PaymentService paymentService;
 
     @PostMapping("/signup")
     public String signup(@ModelAttribute("user") @Valid NewUserCmd newUserCmd, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
@@ -147,5 +148,19 @@ public class BusinessLogicController {
         meetingService.createMeeting(meeting);
         redirectAttributes.addFlashAttribute("message", "Meeting Created Successfully");
         return "redirect:/meetingroom";
+    }
+
+    @PostMapping("/make-payment")
+    public String makePayment(String txnRef, String email, long amount, String status, RedirectAttributes redirectAttributes) {
+        Payment payment = new Payment();
+        payment.setPaymentRef(txnRef);
+        payment.setUserEmail(email);
+        payment.setPaymentStatus(PaymentStatus.of(status));
+        payment.setAmount(BigDecimal.valueOf(amount));
+        payment.setPaymentDescription("Annual Dues");
+        paymentService.makePayment(payment);
+//        RedirectAttributes redirectAttributes = new RedirectAttributesModelMap();
+        redirectAttributes.addFlashAttribute("message", "Payment "+status);
+        return "redirect:/payment";
     }
 }
