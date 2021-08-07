@@ -36,3 +36,100 @@ const closeDropdownMenuSelectingItem = (() => mobile.forEach((item) => item.addE
     closeDrop();
     toggleNav();
 })))()
+
+//On click event on suspend user button
+var suspendButtons = document.getElementsByClassName("btn-suspend");
+for (var i = 0; i < suspendButtons.length; i++) {
+    suspendButtons[i].addEventListener("click", function (ev) {
+        var $btn = $(this);
+        var rowId = $btn.attr('data-id');
+        console.log('suspend', rowId);
+        document.getElementById("suspend-form").setAttribute('action', '/user/suspend/' + rowId)
+    })
+}
+
+//On click event on reinstate user button
+var reinstateButtons = document.getElementsByClassName("btn-reinstate");
+for (var i = 0; i < reinstateButtons.length; i++) {
+    reinstateButtons[i].addEventListener("click", function (ev) {
+        var $btn = $(this);
+        var rowId = $btn.attr('data-id');
+        console.log('reinstate',rowId);
+        document.getElementById("reinstate-btn").setAttribute('href', '/user/reinstate/' + rowId)
+    })
+}
+
+//On click event on approver user button
+var acceptButtons = document.getElementsByClassName("btn-accept");
+for (var i = 0; i < acceptButtons.length; i++) {
+    acceptButtons[i].addEventListener("click", function (ev) {
+        var $btn = $(this);
+        var rowId = $btn.attr('data-id');
+        console.log('accept', rowId);
+        document.getElementById("accept-btn").setAttribute('action', '/user/approve/' + rowId)
+    })
+}
+
+//On click event on reject user button
+var rejectButtons = document.getElementsByClassName("btn-reject");
+for (var i = 0; i < rejectButtons.length; i++) {
+    rejectButtons[i].addEventListener("click", function (ev) {
+        var $btn = $(this);
+        var rowId = $btn.attr('data-id');
+        console.log('reject',rowId);
+        document.getElementById("reject-btn").setAttribute('href', '/user/reject/' + rowId)
+    })
+}
+
+//On click event on delete post button
+var deleteButtons = document.getElementsByClassName("btn-delete");
+for (var i = 0; i < deleteButtons.length; i++) {
+    deleteButtons[i].addEventListener("click", function (ev) {
+        var $btn = $(this);
+        var rowId = $btn.attr('data-id');
+        console.log('delete',rowId);
+        document.getElementById("delete-form").setAttribute('action', '/delete-post');
+        document.getElementById("id-container").setAttribute('value', rowId)
+    })
+}
+
+// Flutterwave Payment (Monthly Dues)
+const API_publicKey = "FLWPUBK_TEST-a55cebaec65ef9f1cc6d77db8ff35c22-X";
+const MONTHLY_DUES = 2000;
+function payWithRave(customerDetails) {
+    const {email, phoneNumber, amount} = customerDetails;
+    let payment = getpaidSetup({
+        PBFPubKey: API_publicKey,
+        customer_email: email,
+        amount: amount,
+        customer_phone: phoneNumber,
+        currency: "NGN",
+        txref: "rave-nba-dues-"+Date.now().valueOf()+"",
+        meta: [{
+            metaname: "flightID",
+            metavalue: "AP1234"
+        }],
+        onclose: function () {
+        },
+        callback: function (response) {
+            const txref = response.data.txRef; // collect txRef returned and pass to a                    server page to complete status check.
+            console.log("This is the response returned after a charge", response);
+            if (
+                response.data.chargeResponseCode == "00" ||
+                response.data.chargeResponseCode == "0"
+            ) {
+                // redirect to a success page
+                fetch({
+                    url: "/make-payment",
+                    method: "POST",
+                    body: {"txnRef": txref, "email": email, "amount": amount, "status": "completed"}
+                })
+                    .then(resp => console.log(resp))
+                    .catch(err => console.log(err))
+            } else {
+                // redirect to a failure page.
+            }
+            payment.close(); // use this to close the modal immediately after payment.
+        }
+    });
+}

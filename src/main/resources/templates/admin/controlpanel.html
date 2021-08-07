@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:insert="layout :: head('Dashboard')"></head>
 
@@ -26,7 +26,7 @@
                             <div class="news-content" style="box-shadow: 0px 0px 3px 3px #eeeef0; text-align: center; background-color: #F8F7FD; border-radius: 10px; padding: 10px;">
                                 <div class="fa fa-check-circle" style="color: #66B700; font-size: 60px; margin: 10px">
                                 </div>
-                                <h3>11084</h3>
+                                <h3 th:text="${approvedRequestCount}">11084</h3>
                             </div>
                             </a>
                         </div>
@@ -39,7 +39,7 @@
                             <div class="news-content" style="box-shadow: 0px 0px 3px 3px #eeeef0; text-align: center; background-color: #F8F7FD; border-radius: 10px; padding: 10px;">
                                 <div class="fa fa-hourglass-start" style="background-color: #DB7600; color: white; border-radius: 30px; padding: 10px; padding-inline: 15px; font-size: 40px; margin: 10px">
                                 </div>
-                                <h3>11084</h3>
+                                <h3 th:text="${pendingRequestCount}">11084</h3>
                             </div>
                             </a>
                         </div>
@@ -51,7 +51,7 @@
                             <div class="news-content" style="box-shadow: 0px 0px 3px 3px #eeeef0; text-align: center; background-color: #F8F7FD; border-radius: 10px; padding: 10px;">
                                 <div class="fa fa-times-circle" style="color: #DB1A00; font-size: 60px; margin: 10px">
                                 </div>
-                                <h3>11084</h3>
+                                <h3 th:text="${rejectedRequestCount}">11084</h3>
                             </div>
                             </a>
                         </div>
@@ -60,31 +60,16 @@
                     </div>
                     <br><br><br>Recent activities
                     <br><br>
-                    <div class="row">
+                    <div class="row" th:each="recentUser : ${recentUsers}">
                         <div class="col row" style="background-color: #F8F7FD; padding: 8px; border-radius: 10px; margin: 18px;">
-                            <div class="col"><span style="margin: 10px">John Doe </span></div>
-                            <div class="col"><span style="margin: 10px">SC Number </span></div>
+                            <div class="col"><span style="margin: 10px" th:text="${recentUser.firstName + ' ' + recentUser.lastName}">John Doe </span></div>
+                            <div class="col"><span style="margin: 10px" th:text="${recentUser.SCNumber}">SC Number </span></div>
                         </div>
                         <div class="col-2 row" style="padding: 15px; border-radius: 10px; margin: 8px;">
-                            <button type="button" style="background-color: #FF0000" class="btn" data-toggle="modal" data-target="#suspend">Suspend</button>
+                            <button id="btn-suspend" style="background-color: #FF0000" class="btn btn-suspend" data-toggle="modal" data-target="#suspend" th:data-id="${recentUser.id}">Suspend</button>
                         </div>
                         <div class="col-2 row" style="padding: 15px; border-radius: 10px; margin: 8px;">
-                            <button type="button" style="background-color: #66B700" class="btn" data-toggle="modal" data-target="#reinstate">
-                                Reinstate
-                            </button>
-                        </div>
-                        <div class="col-2"></div>
-                    </div>
-                    <div class="row">
-                        <div class="col row" style="background-color: #F8F7FD; padding: 8px; border-radius: 10px; margin: 18px;">
-                            <div class="col"><span style="margin: 10px">John Doe </span></div>
-                            <div class="col"><span style="margin: 10px">SC Number </span></div>
-                        </div>
-                        <div class="col-2 row" style="padding: 15px; border-radius: 10px; margin: 8px;">
-                            <button type="button" style="background-color: #FF0000" class="btn" data-toggle="modal" data-target="#suspend">Suspend</button>
-                        </div>
-                        <div class="col-2 row" style="padding: 15px; border-radius: 10px; margin: 8px;">
-                            <button type="button" style="background-color: #66B700" class="btn" data-toggle="modal" data-target="#reinstate">
+                            <button type="button" style="background-color: #66B700" class="btn btn-reinstate" data-toggle="modal" data-target="#reinstate" th:data-id="${recentUser.id}">
                                 Reinstate
                             </button>
                         </div>
@@ -102,7 +87,9 @@
                                     <div class="form-check form-check-inline">
                                         <label class="form-check-label">Are you sure?</label>
                                     </div><br><br>
-                                    <button type="button" style="background-color: #66B700; width: 50%;" class="btn" data-bs-dismiss="modal" aria-label="Close">Proceed</button>
+                                    <a id="reinstate-btn">
+                                        <button type="button" style="background-color: #66B700; width: 50%;" class="btn" data-bs-dismiss="modal" aria-label="Close">Proceed</button>
+                                    </a>
                                 </div><br><br>
                             </div>
                         </div>
@@ -116,23 +103,23 @@
                             <!-- Modal body -->
                             <div class="modal-body">
                                 <div class="text-center">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                        <label class="form-check-label" for="inlineRadio1">1 Week</label>
-                                    </div><hr>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                        <label class="form-check-label" for="inlineRadio2">6 Months</label>
-                                    </div><hr>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                                        <label class="form-check-label" for="inlineRadio3">Lifetime</label>
-                                    </div><hr>
-                                    <button type="button" style="background-color: #66B700; width: 50%;" class="btn" data-bs-dismiss="modal" aria-label="Close">Proceed</button>
+                                    <form id="suspend-form" th:action="@{/user/suspend/_id_}" method="post">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="suspensionPeriod" id="inlineRadio1" value="1 Week">
+                                            <label class="form-check-label" for="inlineRadio1">1 Week</label>
+                                        </div><hr>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="suspensionPeriod" id="inlineRadio2" value="6 Months">
+                                            <label class="form-check-label" for="inlineRadio2">6 Months</label>
+                                        </div><hr>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="suspensionPeriod" id="inlineRadio3" value="Lifetime">
+                                            <label class="form-check-label" for="inlineRadio3">Lifetime</label>
+                                        </div><hr>
+                                        <button type="submit" style="background-color: #66B700; width: 50%;" class="btn">Proceed</button>
+                                    </form>
                                 </div>
-
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -144,8 +131,7 @@
     <footer th:insert="layout :: footer"></footer>
     <!-- End of Footer -->
 </section>
-
-<script src="assets/js/app.js "></script>
+<script th:src="@{/assets/js/app.js}"></script>
 
 <!-- Option 1: Bootstrap Bundle with Popper -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js "></script>

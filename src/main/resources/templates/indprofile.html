@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:insert="layout :: head('Full Profile')">
 
@@ -20,7 +20,7 @@
                 <div class="mem-content2">
                     <div class=" row">
                         <div class="col-md-6" style="padding-top: 10px;">
-                            <img th:src="@{/assets/img/profile.jpg}" style="border-radius: 20px; width: 300px;">
+                            <img th:src="${user.imageUrl}" src="/assets/img/profile.jpg" style="border-radius: 20px; width: 300px;">
                         </div>
                         <div class="col-md-3"></div>
                         <div class="col-md-3"></div>
@@ -31,10 +31,12 @@
                             <h6 style="color: #D2D0D0; font-size: 12px; margin: 0px;">SC Number</h6>
                             <p th:text="${user.SCNumber}">123456</p>
                             <ion-icon style="color: black; font-size: 12px;" name="call"></ion-icon>
-                            <span style="font-size: 14px;"> +2348168898023</span><br><br>
+                            <span style="font-size: 14px;" th:text="${user.phoneNumber}"> +2348168898023</span><br><br>
                             <ion-icon style="color: black;" name="mail"></ion-icon>
-                            <span style="font-size: 14px;"> johndoe@gmail.com</span><br><br>
-
+                            <a th:href="|mailto:${user.email}|">
+                                <span style="font-size: 14px;" th:text="${user.email}"> johndoe@gmail.com</span>
+                            </a>
+                            <br><br>
                         </div>
                     </div>
                 </div>

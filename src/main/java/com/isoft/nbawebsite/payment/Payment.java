@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 public class Payment extends AbstractEntity {
     private String paymentRef;
     private BigDecimal amount;
-    private Long userId;
+    private String userEmail;
     private String paymentDescription;
     @Enumerated(EnumType.STRING)
     private PaymentStatus paymentStatus;

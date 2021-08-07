@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:insert="layout :: head('Dashboard')"></head>
 
@@ -22,7 +22,8 @@
                                 <div class="news-details">
                                     Create Post
                                 </div>
-                                <div class="news-content" style="box-shadow: 0px 0px 3px 3px #eeeef0; text-align: center; background-color: #F8F7FD; border-radius: 10px; padding: 10px; padding-bottom: 25px; padding-top: 25px">
+                                <div class="news-content"
+                                     style="box-shadow: 0px 0px 3px 3px #eeeef0; text-align: center; background-color: #F8F7FD; border-radius: 10px; padding: 10px; padding-bottom: 25px; padding-top: 25px">
                                     <div class="fa fa-plus" style="color: #676767; font-size: 60px; margin: 10px">
                                     </div>
                                     <h3></h3>
@@ -34,7 +35,8 @@
                                 <div class="news-details">
                                     Create Events
                                 </div>
-                                <div class="news-content" style="box-shadow: 0px 0px 3px 3px #eeeef0; text-align: center; background-color: #F8F7FD; border-radius: 10px; padding: 10px; padding-bottom: 25px; padding-top: 25px">
+                                <div class="news-content"
+                                     style="box-shadow: 0px 0px 3px 3px #eeeef0; text-align: center; background-color: #F8F7FD; border-radius: 10px; padding: 10px; padding-bottom: 25px; padding-top: 25px">
                                     <div class="fa fa-plus" style="color: #676767; font-size: 60px; margin: 10px">
                                     </div>
                                     <h3></h3>
@@ -48,29 +50,35 @@
                     </div>
                     <br><br><br>Recent Posts
                     <br><br>
-                    <div class="row">
+                    <div class="row" th:each="recentPost : ${recentPosts}">
                         <div class="col row" style="background-color: #F8F7FD; padding: 8px; border-radius: 10px; margin: 18px;">
                             <div class="col news-content" style="text-align: center;">
-                                <img src="assets/img/profile.jpg"  style="display: inline-block; border-radius: 250px; width: 80px;">
+                                <img th:src="@{'/image/'+${recentPost.id}+'/'+${recentPost.image}}" src="assets/img/profile.jpg"
+                                     style="display: inline-block; border-radius: 250px; width: 80px;">
                             </div>
                             <div class="col">
-                                <b style="margin: 10px;">Title </b>
-                                <p style="margin: 10px;"><span style="color: #DB7600;">Published</span> Aug. 11 </p>
+                                <b style="margin: 10px;" th:text="${recentPost.title}">Title </b>
+                                <p style="margin: 10px; color: #DB7600;">Published &nbsp;<span style="color: #5a5a5a;" th:text="${recentPost.dateCreated.month +'. '+ recentPost.dateCreated.dayOfMonth}" ></span></p>
                             </div>
                             <div class="col-2"></div>
                             <div class="col-1">
-                                <a href="/editpost" style="text-decoration: none; margin: 10px; color: #000;" class="fa fa-edit">
+                                <a th:href="|/editpost/${recentPost.id}|" href="/editpost"
+                                   style="text-decoration: none; margin: 10px; color: #000;" class="fa fa-edit">
                                 </a>
                             </div>
                             <div class="col-1">
-                                <button type="button" style="border-color: white; background-color: #F8F7FD" class="fa fa-trash" data-toggle="modal" data-target="#delete"></button>
+                                <button type="button" style="border-color: white; background-color: #F8F7FD; margin: 8px;"
+                                        class="fa fa-trash btn-delete" data-toggle="modal" data-target="#delete"
+                                        th:data-id="${recentPost.id}"></button>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col row" style="background-color: #F8F7FD; padding: 8px; border-radius: 10px; margin: 18px;">
+                        <div class="col row"
+                             style="background-color: #F8F7FD; padding: 8px; border-radius: 10px; margin: 18px;">
                             <div class="col news-content" style="text-align: center;">
-                                <img src="assets/img/profile.jpg"  style="display: inline-block; border-radius: 250px; width: 80px;">
+                                <img src="assets/img/profile.jpg"
+                                     style="display: inline-block; border-radius: 250px; width: 80px;">
                             </div>
                             <div class="col">
                                 <b style="margin: 10px;">Title </b>
@@ -78,19 +86,23 @@
                             </div>
                             <div class="col-2"></div>
                             <div class="col-1">
-                                <a href="/editpost" style="text-decoration: none; margin: 10px; color: #000;" class="fa fa-edit">
+                                <a href="/editpost" style="text-decoration: none; margin: 10px; color: #000;"
+                                   class="fa fa-edit">
                                 </a>
                             </div>
                             <div class="col-1">
-                                <button type="button" style="border-color: white; background-color: #F8F7FD" class="fa fa-trash" data-toggle="modal" data-target="#delete"></button>
+                                <button type="button"
+                                        style="border-color: white; background-color: #F8F7FD; margin: 8px;"
+                                        class="fa fa-trash" data-toggle="modal" data-target="#delete"></button>
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
-                        <div class="col row" style="background-color: #F8F7FD; padding: 8px; border-radius: 10px; margin: 18px;">
+                        <div class="col row"
+                             style="background-color: #F8F7FD; padding: 8px; border-radius: 10px; margin: 18px;">
                             <div class="col news-content" style="text-align: center;">
-                                <img src="assets/img/profile.jpg"  style="display: inline-block; border-radius: 250px; width: 80px;">
+                                <img src="assets/img/profile.jpg"
+                                     style="display: inline-block; border-radius: 250px; width: 80px;">
                             </div>
                             <div class="col">
                                 <b style="margin: 10px;">Title </b>
@@ -98,11 +110,14 @@
                             </div>
                             <div class="col-2"></div>
                             <div class="col-1">
-                                <a href="/editpost" style="text-decoration: none; margin: 10px; color: #000;" class="fa fa-edit">
+                                <a href="/editpost" style="text-decoration: none; margin: 10px; color: #000;"
+                                   class="fa fa-edit">
                                 </a>
                             </div>
                             <div class="col-1">
-                                <button type="button" style="border-color: white; background-color: #F8F7FD" class="fa fa-trash" data-toggle="modal" data-target="#delete"></button>
+                                <button type="button"
+                                        style="border-color: white; background-color: #F8F7FD; margin: 8px;"
+                                        class="fa fa-trash" data-toggle="modal" data-target="#delete"></button>
                             </div>
                         </div>
                     </div>
@@ -117,9 +132,15 @@
                                 <div class="text-center"><br>
                                     <div class="form-check form-check-inline">
                                         <label class="form-check-label">Are you sure?</label>
-                                    </div><br><br>
-                                    <button type="button" style="background-color: #66B700; width: 50%;" class="btn" data-bs-dismiss="modal" aria-label="Close">Proceed</button>
-                                </div><br><br>
+                                    </div>
+                                    <br><br>
+                                    <form id="delete-form" method="post">
+                                        <input hidden name="id" id="id-container">
+                                        <button id="delete-btn" type="submit" style="background-color: #66B700; width: 50%;" class="btn">Proceed
+                                        </button>
+                                    </form>
+                                </div>
+                                <br><br>
                             </div>
                         </div>
                     </div>

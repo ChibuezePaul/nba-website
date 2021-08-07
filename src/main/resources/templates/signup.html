@@ -16,7 +16,6 @@
     </div>
     <h4 th:class="${!#strings.isEmpty(message)}  ? 'alert alert-success alert-dismissible text-success fade in' : 'hidden'"
         th:text="${message}">Success Message</h4>
-    <a href="#" th:class="${!#strings.isEmpty(message)}  ? 'close' : 'hidden' " data-dismiss="alert" aria-label="close">&times;</a>
     <div class="container">
         <div class="row">
             <div class="col-md-3"></div>
@@ -26,7 +25,6 @@
                 <form th:action="@{/signup}" th:method="post" th:object="${user}">
                     <section
                             th:class="${#fields.hasErrors('*')}  ? 'alert alert-danger alert-dismissible text-danger fade in' : 'hidden'">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                         <li th:each="e : ${#fields.detailedErrors()}" th:attr="field=${e.fieldName}"
                             th:text="${e.message}"></li>
                     </section>
@@ -125,7 +123,7 @@
                         <div class="col-md-5">
                         </div>
                         <div class="col-md-4">
-                            <button type="submit" class="button btn law form-control">Sign up</button><br><br>
+                            <button type="submit" class="button btn law form-control">Sign up &nbsp;<i class="fa fa-user-plus"></i></button><br><br>
                             <a style="padding-top: 20px; text-align: center;" href="/login">Have an account? Login</a>
                         </div>
                         <div class="col-md-3">

@@ -1,5 +1,6 @@
 package com.isoft.nbawebsite.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.isoft.nbawebsite.commons.data.AbstractEntity;
 import com.isoft.nbawebsite.constants.AccountStatus;
 import com.isoft.nbawebsite.constants.Role;
@@ -33,7 +34,12 @@ public class User extends AbstractEntity {
 
     private String chamberAddress;
 
+    @JsonIgnore
     private String password;
+
+    private String honorific;
+
+    private String imageUrl;
 
     private Role role;
 

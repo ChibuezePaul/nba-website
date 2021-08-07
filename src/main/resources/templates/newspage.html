@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:insert="layout :: head('News Details')">
 
@@ -11,6 +11,74 @@
     <header th:insert="layout :: header" ></header>
     <div class="  mini-heading">
         <h3 class="breadcrumb" style="background-color: #66b700;">Events</h3>
+    </div>
+    <div class="event-heading">
+        <img th:src="@{'/image/'+${news.id}+'/'+${news.image}}" src="assets/img/bg Top.jpg">
+        <div class="event-content">
+            <h6 th:text="${news.dateCreated.month + '' +news.dateCreated.dayOfMonth +''+ news.dateCreated.year}">Aug 5, 2021</h6>
+            <h5 th:text="${news.title}">Lawyers EXPO 2021 </h5>
+            <p th:text="${news.description}">
+                perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
+                aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
+                explicabo perspiciatis unde omnis iste natus error sit
+                voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
+                veritatis et quasi architecto beatae vitae dicta sunt explicabo perspiciatis unde omnis iste natus
+                error sit voluptatem accusantium
+                doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
+                architecto beatae vitae dicta sunt explicabo perspiciatis unde omnis iste natus error sit voluptatem
+                accusantium doloremque laudantium,
+                totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+                dicta sunt explicaboperspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+                laudantium, totam rem aperiam, eaque
+                ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo
+                perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
+                aperiam, eaque ipsa quae ab illo inventore
+                veritatis et quasi architecto beatae vitae dicta sunt explicaboperspiciatis unde omnis iste natus
+                error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
+                inventore veritatis et quasi architecto
+                beatae vitae dicta sunt explicabo perspiciatis unde omnis iste natus error sit voluptatem
+                accusantium doloremque
+                perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
+                aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
+                explicabo perspiciatis unde omnis iste natus error sit
+                voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
+                veritatis et quasi architecto beatae vitae dicta sunt explicabo perspiciatis unde omnis iste natus
+                error sit voluptatem accusantium
+                doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
+                architecto beatae vitae dicta sunt explicabo perspiciatis unde omnis iste natus error sit voluptatem
+                accusantium doloremque laudantium,
+                totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+                dicta sunt explicaboperspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+                laudantium, totam rem aperiam, eaque
+                ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo
+                perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
+                aperiam, eaque ipsa quae ab illo inventore
+                veritatis et quasi architecto beatae vitae dicta sunt explicaboperspiciatis unde omnis iste natus
+                error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
+                inventore veritatis et quasi architecto
+                beatae vitae dicta sunt explicabo perspiciatis unde omnis iste natus error sit voluptatem
+                accusantium doloremque perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
+                aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
+                explicabo perspiciatis unde omnis iste natus error sit
+                voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
+                veritatis et quasi architecto beatae vitae dicta sunt explicabo perspiciatis unde omnis iste natus
+                error sit voluptatem accusantium
+                doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
+                architecto beatae vitae dicta sunt explicabo perspiciatis unde omnis iste natus error sit voluptatem
+                accusantium doloremque laudantium,
+                totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+                dicta sunt explicaboperspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+                laudantium, totam rem aperiam, eaque
+                ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo
+                perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
+                aperiam, eaque ipsa quae ab illo inventore
+                veritatis et quasi architecto beatae vitae dicta sunt explicaboperspiciatis unde omnis iste natus
+                error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
+                inventore veritatis et quasi architecto
+                beatae vitae dicta sunt explicabo perspiciatis unde omnis iste natus error sit voluptatem
+                accusantium doloremque
+            </p>
+        </div>
     </div>
     <div class="event-heading">
         <img src="assets/img/bg Top.jpg">

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:insert="layout :: head('Create Meeting')"></head>
 
@@ -18,34 +18,43 @@
                 <div class="col-12 col-sm-12 col-md- col-lg-7">
                     <div class="row">
                         <div class="12">
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <input type="text" class="form-control" style="background-color: #DADADA" placeholder="Meeting Title">
+                            <form th:action="@{/new-meeting}" th:method="post" th:object="${meeting}">
+                                <section
+                                        th:class="${#fields.hasErrors('*')}  ? 'alert alert-danger text-danger' : 'hidden'">
+                                    <li th:each="e : ${#fields.detailedErrors()}" th:attr="field=${e.fieldName}"
+                                        th:text="${e.message}"></li>
+                                </section>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <input autocomplete="off" required type="text" class="form-control" style="background-color: #DADADA"
+                                               th:field="*{title}" placeholder="Meeting Title">
+                                    </div>
                                 </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <input type="text" class="form-control" style="background-color: #DADADA"
-                                           placeholder="Meeting Date and Time">
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <input autocomplete="off" required type="datetime-local" class="form-control" style="background-color: #DADADA"
+                                               th:field="*{scheduledDate}" placeholder="Meeting Date and Time">
+                                    </div>
                                 </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <input type="text" class="form-control" style="background-color: #DADADA"
-                                           placeholder="Meeting Link">
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <input autocomplete="off" required type="text" class="form-control" style="background-color: #DADADA"
+                                               th:field="*{meetingLink}" placeholder="Meeting Link">
+                                    </div>
                                 </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <button type="button" style="background-color: #66B700; width: 40%;" class="form-control btn">Create Meeting</button><br><br>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button type="submit" style="background-color: #66B700; width: 40%;"
+                                                class="form-control btn">Create Meeting
+                                        </button>
+                                        <br><br>
+                                    </div>
                                 </div>
-                            </div>
-                            <br>
-
+                                <br>
+                            </form>
                         </div>
 
                     </div>

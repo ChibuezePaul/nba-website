@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:insert="layout :: head('Events')">
 
@@ -12,12 +12,12 @@
     <div class="  mini-heading">
         <h3 class="breadcrumb" style="background-color: #66b700;">Events</h3>
     </div>
-    <div class="event-heading">
-        <img src="assets/img/bg Top.jpg">
+    <div class="event-heading" th:each="event : ${events}">
+        <img th:src="@{'/image/'+${event.id}+'/'+${event.image}}" src="assets/img/bg Top.jpg">
         <div class="event-content">
-            <h6>Aug 5, 2021</h6>
-            <h5>Lawyers EXPO 2021 </h5>
-            <p>
+            <h6 th:text="${event.dateCreated.month + event.dateCreated.dayOfMonth + event.dateCreated.year}">Aug 5, 2021</h6>
+            <h5 th:text="${event.title}">Lawyers EXPO 2021 </h5>
+            <p th:text="${event.description}">
                 perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
                 aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
                 explicabo perspiciatis unde omnis iste natus error sit
@@ -39,37 +39,7 @@
                 beatae vitae dicta sunt explicabo perspiciatis unde omnis iste natus error sit voluptatem
                 accusantium doloremque
             </p>
-            <a href="/viewevents">Read More →</a>
-        </div>
-    </div>
-    <div class="event-heading">
-        <img src="assets/img/bg Top.jpg">
-        <div class="event-content">
-            <h6>Aug 5, 2021</h6>
-            <h5>Lawyers EXPO 2021 </h5>
-            <p>
-                perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
-                aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
-                explicabo perspiciatis unde omnis iste natus error sit
-                voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
-                veritatis et quasi architecto beatae vitae dicta sunt explicabo perspiciatis unde omnis iste natus
-                error sit voluptatem accusantium
-                doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
-                architecto beatae vitae dicta sunt explicabo perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudantium,
-                totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
-                dicta sunt explicaboperspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-                laudantium, totam rem aperiam, eaque
-                ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo
-                perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
-                aperiam, eaque ipsa quae ab illo inventore
-                veritatis et quasi architecto beatae vitae dicta sunt explicaboperspiciatis unde omnis iste natus
-                error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
-                inventore veritatis et quasi architecto
-                beatae vitae dicta sunt explicabo perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque
-            </p>
-            <a href="/viewevents">Read More →</a>
+            <a th:href="|/viewevents/${event.id}|" href="/viewevents">Read More →</a>
         </div>
     </div>
 

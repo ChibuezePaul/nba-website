@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:insert="layout :: head('Dashboard')"></head>
 
@@ -17,7 +17,59 @@
                 </div>
                 <div class="col-12 col-sm-12 col-md-9 col-lg-9">
                     <div class="container">
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                <div class="mem-content2">
+                                    <div class=" row">
+                                        <div class="col-md-6" style="padding-top: 10px;">
+                                            <a th:href="|/individualprofile/${user.id}|">
+                                                <img th:src="${user.imageUrl}" src="assets/img/profile.jpg" style="border-radius: 20px; width: 300px;">
+                                            </a>
+                                        </div>
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-3"> </div>
 
+                                        <div class="news-details">
+                                            <h6 style="color: #D2D0D0; font-size: 12px; margin: 0px;">Name</h6>
+                                            <h5 th:text="|${user.firstName} ${user.lastName}|">John Doe</h5>
+                                            <h6 style="color: #D2D0D0; font-size: 12px; margin: 0px;">SC Number</h6>
+                                            <p th:text="${user.SCNumber}">123456</p>
+                                            <ion-icon style="color: black; font-size: 12px;" name="call"></ion-icon><span style="font-size: 14px;" th:text="${user.phoneNumber}"> +2348168898023</span><br><br>
+                                            <ion-icon style="color: black;" name="mail"></ion-icon><span style="font-size: 14px;" th:text="${user.email}"> johndoe@gmail.com</span><br><br>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                <div class="mem-content2">
+                                    <h6 style="color: #D2D0D0; font-size: 25px; margin: 0px;">Bio</h6>
+                                    <p style="text-align: justify;">
+                                        perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo
+                                        perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo
+                                        perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo
+                                    </p><br>
+                                    <h6 style="color: #D2D0D0; font-size: 16px; margin: 0px;" th:text="${user.address}">Chambers address</h6>
+                                    <div class="row">
+                                        <div class="col-2" style="padding: 15px; border-radius: 10px; margin: 8px;">
+                                            <button type="button" style="background-color: #66B700" class="btn btn-accept" data-toggle="modal" data-target="#myModal" th:data-id="${user.id}">
+                                                Accept
+                                            </button>
+                                        </div>
+                                        <div class="col-2" style="padding: 15px; border-radius: 10px; margin: 8px;">
+                                            <button type="button" style="background-color: #FF0000" class="btn btn-reject" data-toggle="modal" data-target="#reject" th:data-id="${user.id}">
+                                                Reject
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-9 col-lg-9">
+                    <div class="container">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                                 <div class="mem-content2">
@@ -78,7 +130,9 @@
                                     <div class="form-check form-check-inline">
                                         <label class="form-check-label">Are you sure you want to ACCEPT?</label>
                                     </div><br><br>
-                                    <button type="button" style="background-color: #66B700; width: 50%;" class="btn" data-bs-dismiss="modal" aria-label="Close">Proceed</button>
+                                    <a id="accept-btn">
+                                        <button type="button" style="background-color: #66B700; width: 50%;" class="btn" data-bs-dismiss="modal" aria-label="Close">Proceed</button>
+                                    </a>
                                 </div><br><br>
                             </div>
                         </div>
@@ -96,7 +150,9 @@
                                     <div class="form-check form-check-inline">
                                         <label class="form-check-label">Are you sure you want to REJECT?</label>
                                     </div><br><br>
-                                    <button type="button" style="background-color: #66B700; width: 50%;" class="btn" data-bs-dismiss="modal" aria-label="Close">Proceed</button>
+                                    <a id="reject-btn">
+                                        <button type="button" style="background-color: #66B700; width: 50%;" class="btn" data-bs-dismiss="modal" aria-label="Close">Proceed</button>
+                                    </a>
                                 </div><br><br>
                             </div>
                         </div>
@@ -112,7 +168,6 @@
 </section>
 
 <script src="assets/js/app.js "></script>
-
 <!-- Option 1: Bootstrap Bundle with Popper -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js "></script>
 <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js "></script>

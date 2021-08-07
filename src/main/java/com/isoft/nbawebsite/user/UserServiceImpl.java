@@ -51,6 +51,7 @@ public class UserServiceImpl implements UserService {
         user.setPhoneNumber(newUserCmd.getPhoneNumber());
         user.setFirstName(newUserCmd.getFirstName());
         user.setLastName(newUserCmd.getLastName());
+        user.setHonorific(newUserCmd.getHonorific());
         user.setPassword(passwordEncoder.encode(newUserCmd.getPassword()));
         user.setRole(Role.ADMIN);
         return userRepository.save(user);
@@ -66,6 +67,7 @@ public class UserServiceImpl implements UserService {
         user.setAddress(updateCmd.getAddress());
         user.setChamberAddress(updateCmd.getChamberAddress());
         user.setSCNumber(updateCmd.getSCNumber());
+        user.setHonorific(updateCmd.getHonorific());
         return userRepository.save(user);
     }
 
@@ -107,22 +109,28 @@ public class UserServiceImpl implements UserService {
     @Override
     public void approveNewUserRequest(String id) {
         User user = findById(id);
+        checkIfAccountHasBeenReviewed(user);
         user.setAccountStatus(AccountStatus.APPROVED);
         userRepository.save(user);
     }
 
     @Override
-    public void disapproveNewUserRequest(String id) {
+    public void rejectNewUserRequest(String id) {
         User user = findById(id);
+        checkIfAccountHasBeenReviewed(user);
         user.setAccountStatus(AccountStatus.REJECTED);
         userRepository.save(user);
     }
 
     @Override
-    public void suspendUser(String id, String suspensionPeriod) {
+    public void suspendUser(String id, String suspensionPeriodLabel) {
         User user = findById(id);
+        SuspensionPeriod suspensionPeriod = SuspensionPeriod.getSuspensionPeriodByLabel(suspensionPeriodLabel).orElseThrow(() -> new CustomException("Invalid Suspension Period Specified"));
+        if(user.isSuspended() && user.getSuspensionPeriod().equals(suspensionPeriod)) {
+            throw new CustomException("User Account Already Suspended For The Specified Period");
+        }
         user.setSuspended(true);
-        user.setSuspensionPeriod(SuspensionPeriod.getSuspensionPeriodByLabel(suspensionPeriod));
+        user.setSuspensionPeriod(suspensionPeriod);
         user.setSuspensionDate(LocalDateTime.now());
         userRepository.save(user);
     }
@@ -130,9 +138,46 @@ public class UserServiceImpl implements UserService {
     @Override
     public void reinstateUser(String id) {
         User user = findById(id);
+        if(!user.isSuspended()) {
+            throw new CustomException("User Account Not Suspended");
+        }
         user.setSuspended(false);
         user.setSuspensionPeriod(null);
         user.setSuspensionDate(null);
         userRepository.save(user);
+    }
+
+    @Override
+    public List<User> findUsersByAccountStatus(AccountStatus accountStatus) {
+        return userRepository.findAllByAccountStatus(accountStatus);
+    }
+
+    @Override
+    public List<User> findRecentUsers() {
+        return userRepository.findTop3ByOrderByDateCreatedDesc();
+    }
+
+    @Override
+    public void forgotPassword(String uniqueId) {
+        userRepository.findByEmailOrSCNumberIgnoreCase(uniqueId, uniqueId).orElseThrow(() -> USER_NOT_FOUND);
+    }
+
+    @Override
+    public void resetPassword(String uniqueId, String password, String confirmPassword) {
+        if(password != null && !password.equals(confirmPassword)) {
+            throw new CustomException("Password Mismatch! Kindly Supply Same Password In Both Fields");
+        }
+        User user = userRepository.findByEmailOrSCNumberIgnoreCase(uniqueId, uniqueId).orElseThrow(() -> USER_NOT_FOUND);
+        if(passwordEncoder.matches(password, user.getPassword())) {
+            throw new CustomException("Password is same as current password");
+        }
+        user.setPassword(passwordEncoder.encode(password));
+        userRepository.save(user);
+    }
+
+    private void checkIfAccountHasBeenReviewed(User user) {
+        if(!user.getAccountStatus().equals(AccountStatus.PENDING)) {
+            throw new CustomException("Account Has Already Been Reviewed");
+        }
     }
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:insert="layout :: head('Catalogue')">
 
@@ -27,21 +27,21 @@
                 <div class="col-md-6"></div>
             </div>
         </form>
-        <div th:each="user : ${users}" class="row news-heading">
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="row news-heading">
+            <div th:each="user : ${users}" class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <div class="mem-content2">
                     <div class="mem-content3 row">
                         <div class="col-md-3"></div>
                         <div class="col-md-6" style="padding-top: 50px;">
                             <a th:href="|/individualprofile/${user.id}|">
-                                <img src="assets/img/profile.jpg" style="border-radius: 250px;">
+                                <img alt="profile picture" th:src="${user.imageUrl}" src="assets/img/profile.jpg" style="border-radius: 250px;">
                             </a>
                         </div>
                         <div class="col-md-3"></div>
 
                         <div class="news-details" style="text-align: center;">
-                            <h5>John Doe</h5>
-                            <h5 style="color: #D2D0D0;">Associate</h5>
+                            <h5 th:text="|${user.firstName} ${user.lastName}|">John Doe</h5>
+                            <h5 style="color: #D2D0D0;" th:text="${user.honorific}">Associate</h5>
                             <hr>
                             <ion-icon style="color: black;" name="call"></ion-icon>
                             <ion-icon style="color: black;" name="mail"></ion-icon>
@@ -124,7 +124,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 

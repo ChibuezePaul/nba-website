@@ -1,7 +1,9 @@
 package com.isoft.nbawebsite.constants;
 
+
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public enum SuspensionPeriod {
     ONE_WEEK("1 Week"),
@@ -22,7 +24,7 @@ public enum SuspensionPeriod {
         this.label = label;
     }
 
-    public static SuspensionPeriod getSuspensionPeriodByLabel(String label) {
-        return suspensionPeriodMap.get(label);
+    public static Optional<SuspensionPeriod> getSuspensionPeriodByLabel(String label) {
+        return Optional.ofNullable(suspensionPeriodMap.get(label));
     }
 }
