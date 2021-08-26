@@ -27,7 +27,7 @@
                             <div class="row" style="color: white;padding: 5px; border-radius: 10px; margin: 3px;">
                                 <div class="col">
                                     <button style="background-color: #66B700 ; color: white; padding: 5px; border-radius: 10px; margin: 3px;"
-                                            th:onclick="processPayment()">
+                                            th:onclick="payWithRave()">
                                         Proceed to Payment
                                     </button>
                                 </div>
@@ -51,10 +51,10 @@
                             <tbody>
                             <tr th:each="payment : ${payments}">
                                 <td th:text="${payment.paymentDescription}">Annual Dues</td>
-                                <td th:text="${payment.paymentStatus}"><span class="fa fa-check-circle"
-                                                                             style="color: #66B700;"></span> Completed
+                                <td>
+                                    <span class="fa fa-check-circle" style="color: #66B700;"></span><span th:text="${payment.paymentStatus}">Completed</span>
                                 </td>
-                                <td th:text="${payment.dateCreated}">10/08/2020 - 10:00am</td>
+                                <td th:text="${#temporals.format(payment.dateCreated, 'd/m/yy - hh:mma').toLowerCase()}">10/08/2020 - 10:00am</td>
                             </tr>
                             <tr>
                                 <td>Annual Dues</td>
@@ -93,13 +93,53 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js "></script>
 <script th:inline="javascript">
-    /*<![CDATA[*/
-    function processPayment() {
-        const user = {"email": [[${email}]], "phoneNumber": [[${phoneNumber}]], "amount": [[${monthlyDueAmount}]]};
-        payWithRave(user);
-    }
 
-    /*]]>*/
+    function payWithRave() {
+        // console.log(customerDetails)
+        // console.log(user)
+
+        const email = [[${email}]];
+        const phoneNumber = [[${phoneNumber}]];
+        const amount = [[${monthlyDueAmount}]];
+        // console.log(email, phoneNumber, amount)
+        let payment = getpaidSetup({
+            PBFPubKey: API_publicKey,
+            customer_email: [[${email}]],
+            amount: [[${monthlyDueAmount}]],
+            customer_phone: [[${phoneNumber}]],
+            currency: "NGN",
+            txref: "rave-nba-dues-"+Date.now().valueOf()+"",
+            meta: [{
+                metaname: "flightID",
+                metavalue: "AP1234"
+            }],
+            // redirect_url: "/make-payment?amount="+[[${monthlyDueAmount}]]+"&email="+[[${email}]],
+            onclose: function () {
+            },
+            callback: function (response) {
+                const {txRef, chargeResponseCode, flwRef} = response.data.data;
+                console.log("This is the response returned after a charge", response);
+                console.log(response.data);
+                console.log(Boolean(chargeResponseCode));
+                // if (chargeResponseCode == "00") {
+                    // redirect to a success page
+                    console.log("got in here...");
+                    fetch("/monthly-dues",{
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({"paymentRef": txRef, "transactionId": flwRef, "userEmail": email, "amount": amount, "paymentStatus": chargeResponseCode == "00" ? "Completed" : "Failed"})
+                    })
+                        .then(resp => console.log(resp))
+                        .catch(err => console.log(err));
+                // } else {
+                    // redirect to a failure page.
+                // }
+                payment.close(); // use this to close the modal immediately after payment.
+            }
+        });
+    }
 </script>
 </body>
 

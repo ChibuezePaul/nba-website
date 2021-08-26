@@ -150,17 +150,11 @@ public class BusinessLogicController {
         return "redirect:/meetingroom";
     }
 
-    @PostMapping("/make-payment")
-    public String makePayment(String txnRef, String email, long amount, String status, RedirectAttributes redirectAttributes) {
-        Payment payment = new Payment();
-        payment.setPaymentRef(txnRef);
-        payment.setUserEmail(email);
-        payment.setPaymentStatus(PaymentStatus.of(status));
-        payment.setAmount(BigDecimal.valueOf(amount));
+    @PostMapping("/monthly-dues")
+    public String payMonthlyDues(@RequestBody Payment payment, RedirectAttributes redirectAttributes) {
         payment.setPaymentDescription("Annual Dues");
         paymentService.makePayment(payment);
-//        RedirectAttributes redirectAttributes = new RedirectAttributesModelMap();
-        redirectAttributes.addFlashAttribute("message", "Payment "+status);
+        redirectAttributes.addFlashAttribute("message", "Payment "+payment.getPaymentStatus());
         return "redirect:/payment";
     }
 }

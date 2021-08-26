@@ -58,7 +58,7 @@
                             </div>
                             <div class="col">
                                 <b style="margin: 10px;" th:text="${recentPost.title}">Title </b>
-                                <p style="margin: 10px; color: #DB7600;">Published &nbsp;<span style="color: #5a5a5a;" th:text="${recentPost.dateCreated.month +'. '+ recentPost.dateCreated.dayOfMonth}" ></span></p>
+                                <p style="margin: 10px; color: #DB7600;">Published &nbsp;<span style="color: #5a5a5a;" th:text="${#temporals.format(recentPost.dateCreated, 'MMM. d')}" ></span></p>
                             </div>
                             <div class="col-2"></div>
                             <div class="col-1">

@@ -4,7 +4,9 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Transient;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Data
 @MappedSuperclass

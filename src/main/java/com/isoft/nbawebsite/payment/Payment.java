@@ -15,7 +15,8 @@ public class Payment extends AbstractEntity {
     private String paymentRef;
     private BigDecimal amount;
     private String userEmail;
-    private String paymentDescription;
+    private String paymentDescription = "Annual Dues";
     @Enumerated(EnumType.STRING)
     private PaymentStatus paymentStatus;
+    private String transactionId;
 }
