@@ -27,7 +27,7 @@
                                                                                    style="color: white; padding: 3px; background-color: rgba(54, 104, 240, 0.794); border-radius: 4px;"></i> Zoom </span>
                                     </div>
                                     <div class="col-7"><span style="margin: 10px" th:text="${meeting.title}">Meeting with the president</span></div>
-                                    <div class="col-2"><span style="margin: 10px" th:text="|${meeting.scheduledDate.toLocalTime()}${meeting.scheduledDate.hour >= 12 ? 'pm' : 'am'}|">10:30am</span></div>
+                                    <div class="col-2"><span style="margin: 10px" th:text="${#temporals.format(meeting.scheduledDate, 'hh:mma').toLowerCase()}">10:30am</span></div>
                                 </div>
                                 <div class="col row" style="padding: 15px; border-radius: 10px; margin: 8px;">
                                     <a class="btn" th:href="${meeting.meetingLink}" target="_blank" style="background-color: #66B700">Enter</a>

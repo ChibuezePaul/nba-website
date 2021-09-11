@@ -96,40 +96,53 @@ for (var i = 0; i < deleteButtons.length; i++) {
 // Flutterwave Payment (Monthly Dues)
 const API_publicKey = "FLWPUBK_TEST-a55cebaec65ef9f1cc6d77db8ff35c22-X";
 const MONTHLY_DUES = 2000;
-function payWithRave(customerDetails) {
-    const {email, phoneNumber, amount} = customerDetails;
-    let payment = getpaidSetup({
-        PBFPubKey: API_publicKey,
-        customer_email: email,
-        amount: amount,
-        customer_phone: phoneNumber,
-        currency: "NGN",
-        txref: "rave-nba-dues-"+Date.now().valueOf()+"",
-        meta: [{
-            metaname: "flightID",
-            metavalue: "AP1234"
-        }],
-        onclose: function () {
-        },
-        callback: function (response) {
-            const txref = response.data.txRef; // collect txRef returned and pass to a                    server page to complete status check.
-            console.log("This is the response returned after a charge", response);
-            if (
-                response.data.chargeResponseCode == "00" ||
-                response.data.chargeResponseCode == "0"
-            ) {
-                // redirect to a success page
-                fetch({
-                    url: "/make-payment",
-                    method: "POST",
-                    body: {"txnRef": txref, "email": email, "amount": amount, "status": "completed"}
-                })
-                    .then(resp => console.log(resp))
-                    .catch(err => console.log(err))
-            } else {
-                // redirect to a failure page.
-            }
-            payment.close(); // use this to close the modal immediately after payment.
-        }
-    });
-}
+
+/*<![CDATA[*/
+    // const user = {"email": [[${email}]], "phoneNumber": [[${phoneNumber}]], "amount": [[${monthlyDueAmount}]]};
+
+
+
+
+// function payWithRave(customerDetails) {
+//     console.log(customerDetails)
+//     // console.log(user)
+//
+//     const {email, phoneNumber, amount} = JSON.parse(customerDetails);
+//     console.log(email, phoneNumber, amount)
+//     let payment = getpaidSetup({
+//         PBFPubKey: API_publicKey,
+//         customer_email: email,
+//         amount: amount,
+//         customer_phone: phoneNumber,
+//         currency: "NGN",
+//         txref: "rave-nba-dues-"+Date.now().valueOf()+"",
+//         meta: [{
+//             metaname: "flightID",
+//             metavalue: "AP1234"
+//         }],
+//         redirect_url: "/make-payment?amount="+amount+"&email="+email,
+//         onclose: function () {
+//         },
+//         callback: function (response) {
+//             const txref = response.data.txRef; // collect txRef returned and pass to a                    server page to complete status check.
+//             console.log("This is the response returned after a charge", response);
+//             if (
+//                 response.data.chargeResponseCode == "00" ||
+//                 response.data.chargeResponseCode == "0"
+//             ) {
+//                 // redirect to a success page
+//                 // fetch("/make-payment",{
+//                 //     method: "POST",
+//                 //     body: {"paymentRef": txref, "userEmail": email, "amount": amount, "paymentStatus": "COMPLETED"}
+//                 // })
+//                 //     .then(resp => console.log(resp))
+//                 //     .catch(err => console.log(err))
+//             } else {
+//                 // redirect to a failure page.
+//             }
+//             payment.close(); // use this to close the modal immediately after payment.
+//         }
+//     });
+// }
+
+/*]]>*/
